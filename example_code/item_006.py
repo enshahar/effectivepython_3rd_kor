@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -56,7 +56,7 @@ second = (1, 2, 3,)
 second_wrapped = (
     1,
     2,
-    3,  # Optional comma
+    3,  # 선택적인 콤마
 )
 
 
@@ -122,14 +122,14 @@ to_refund2 = calculate_refund(
     get_order_value(user, order.id),
     get_tax(user.address, order.dest),
     adjust_discount(user) + 0.1,
-)  # No trailing comma
+)  # 트레일링 콤마가 없음
 print(type(to_refund2))
 
 
 print("Example 12")
-value_a = 1,    # No parentheses, right
-list_b = [1,]   # No parentheses, wrong
-list_c = [(1,)] # Parentheses, right
+value_a = 1,    # 괄호 없음, 맞음
+list_b = [1,]   # 괄호 없음, 틀림
+list_c = [(1,)] # 괄호 있음, 맞음
 print('A:', value_a)
 print('B:', list_b)
 print('C:', list_c)

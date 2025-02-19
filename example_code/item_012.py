@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -85,8 +85,8 @@ print(repr(str_value))
 
 
 print("Example 7")
-print("Is %r == %r?" % (int_value, str_value))
-print(f"Is {int_value!r} == {str_value!r}?")
+print("%r == %r 인가?" % (int_value, str_value))
+print(f"{int_value!r} == {str_value!r} 인가?")
 
 
 print("Example 8")
@@ -126,5 +126,5 @@ class StringifiableBetterClass(BetterClass):
 
 print("Example 13")
 obj2 = StringifiableBetterClass(2, "bar")
-print("Human readable:", obj2)
-print("Printable:     ", repr(obj2))
+print("사람이 읽을 수 있는:", obj2)
+print("출력 가능한:        ", repr(obj2))

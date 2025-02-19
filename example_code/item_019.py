@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -65,16 +65,17 @@ else:
 
 print("Example 3")
 for x in []:
-    print("Never runs")
+    print("이 줄은 실행되지 않음")
 else:
-    print("For else block!")
+    print("For의 Else 블럭!")
+
 
 
 print("Example 4")
 while False:
-    print("Never runs")
+    print("이 줄은 실행되지 않음")
 else:
-    print("While else block!")
+    print("While의 Else 블럭!")
 
 
 print("Example 5")
@@ -82,12 +83,12 @@ a = 4
 b = 9
 
 for i in range(2, min(a, b) + 1):
-    print("Testing", i)
+    print("체크:", i)
     if a % i == 0 and b % i == 0:
-        print("Not coprime")
+        print("서로소 아님")
         break
 else:
-    print("Coprime")
+    print("서로소")
 
 
 print("Example 6")

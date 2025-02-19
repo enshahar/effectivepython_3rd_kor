@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,79 +44,79 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
 def take_action(light):
-    if light == "red":
+    if light == "빨강":
         print("Stop")
-    elif light == "yellow":
-        print("Slow down")
-    elif light == "green":
-        print("Go!")
+    elif light == "노랑":
+        print("속도를 줄이자")
+    elif light == "초록":
+        print("가자!")
     else:
         raise RuntimeError
 
 
 print("Example 2")
-take_action("red")
-take_action("yellow")
-take_action("green")
+take_action("빨강")
+take_action("노랑")
+take_action("초록")
 
 
 print("Example 3")
 def take_match_action(light):
     match light:
-        case "red":
-            print("Stop")
-        case "yellow":
-            print("Slow down")
-        case "green":
-            print("Go!")
+        case "빨강":
+            print("멈추자")
+        case "노랑":
+            print("속도를 줄이자")
+        case "초록":
+            print("가자!")
         case _:
             raise RuntimeError
 
 
-take_match_action("red")
-take_match_action("yellow")
-take_match_action("green")
+take_match_action("빨강")
+take_match_action("노랑")
+take_match_action("초록")
 
 
 print("Example 4")
 try:
-    # This will not compile
+    # 컴파일되지 않음
     source = """# Added these constants
-    RED = "red"
-    YELLOW = "yellow"
-    GREEN = "green"
+    RED = "빨강"
+    YELLOW = "노랑"
+    GREEN = "초록"
     
     def take_constant_action(light):
         match light:
-            case RED:               # Changed
-                print("Stop")
-            case YELLOW:            # Changed
-                print("Slow down")
-            case GREEN:             # Changed
-                print("Go!")
+            case RED:               # 변경함
+                print("멈추자")
+            case YELLOW:            # 변경함
+                print("속도를 줄이자")
+            case GREEN:             # 변경함
+                print("가자!")
             case _:
                 raise RuntimeError"""
     eval(source)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
 
 print("Example 5")
-RED = "red"
-YELLOW = "yellow"
-GREEN = "green"
+RED = "빨강"
+YELLOW = "노랑"
+GREEN = "초록"
 
 def take_truncated_action(light):
     match light:
         case RED:
-            print("Stop")
+            print("멈추자")
 
 
 print("Example 6")
@@ -137,10 +137,10 @@ def take_unpacking_action(light):
     try:
         (RED,) = (light,)
     except TypeError:
-        # Did not match
+        # 매치되지 않음
         pass
     else:
-        # Matched
+        # 매치됨
         print(f"{RED=}, {light=}")
 
 
@@ -148,21 +148,21 @@ take_unpacking_action(GREEN)
 
 
 print("Example 9")
-import enum                     # Added
+import enum                     # 추가됨
 
-class ColorEnum(enum.Enum):     # Added
-    RED = "red"
-    YELLOW = "yellow"
-    GREEN = "green"
+class ColorEnum(enum.Enum):     # 추가됨
+    RED = "빨강"
+    YELLOW = "노랑"
+    GREEN = "초록"
 
 def take_enum_action(light):
     match light:
-        case ColorEnum.RED:     # Changed
-            print("Stop")
-        case ColorEnum.YELLOW:  # Changed
-            print("Slow down")
-        case ColorEnum.GREEN:   # Changed
-            print("Go!")
+        case ColorEnum.RED:     # 변경함
+            print("멈추자")
+        case ColorEnum.YELLOW:  # 변경함
+            print("속도를 줄이자")
+        case ColorEnum.GREEN:   # 변경함
+            print("가자!")
         case _:
             raise RuntimeError
 
@@ -173,7 +173,7 @@ take_enum_action(ColorEnum.GREEN)
 
 print("Example 10")
 for index, value in enumerate("abc"):
-    print(f"index {index} is {value}")
+    print(f"인덱스 {index}는 {value}")
 
 
 print("Example 11")
@@ -275,8 +275,8 @@ for i in range(0, 14):
 
 
 print("Example 19")
-record1 = """{"customer": {"last": "Ross", "first": "Bob"}}"""
-record2 = """{"customer": {"entity": "Steve's Painting Co."}}"""
+record1 = """{"customer": {"last": "아", "first": "이유"}}"""
+record2 = """{"customer": {"entity": "멋진 음악사"}}"""
 
 
 print("Example 20")
@@ -303,9 +303,9 @@ def deserialize(data):
         case {"customer": {"entity": company_name}}:
             return BusinessCustomer(company_name)
         case _:
-            raise ValueError("Unknown record type")
+            raise ValueError("알 수 없는 레코드 타입")
 
 
 print("Example 22")
-print("Record1:", deserialize(record1))
-print("Record2:", deserialize(record2))
+print("레코드1:", deserialize(record1))
+print("레코드2:", deserialize(record2))

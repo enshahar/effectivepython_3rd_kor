@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,18 +44,18 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
 i = 3
-x = "even" if i % 2 == 0 else "odd"
+x = "짝수" if i % 2 == 0 else "홀수"
 print(x)
 
 
 print("Example 2")
 def fail():
-    raise Exception("Oops")
+    raise Exception("이런!")
 
 x = fail() if False else 20
 print(x)
@@ -67,41 +67,41 @@ print(result)
 
 
 print("Example 4")
-x = (i % 2 == 0 and "even") or "odd"
+x = (i % 2 == 0 and "짝수") or "홀수"
 
 
 print("Example 5")
 if i % 2 == 0:
-    x = "even"
+    x = "짝수"
 else:
-    x = "odd"
+    x = "홀수"
 
 
 print("Example 6")
 if i % 2 == 0:
-    x = "even"
-    print("It was even!")  # Added
+    x = "짝수"
+    print("짝수였음!")  # 추가됨
 else:
-    x = "odd"
+    x = "홀수"
 
 
 print("Example 7")
 if i % 2 == 0:
-    x = "even"
-elif i % 3 == 0:  # Added
-    x = "divisible by three"
+    x = "짝수"
+elif i % 3 == 0:  # 추가됨
+    x = "3으로 나눠짐"
 else:
-    x = "odd"
+    x = "홀수"
 
 
 print("Example 8")
 def number_group(i):
     if i % 2 == 0:
-        return "even"
+        return "짝수"
     else:
-        return "odd"
+        return "홀수"
 
-x = number_group(i)  # Short call
+x = number_group(i)  # 짧은 호출
 print(x)
 
 
@@ -135,21 +135,21 @@ if x and (z := x > y):
 
 print("Example 12")
 try:
-    # This will not compile
+    # 컴파일되지 않음
     source = """if x and z := x > y:
         pass"""
     eval(source)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
 
 print("Example 13")
-if x > y if z else w:    # Ambiguous
+if x > y if z else w:    # 모호함
     pass
 
-if x > (y if z else w):  # Clear
+if x > (y if z else w):  # 명확함
     pass
 
 
@@ -161,13 +161,13 @@ z = dict(
 
 print("Example 15")
 try:
-    # This will not compile
+    # 컴파일되지 않음
     source = """w = dict(
         other_value=y := 1,
     )      """
     eval(source)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -54,16 +54,16 @@ print(f"After  {i=}")
 
 
 print("Example 2")
-categories = ["Hydrogen", "Uranium", "Iron", "Other"]
+categories = ["수소", "우라늄", "철", "기타"]
 for i, name in enumerate(categories):
-    if name == "Iron":
+    if name == "철":
         break
 print(i)
 
 
 print("Example 3")
 for i, name in enumerate(categories):
-    if name == "Lithium":
+    if name == "리튬":
         break
 print(i)
 
@@ -73,11 +73,11 @@ try:
     del i
     categories = []
     for i, name in enumerate(categories):
-        if name == "Lithium":
+        if name == "리튬":
             break
     print(i)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -86,8 +86,8 @@ print("Example 5")
 try:
     my_numbers = [37, 13, 128, 21]
     found = [i for i in my_numbers if i % 2 == 0]
-    print(i)  # Always raises
+    print(i)  # 항상 오류가 발생함
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False

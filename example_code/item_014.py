@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,13 +44,13 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
 a = ["a", "b", "c", "d", "e", "f", "g", "h"]
-print("Middle two:  ", a[3:5])
-print("All but ends:", a[1:7])
+print("중간 2개:   ", a[3:5])
+print("마지막 제외:", a[1:7])
 
 
 print("Example 2")
@@ -92,7 +92,7 @@ print("Example 7")
 try:
     a[20]
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -127,6 +127,6 @@ b = a
 print("Before a", a)
 print("Before b", b)
 a[:] = [101, 102, 103]
-assert a is b             # Still the same list object
-print("After a ", a)      # Now has different contents
-print("After b ", b)      # Same list, so same contents as a
+assert a is b             # 여전히 같은 리스트 객체임
+print("After a ", a)      # 새로운 내용이 들어 있음
+print("After b ", b)      # 같은 리스트 객체이기 때문에 a와 내용이 같음

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,13 +44,13 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
 a = 0b10111011
 b = 0xC5F
-print("Binary is %d, hex is %d" % (a, b))
+print("이진수: %d, 십육진수: %d" % (a, b))
 
 
 print("Example 2")
@@ -64,7 +64,7 @@ print("Example 3")
 try:
     reordered_tuple = "%-10s = %.2f" % (value, key)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -73,16 +73,16 @@ print("Example 4")
 try:
     reordered_string = "%.2f = %-10s" % (key, value)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
 
 print("Example 5")
 pantry = [
-    ("avocados", 1.25),
-    ("bananas", 2.5),
-    ("cherries", 15),
+    ("아보카도", 1.25),
+    ("바나나", 2.5),
+    ("체리", 15),
 ]
 for i, (item, count) in enumerate(pantry):
     print("#%d: %-10s = %.2f" % (i, item, count))
@@ -101,8 +101,8 @@ for i, (item, count) in enumerate(pantry):
 
 
 print("Example 7")
-template = "%s loves food. See %s cook."
-name = "Max"
+template = "%s는 음식을 좋아해. %s가 요리하는 모습을 봐요."
+name = "철수"
 formatted = template % (name, name)
 print(formatted)
 
@@ -120,26 +120,26 @@ value = 1.234
 old_way = "%-10s = %.2f" % (key, value)
 
 new_way = "%(key)-10s = %(value).2f" % {
-    "key": key,  # Key first
+    "key": key,  # 키를 처음에 넣음
     "value": value,
 }
 
 reordered = "%(key)-10s = %(value).2f" % {
     "value": value,
-    "key": key,  # Key second
+    "key": key,  # 키를 두번째에 넣음
 }
 
 assert old_way == new_way == reordered
 
 
 print("Example 10")
-name = "Max"
+name = "철수"
 
-template = "%s loves food. See %s cook."
-before = template % (name, name)   # Tuple
+template = "%s는 음식을 좋아해. %s가 요리하는 모습을 봐요."
+before = template % (name, name)   # 튜플
 
-template = "%(name)s loves food. See %(name)s cook."
-after = template % {"name": name}  # Dictionary
+template = "%(name)s는 음식을 좋아해. %(name)s가 요리하는 모습을 봐요."
+after = template % {"name": name}  # 딕셔너리
 
 assert before == after
 
@@ -187,7 +187,7 @@ a = 1234.5678
 formatted = format(a, ",.2f")
 print(formatted)
 
-b = "my string"
+b = "my 문자열"
 formatted = format(b, "^20s")
 print("*", formatted, "*")
 
@@ -216,7 +216,8 @@ print(formatted)
 
 
 print("Example 19")
-formatted = "{0} loves food. See {0} cook.".format(name)
+name = "돌쇠"
+formatted = "{0}는 음식을 좋아해. {0}가 요리하는 모습을 봐요.".format(name)
 print(formatted)
 
 
@@ -238,7 +239,7 @@ for i, (item, count) in enumerate(pantry):
 
 
 print("Example 21")
-formatted = "First letter is {menu[oyster][0]!r}".format(menu=menu)
+formatted = "첫번째 글자는 {menu[oyster][0]!r}".format(menu=menu)
 print(formatted)
 
 
@@ -325,4 +326,4 @@ for i, (item, count) in enumerate(pantry):
 print("Example 28")
 places = 3
 number = 1.23456
-print(f"My number is {number:.{places}f}")
+print(f"내가 고른 숫자는 {number:.{places}f}")

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -85,12 +85,12 @@ print(percentages)
 print("Example 5")
 it = read_visits("my_numbers.txt")
 print(list(it))
-print(list(it))  # Already exhausted
+print(list(it))  # 이미 모든 원소를 다 소진했다
 
 
 print("Example 6")
 def normalize_copy(numbers):
-    numbers_copy = list(numbers)  # Copy the iterator
+    numbers_copy = list(numbers)  # 이터레이터 복사
     total = sum(numbers_copy)
     result = []
     for value in numbers_copy:
@@ -108,9 +108,9 @@ assert sum(percentages) == 100.0
 
 print("Example 8")
 def normalize_func(get_iter):
-    total = sum(get_iter())   # New iterator
+    total = sum(get_iter())   # 새 이터레이터
     result = []
-    for value in get_iter():  # New iterator
+    for value in get_iter():  # 새 이터레이터
         percent = 100 * value / total
         result.append(percent)
     return result
@@ -136,15 +136,15 @@ class ReadVisits:
 
 print("Example 11")
 visits = ReadVisits(path)
-percentages = normalize(visits)  # Changed
+percentages = normalize(visits)  # 변경함
 print(percentages)
 assert sum(percentages) == 100.0
 
 
 print("Example 12")
 def normalize_defensive(numbers):
-    if iter(numbers) is numbers:  # An iterator -- bad!
-        raise TypeError("Must supply a container")
+    if iter(numbers) is numbers:  # 이터레이터 -- 나쁨!
+        raise TypeError("컨테이너를 제공해야 함")
     total = sum(numbers)
     result = []
     for value in numbers:
@@ -154,7 +154,7 @@ def normalize_defensive(numbers):
 
 
 visits = [15, 35, 80]
-normalize_defensive(visits)  # No error
+normalize_defensive(visits)  # 오류 없음
 
 it = iter(visits)
 try:
@@ -169,7 +169,7 @@ print("Example 13")
 from collections.abc import Iterator
 
 def normalize_defensive(numbers):
-    if isinstance(numbers, Iterator):  # Another way to check
+    if isinstance(numbers, Iterator):  # 반복 가능한 이터레이터인지 검사하는 다른 방법
         raise TypeError("Must supply a container")
     total = sum(numbers)
     result = []
@@ -180,7 +180,7 @@ def normalize_defensive(numbers):
 
 
 visits = [15, 35, 80]
-normalize_defensive(visits)  # No error
+normalize_defensive(visits)  # 오류 없음
 
 it = iter(visits)
 try:
@@ -208,6 +208,6 @@ try:
     it = iter(visits)
     normalize_defensive(it)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False

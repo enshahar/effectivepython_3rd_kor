@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -53,7 +53,7 @@ try:
     car_ages_descending = sorted(car_ages, reverse=True)
     oldest, second_oldest = car_ages_descending
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -80,22 +80,22 @@ print(youngest, second_youngest, others)
 
 print("Example 5")
 try:
-    # This will not compile
+    # 컴파일되지 않음
     source = """*others = car_ages_descending"""
     eval(source)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
 
 print("Example 6")
 try:
-    # This will not compile
+    # 컴파일되지 않음
     source = """first, *middle, *second_middle, last = [1, 2, 3, 4]"""
     eval(source)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -125,7 +125,7 @@ print(f"{first} and {second}")
 
 print("Example 10")
 def generate_csv():
-    yield ("Date", "Make", "Model", "Year", "Price")
+    yield ("날짜", "제조사", "모델", "연식", "가격")
     for i in range(100):
         yield ("2019-03-25", "Honda", "Fit", "2010", "$3400")
         yield ("2019-03-26", "Ford", "F150", "2008", "$2400")
@@ -135,12 +135,12 @@ print("Example 11")
 all_csv_rows = list(generate_csv())
 header = all_csv_rows[0]
 rows = all_csv_rows[1:]
-print("CSV Header:", header)
-print("Row count: ", len(rows))
+print("CSV 헤더:", header)
+print("줄 수:   ", len(rows))
 
 
 print("Example 12")
 it = generate_csv()
 header, *rows = it
-print("CSV Header:", header)
-print("Row count: ", len(rows))
+print("CSV 헤더:", header)
+print("줄수:    ", len(rows))

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Start book environment setup
+### 책 예제에 맞는 환경 설정을 시작함
 import random
 random.seed(1234)
 
@@ -22,7 +22,7 @@ import logging
 from pprint import pprint
 from sys import stdout as STDOUT
 
-# Write all output to a temporary directory
+# 모든 출력을 임시 디렉터리로 보냄
 import atexit
 import gc
 import io
@@ -32,7 +32,7 @@ import tempfile
 TEST_DIR = tempfile.TemporaryDirectory()
 atexit.register(TEST_DIR.cleanup)
 
-# Make sure Windows processes exit cleanly
+# 윈도우에서 프로세스가 제대로 종료되도록 함
 OLD_CWD = os.getcwd()
 atexit.register(lambda: os.chdir(OLD_CWD))
 os.chdir(TEST_DIR.name)
@@ -44,7 +44,7 @@ def close_open_files():
             obj.close()
 
 atexit.register(close_open_files)
-### End book environment setup
+### 책 예제에 맞는 환경설정 끝
 
 
 print("Example 1")
@@ -67,11 +67,11 @@ def to_str(bytes_or_str):
         value = bytes_or_str.decode("utf-8")
     else:
         value = bytes_or_str
-    return value  # Instance of str
+    return value  # str 인스턴스
 
 print(repr(to_str(b"foo")))
 print(repr(to_str("bar")))
-
+print(repr(to_str(b"\xed\x95\x9c"))) # UTF-8에서 한글은 3바이트임
 
 print("Example 4")
 def to_bytes(bytes_or_str):
@@ -79,10 +79,11 @@ def to_bytes(bytes_or_str):
         value = bytes_or_str.encode("utf-8")
     else:
         value = bytes_or_str
-    return value  # Instance of bytes
+    return value  # bytes 인스턴스
 
 print(repr(to_bytes(b"foo")))
 print(repr(to_bytes("bar")))
+print(repr(to_bytes("한글")))
 
 
 print("Example 5")
@@ -94,7 +95,7 @@ print("Example 6")
 try:
     b"one" + "two"
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -103,7 +104,7 @@ print("Example 7")
 try:
     "one" + b"two"
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -117,7 +118,7 @@ print("Example 9")
 try:
     assert "red" > b"blue"
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -126,7 +127,7 @@ print("Example 10")
 try:
     assert b"blue" < "red"
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -146,7 +147,7 @@ print("Example 13")
 try:
     print(b"red %s" % blue_str)
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -161,7 +162,7 @@ try:
     with open("data.bin", "w") as f:
         f.write(b"\xf1\xf2\xf3\xf4\xf5")
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
@@ -184,7 +185,7 @@ try:
     with open("data.bin", "r") as f:
         data = f.read()
 except:
-    logging.exception('Expected')
+    logging.exception('이 예외가 발생해야 함')
 else:
     assert False
 
