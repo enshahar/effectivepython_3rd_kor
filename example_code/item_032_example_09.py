@@ -20,22 +20,22 @@ print("Example 9")
 # Check types in this file with: python3 -m mypy <path>
 
 def careful_divide(a: float, b: float) -> float:
-    """Divides a by b.
+    """ a를 b로 나눈다.
 
     Raises:
-        ValueError: When the inputs cannot be divided.
+        ValueError: 입력을 나눌 수 없는 경우
     """
     try:
         return a / b
     except ZeroDivisionError:
-        raise ValueError("Invalid inputs")
+        raise ValueError("잘못된 입력")
 
 try:
     result = careful_divide(1, 0)
 except ValueError:
-    print("Invalid inputs")  # Expected
+    print("Invalid inputs")  # 이 부분이 실행되리라 예상함
 else:
-    print(f"Result is {result:.1f}")
+    print(f"결과는 {result:.1f}")
 
 
 assert careful_divide(1, 5) == 0.2

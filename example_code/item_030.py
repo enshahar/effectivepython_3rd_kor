@@ -53,14 +53,14 @@ def my_func(items):
 
 x = [1, 2, 3]
 my_func(x)
-print(x)  # 4 is now in the list
+print(x)  # 이제 리스트에 4가 포함됨
 
 
 print("Example 2")
 a = [7, 6, 5]
-b = a          # Creates an alias
+b = a          # 별명 생성
 my_func(b)
-print(a)       # 4 is now in the list
+print(a)       # 이제 리스트에 4가 포함됨
 
 
 print("Example 3")
@@ -69,7 +69,7 @@ def capitalize_items(items):
         items[i] = items[i].capitalize()
 
 my_items = ["hello", "world"]
-items_copy = my_items[:]  # Creates a copy
+items_copy = my_items[:]  # 복사본 생성
 capitalize_items(items_copy)
 print(items_copy)
 
@@ -80,7 +80,7 @@ def concat_pairs(items):
         items[key] = f"{key}={items[key]}"
 
 my_pairs = {"foo": 1, "bar": 2}
-pairs_copy = my_pairs.copy()  # Creates a copy
+pairs_copy = my_pairs.copy()  # 복사본 생성
 concat_pairs(pairs_copy)
 print(pairs_copy)
 
@@ -93,7 +93,7 @@ class MyClass:
 x = MyClass(10)
 
 def my_func(obj):
-    obj.value = 20  # Modifies the object
+    obj.value = 20  # 객체를 수정함
 
 my_func(x)
 print(x.value)

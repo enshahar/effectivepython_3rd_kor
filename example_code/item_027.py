@@ -49,20 +49,21 @@ atexit.register(close_open_files)
 
 print("Example 1")
 visits = {
-    "Mexico": {"Tulum", "Puerto Vallarta"},
-    "Japan": {"Hakone"},
+    "한국": {"대전", "안동"},
+    "일본": {"하코네"},
 }
+
 
 
 print("Example 2")
 # Short
-visits.setdefault("France", set()).add("Arles")
+visits.setdefault("프랑스", set()).add("아를")
 
 # Long
-if (japan := visits.get("Japan")) is None:
-    visits["Japan"] = japan = set()
+if (japan := visits.get("일본")) is None:
+    visits["일본"] = japan = set()
 
-japan.add("Kyoto")
+japan.add("쿄토")
 original_print = print
 print = pprint
 print(visits)
@@ -81,8 +82,8 @@ class Visits:
 
 print("Example 4")
 visits = Visits()
-visits.add("Russia", "Yekaterinburg")
-visits.add("Tanzania", "Zanzibar")
+visits.add("러시아", "예카테린부르크")
+visits.add("탄자니아", "잔지바르")
 print(visits.data)
 
 
@@ -97,6 +98,6 @@ class Visits:
         self.data[country].add(city)
 
 visits = Visits()
-visits.add("England", "Bath")
-visits.add("England", "London")
+visits.add("영국", "배스")
+visits.add("영국", "런던")
 print(visits.data)

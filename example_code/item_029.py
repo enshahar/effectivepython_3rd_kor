@@ -65,12 +65,12 @@ class SimpleGradebook:
 
 print("Example 2")
 book = SimpleGradebook()
-book.add_student("Isaac Newton")
-book.report_grade("Isaac Newton", 90)
-book.report_grade("Isaac Newton", 95)
-book.report_grade("Isaac Newton", 85)
+book.add_student("아이작 뉴튼")
+book.report_grade("아이작 뉴튼", 90)
+book.report_grade("아이작 뉴튼", 95)
+book.report_grade("아이작 뉴튼", 85)
 
-print(book.average_grade("Isaac Newton"))
+print(book.average_grade("아이작 뉴튼"))
 
 
 print("Example 3")
@@ -78,10 +78,10 @@ from collections import defaultdict
 
 class BySubjectGradebook:
     def __init__(self):
-        self._grades = {}                       # Outer dict
+        self._grades = {}                       # 외부 dict
 
     def add_student(self, name):
-        self._grades[name] = defaultdict(list)  # Inner dict
+        self._grades[name] = defaultdict(list)  # 내부 dict
 
     def report_grade(self, name, subject, grade):
         by_subject = self._grades[name]
@@ -99,12 +99,12 @@ class BySubjectGradebook:
 
 print("Example 4")
 book = BySubjectGradebook()
-book.add_student("Albert Einstein")
-book.report_grade("Albert Einstein", "Math", 75)
-book.report_grade("Albert Einstein", "Math", 65)
-book.report_grade("Albert Einstein", "Gym", 90)
-book.report_grade("Albert Einstein", "Gym", 95)
-print(book.average_grade("Albert Einstein"))
+book.add_student("알버트 아인슈타인")
+book.report_grade("알버트 아인슈타인", "수학", 75)
+book.report_grade("알버트 아인슈타인", "수학", 65)
+book.report_grade("알버트 아인슈타인", "체육", 90)
+book.report_grade("알버트 아인슈타인", "체육", 95)
+print(book.average_grade("알버트 아인슈타인"))
 
 
 print("Example 5")
@@ -118,7 +118,7 @@ class WeightedGradebook:
     def report_grade(self, name, subject, score, weight):
         by_subject = self._grades[name]
         grade_list = by_subject[subject]
-        grade_list.append((score, weight))    # Changed
+        grade_list.append((score, weight))    # 변경함
 
     def average_grade(self, name):
         by_subject = self._grades[name]
@@ -138,13 +138,13 @@ class WeightedGradebook:
 
 print("Example 6")
 book = WeightedGradebook()
-book.add_student("Albert Einstein")
-book.report_grade("Albert Einstein", "Math", 75, 0.05)
-book.report_grade("Albert Einstein", "Math", 65, 0.15)
-book.report_grade("Albert Einstein", "Math", 70, 0.80)
-book.report_grade("Albert Einstein", "Gym", 100, 0.40)
-book.report_grade("Albert Einstein", "Gym", 85, 0.60)
-print(book.average_grade("Albert Einstein"))
+book.add_student("알버트 아인슈타인")
+book.report_grade("알버트 아인슈타인", "수학", 75, 0.05)
+book.report_grade("알버트 아인슈타인", "수학", 65, 0.15)
+book.report_grade("알버트 아인슈타인", "수학", 70, 0.80)
+book.report_grade("알버트 아인슈타인", "체육", 100, 0.40)
+book.report_grade("알버트 아인슈타인", "체육", 85, 0.60)
+print(book.average_grade("알버트 아인슈타인"))
 
 
 print("Example 7")
@@ -159,8 +159,8 @@ print(average_grade)
 
 print("Example 8")
 grades = []
-grades.append((95, 0.45, "Great job"))
-grades.append((85, 0.55, "Better next time"))
+grades.append((95, 0.45, "참 잘했어요"))
+grades.append((85, 0.55, "다음엔 더 잘할 수 있어요"))
 total = sum(score * weight for score, weight, _ in grades)
 total_weight = sum(weight for _, weight, _ in grades)
 average_grade = total / total_weight
@@ -219,12 +219,12 @@ class Gradebook:
 
 print("Example 13")
 book = Gradebook()
-albert = book.get_student("Albert Einstein")
-math = albert.get_subject("Math")
+albert = book.get_student("알버트 아인슈타인")
+math = albert.get_subject("수학")
 math.report_grade(75, 0.05)
 math.report_grade(65, 0.15)
 math.report_grade(70, 0.80)
-gym = albert.get_subject("Gym")
+gym = albert.get_subject("체육")
 gym.report_grade(100, 0.40)
 gym.report_grade(85, 0.60)
 print(albert.average_grade())

@@ -59,7 +59,7 @@ print("Example 4")
 print(list(baby_names.keys()))
 print(list(baby_names.values()))
 print(list(baby_names.items()))
-print(baby_names.popitem())  # Last item inserted
+print(baby_names.popitem())  # 마지막으로 삽입한 원소
 
 
 print("Example 6")
@@ -83,9 +83,9 @@ for key, value in a.__dict__.items():
 
 print("Example 9")
 votes = {
-    "otter": 1281,
-    "polar bear": 587,
-    "fox": 863,
+    "수달": 1281,
+    "북극곰": 587,
+    "여우": 863,
 }
 
 
@@ -137,18 +137,18 @@ class SortedDict(MutableMapping):
 
 
 my_dict = SortedDict()
-my_dict["otter"] = 1
-my_dict["cheeta"] = 2
-my_dict["anteater"] = 3
-my_dict["deer"] = 4
+my_dict["수달"] = 1
+my_dict["치타"] = 2
+my_dict["개미핥기"] = 3
+my_dict["사슴"] = 4
 
-assert my_dict["otter"] == 1
+assert my_dict["수달"] == 1
 
-assert "cheeta" in my_dict
-del my_dict["cheeta"]
-assert "cheeta" not in my_dict
+assert "치타" in my_dict
+del my_dict["치타"]
+assert "치타" not in my_dict
 
-expected = [("anteater", 3), ("deer", 4), ("otter", 1)]
+expected = [("개미핥기", 3), ("사슴", 4), ("수달", 1)]
 assert list(my_dict.items()) == expected
 
 assert not isinstance(my_dict, dict)
@@ -176,11 +176,11 @@ print("Example 16")
 try:
     def get_winner(ranks):
         if not isinstance(ranks, dict):
-            raise TypeError("must provide a dict instance")
+            raise TypeError("dict 인스턴스를 제공해야 함")
         return next(iter(ranks))
     
     
-    assert get_winner(ranks) == "otter"
+    assert get_winner(ranks) == "수달"
     
     get_winner(sorted_ranks)
 except:

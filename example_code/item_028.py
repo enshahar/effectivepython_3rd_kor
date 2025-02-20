@@ -58,7 +58,7 @@ if (handle := pictures.get(path)) is None:
     try:
         handle = open(path, "a+b")
     except OSError:
-        print(f"Failed to open path {path}")
+        print(f"파일을 열 수 없음: {path}")
         raise
     else:
         pictures[path] = handle
@@ -84,7 +84,7 @@ else:
     try:
         handle = open(path, "a+b")
     except OSError:
-        print(f"Failed to open path {path}")
+        print(f"파일을 열 수 없음: {path}")
         raise
     else:
         pictures[path] = handle
@@ -107,7 +107,7 @@ except KeyError:
     try:
         handle = open(path, "a+b")
     except OSError:
-        print(f"Failed to open path {path}")
+        print(f"파일을 열 수 없음: {path}")
         raise
     else:
         pictures[path] = handle
@@ -129,7 +129,7 @@ with open(path, "wb") as f:
 try:
     handle = pictures.setdefault(path, open(path, "a+b"))
 except OSError:
-    print(f"Failed to open path {path}")
+    print(f"파일을 열 수 없음: {path}")
     raise
 else:
     handle.seek(0)
@@ -152,7 +152,7 @@ try:
         try:
             return open(profile_path, "a+b")
         except OSError:
-            print(f"Failed to open path {profile_path}")
+            print(f"파일을 열 수 없음: {profile_path}")
             raise
     
     pictures = defaultdict(open_picture)
@@ -175,7 +175,7 @@ def open_picture(profile_path):
     try:
         return open(profile_path, "a+b")
     except OSError:
-        print(f"Failed to open path {profile_path}")
+        print(f"파일을 열 수 없음: {profile_path}")
         raise
 
 class Pictures(dict):

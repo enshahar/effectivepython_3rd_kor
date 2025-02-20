@@ -56,9 +56,9 @@ class SortedDict(MutableMapping[str, int]):
 
 
 votes = {
-    "otter": 1281,
-    "polar bear": 587,
-    "fox": 863,
+    "수달": 1281,
+    "북극곰": 587,
+    "여우": 863,
 }
 
 sorted_ranks = SortedDict()

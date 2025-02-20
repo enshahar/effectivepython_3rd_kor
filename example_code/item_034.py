@@ -55,25 +55,25 @@ def log(message, values):
         values_str = ", ".join(str(x) for x in values)
         print(f"{message}: {values_str}")
 
-log("My numbers are", [1, 2])
-log("Hi there", [])
+log("내 숫자들", [1, 2])
+log("안녕", [])
 
 
 print("Example 2")
-def log(message, *values):   # Changed
+def log(message, *values):   # 변경함
     if not values:
         print(message)
     else:
         values_str = ", ".join(str(x) for x in values)
         print(f"{message}: {values_str}")
 
-log("My numbers are", 1, 2)
-log("Hi there")              # Changed
+log("내 숫자들", 1, 2)
+log("안녕")              # 변경함
 
 
 print("Example 3")
 favorites = [7, 33, 99]
-log("Favorite colors", *favorites)
+log("좋아하는 숫자들", *favorites)
 
 
 print("Example 4")
@@ -96,6 +96,6 @@ def log_seq(sequence, message, *values):
         values_str = ", ".join(str(x) for x in values)
         print(f"{sequence} - {message}: {values_str}")
 
-log_seq(1, "Favorites", 7, 33)      # New with *args OK
-log_seq(1, "Hi there")              # New message only OK
-log_seq("Favorite numbers", 7, 33)  # Old usage breaks
+log(1, "좋아하는 숫자들", 7, 33)       # 새 코드, 가변 인자 사용. 문제 없음
+log(1, "안녕")                      # 새 코드, 메시지만 사용. 문제 없음
+log_seq("좋아하는 숫자들", 7, 33)  # 예전 사용법, 코드 깨짐

@@ -65,16 +65,16 @@ print("Example 2")
 x, y = 1, 0
 result = careful_divide(x, y)
 if result is None:
-    print("Invalid inputs")
+    print("잘못된 입력")
 else:
-    print(f"Result is {result:.1f}")
+    print(f"결과는 {result:.1f}")
 
 
 print("Example 3")
 x, y = 0, 5
 result = careful_divide(x, y)
-if not result:               # Changed
-    print("Invalid inputs")  # This runs! But shouldn't
+if not result:               # 변경함
+    print("잘못된 입력")  # 이 코드가 실행되는데, 실행되면 안된다!
 else:
     assert False
 
@@ -97,14 +97,14 @@ print("Example 5")
 x, y = 5, 0
 success, result = careful_divide(x, y)
 if not success:
-    print("Invalid inputs")
+    print("잘못된 입력")
 
 
 print("Example 6")
 x, y = 5, 0
 _, result = careful_divide(x, y)
 if not result:
-    print("Invalid inputs")
+    print("잘못된 입력")
 
 
 print("Example 7")
@@ -112,7 +112,7 @@ def careful_divide(a, b):
     try:
         return a / b
     except ZeroDivisionError:
-        raise ValueError("Invalid inputs")  # Changed
+        raise ValueError("잘못된 입력")  # 변경함
 
 
 print("Example 8")
@@ -120,6 +120,6 @@ x, y = 5, 2
 try:
     result = careful_divide(x, y)
 except ValueError:
-    print("Invalid inputs")
+    print("잘못된 입력")
 else:
-    print(f"Result is {result:.1f}")
+    print(f"결과는 {result:.1f}")

@@ -52,18 +52,18 @@ import random
 
 def flip_coin():
     if random.randint(0, 1) == 0:
-        return "Heads"
+        return "앞"
     else:
-        return "Tails"
+        return "뒤"
 
 def flip_is_heads():
-    return flip_coin() == "Heads"
+    return flip_coin() == "앞"
 
 
 print("Example 2")
 flips = [flip_is_heads() for _ in range(20)]
 all_heads = False not in flips
-assert not all_heads  # Very unlikely to be True
+assert not all_heads  # True일 확률이 매우 낮음
 
 
 print("Example 3")
@@ -72,15 +72,15 @@ for _ in range(100):
     if not flip_is_heads():
         all_heads = False
         break
-assert not all_heads  # Very unlikely to be True
+assert not all_heads  # True일 확률이 매우 낮음
 
 
 print("Example 4")
-print("All truthy:")
+print("모두 참일 때:")
 print(all([1, 2, 3]))
 print(1 and 2 and 3)
 
-print("One falsey:")
+print("하나라도 거짓일 때:")
 print(all([1, 0, 3]))
 print(1 and 0 and 3)
 
@@ -91,14 +91,14 @@ assert not all_heads
 
 
 print("Example 6")
-all_heads = all([flip_is_heads() for _ in range(20)])  # Wrong
+all_heads = all([flip_is_heads() for _ in range(20)])  # 잘못됨
 assert not all_heads
 
 
 print("Example 7")
 def repeated_is_heads(count):
     for _ in range(count):
-        yield flip_is_heads()  # Generator
+        yield flip_is_heads()  # 제너레이터
 
 all_heads = all(repeated_is_heads(20))
 assert not all_heads
@@ -106,15 +106,15 @@ assert not all_heads
 
 print("Example 8")
 def flip_is_tails():
-    return flip_coin() == "Tails"
+    return flip_coin() == "뒤"
 
 
 print("Example 9")
-print("All falsey:")
+print("모두 거짓일 때:")
 print(any([0, False, None]))
 print(0 or False or None)
 
-print("One truthy:")
+print("하나라도 참일 때:")
 print(any([None, 3, 0]))
 print(None or 3 or 0)
 

@@ -55,9 +55,9 @@ def get_stats(numbers):
 
 lengths = [63, 73, 72, 60, 67, 66, 71, 61, 72, 70]
 
-minimum, maximum = get_stats(lengths)  # Two return values
+minimum, maximum = get_stats(lengths)  # 반환 값이 두 개
 
-print(f"Min: {minimum}, Max: {maximum}")
+print(f"최소: {minimum}, 최대: {maximum}")
 
 
 print("Example 2")
@@ -82,8 +82,8 @@ def get_avg_ratio(numbers):
 
 longest, *middle, shortest = get_avg_ratio(lengths)
 
-print(f"Longest:  {longest:>4.0%}")
-print(f"Shortest: {shortest:>4.0%}")
+print(f"가장 긴 체장:    {longest:>4.0%}")
+print(f"가장 짧은 체장: {shortest:>4.0%}")
 
 
 print("Example 4")
@@ -109,8 +109,8 @@ def get_stats_more(numbers):
 
 minimum, maximum, average, median, count = get_stats_more(lengths)
 
-print(f"Min: {minimum}, Max: {maximum}")
-print(f"Average: {average}, Median: {median}, Count {count}")
+print(f"최대: {minimum}, 최소: {maximum}")
+print(f"평균: {average}, 중간값: {median}, 표본수: {count}")
 
 assert minimum == 60
 assert maximum == 73

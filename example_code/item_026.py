@@ -49,13 +49,13 @@ atexit.register(close_open_files)
 
 print("Example 1")
 counters = {
-    "pumpernickel": 2,
-    "sourdough": 1,
+    "펌퍼니클": 2,
+    "사워도": 1,
 }
 
 
 print("Example 2")
-key = "wheat"
+key = "밀"
 
 if key in counters:
     count = counters[key]
@@ -67,7 +67,7 @@ print(counters)
 
 
 print("Example 3")
-key = "brioche"
+key = "브리오슈"
 
 try:
     count = counters[key]
@@ -80,7 +80,7 @@ print(counters)
 
 
 print("Example 4")
-key = "multigrain"
+key = "통곡물"
 
 count = counters.get(key, 0)
 counters[key] = count + 1
@@ -89,20 +89,20 @@ print(counters)
 
 
 print("Example 5")
-key = "baguette"
+key = "바게트"
 
 if key not in counters:
     counters[key] = 0
 counters[key] += 1
 
-key = "ciabatta"
+key = "치아바타"
 
 if key in counters:
     counters[key] += 1
 else:
     counters[key] = 1
 
-key = "ciabatta"
+key = "치아바타"
 
 try:
     counters[key] += 1
@@ -114,12 +114,12 @@ print(counters)
 
 print("Example 6")
 votes = {
-    "baguette": ["Bob", "Alice"],
-    "ciabatta": ["Coco", "Deb"],
+    "바게트": ["현석", "계영"],
+    "치아바타": ["성원", "정원"],
 }
 
-key = "brioche"
-who = "Elmer"
+key = "브리오슈"
+who = "혜원"
 
 if key in votes:
     names = votes[key]
@@ -131,8 +131,8 @@ print(votes)
 
 
 print("Example 7")
-key = "rye"
-who = "Felix"
+key = "호밀"
+who = "유진"
 
 try:
     names = votes[key]
@@ -145,8 +145,8 @@ print(votes)
 
 
 print("Example 8")
-key = "wheat"
-who = "Gertrude"
+key = "밀"
+who = "삼현"
 
 names = votes.get(key)
 if names is None:
@@ -158,8 +158,8 @@ print(votes)
 
 
 print("Example 9")
-key = "brioche"
-who = "Hugh"
+key = "브리오슈"
+who = "계원"
 
 if (names := votes.get(key)) is None:
     votes[key] = names = []
@@ -170,8 +170,8 @@ print(votes)
 
 
 print("Example 10")
-key = "cornbread"
-who = "Kirk"
+key = "옥수수빵"
+who = "영무"
 
 names = votes.setdefault(key, [])
 names.append(who)
@@ -184,13 +184,13 @@ data = {}
 key = "foo"
 value = []
 data.setdefault(key, value)
-print("Before:", data)
+print("이전:", data)
 value.append("hello")
-print("After: ", data)
+print("이후: ", data)
 
 
 print("Example 12")
-key = "dutch crunch"
+key = "호랑이빵"
 
 count = counters.setdefault(key, 0)
 counters[key] = count + 1

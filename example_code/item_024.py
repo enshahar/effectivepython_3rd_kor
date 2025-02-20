@@ -98,10 +98,10 @@ print("Example 8")
 values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 first_five = itertools.islice(values, 5)
-print("First five: ", list(first_five))
+print("맨 앞 다섯개:", list(first_five))
 
 middle_odds = itertools.islice(values, 2, 8, 2)
-print("Middle odds:", list(middle_odds))
+print("중간 홀수들: ", list(middle_odds))
 
 
 print("Example 9")
@@ -140,7 +140,7 @@ print(list(it))
 
 
 print("Example 14")
-route = ["Los Angeles", "Bakersfield", "Modesto", "Sacramento"]
+route = ["서울", "대전", "대구", "부산"]
 it = itertools.pairwise(route)
 print(list(it))
 
@@ -148,22 +148,22 @@ print(list(it))
 print("Example 15")
 values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 sum_reduce = itertools.accumulate(values)
-print("Sum:   ", list(sum_reduce))
+print("합계:  ", list(sum_reduce))
 
 def sum_modulo_20(first, second):
     output = first + second
     return output % 20
 
 modulo_reduce = itertools.accumulate(values, sum_modulo_20)
-print("Modulo:", list(modulo_reduce))
+print("나머지:", list(modulo_reduce))
 
 
 print("Example 16")
 single = itertools.product([1, 2], repeat=2)
-print("Single:  ", list(single))
+print("하나:", list(single))
 
 multiple = itertools.product([1, 2], ["a", "b"])
-print("Multiple:", list(multiple))
+print("여럿:", list(multiple))
 
 
 print("Example 17")

@@ -81,7 +81,7 @@ def sort_priority2(numbers, group):
 print("Example 4")
 numbers = [8, 3, 1, 2, 5, 4, 7, 6]
 found = sort_priority2(numbers, group)
-print("Found:", found)
+print("찾음:", found)
 print(numbers)
 
 
@@ -96,11 +96,11 @@ else:
 
 print("Example 6")
 def sort_priority2(numbers, group):
-    found = False          # Scope: 'sort_priority2'
+    found = False          # 영역: 'sort_priority2'
 
     def helper(x):
         if x in group:
-            found = True   # Scope: 'helper' -- Bad!
+            found = True   # 영역: 'helper' -- 좋지 않음!
             return (0, x)
         return (1, x)
 
@@ -113,7 +113,7 @@ def sort_priority3(numbers, group):
     found = False
 
     def helper(x):
-        nonlocal found  # Added
+        nonlocal found  # 추가함
         if x in group:
             found = True
             return (0, x)
@@ -126,7 +126,7 @@ def sort_priority3(numbers, group):
 print("Example 8")
 numbers = [8, 3, 1, 2, 5, 4, 7, 6]
 found = sort_priority3(numbers, group)
-print("Found:", found)
+print("찾음:", found)
 print(numbers)
 
 
@@ -147,5 +147,5 @@ print("Example 10")
 numbers = [8, 3, 1, 2, 5, 4, 7, 6]
 sorter = Sorter(group)
 numbers.sort(key=sorter)
-print("Found:", sorter.found)
+print("찾음:", sorter.found)
 print(numbers)
