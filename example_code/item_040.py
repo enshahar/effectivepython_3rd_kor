@@ -56,7 +56,7 @@ print(squares)
 
 
 print("Example 2")
-squares = [x**2 for x in a]  # List comprehension
+squares = [x**2 for x in a]  # 리스트 컴프리헨션
 print(squares)
 
 

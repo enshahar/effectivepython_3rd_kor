@@ -60,14 +60,14 @@ print(math.exp(result))
 
 
 print("Example 2")
-def log_sum_alt(value, log_total):  # Changed
+def log_sum_alt(value, log_total):  # 변경함
     log_value = math.log(value)
     return log_total + log_value
 
 
 print("Example 3")
 result = functools.reduce(
-    lambda total, value: log_sum_alt(value, total),  # Reordered
+    lambda total, value: log_sum_alt(value, total),  # 순서를 바꿈
     [10, 20, 40],
     0,
 )
@@ -87,14 +87,14 @@ print(math.exp(result))
 
 
 print("Example 5")
-def logn_sum(base, logn_total, value):  # New first parameter
+def logn_sum(base, logn_total, value):  # 첫 번째 파라미터 추가
     logn_value = math.log(value, base)
     return logn_total + logn_value
 
 
 print("Example 6")
 result = functools.reduce(
-    lambda total, value: logn_sum(10, total, value),  # Changed
+    lambda total, value: logn_sum(10, total, value),  # 변경함
     [10, 20, 40],
     0,
 )
@@ -103,7 +103,7 @@ print(math.pow(10, result))
 
 print("Example 7")
 result = functools.reduce(
-    functools.partial(logn_sum, 10),  # Changed
+    functools.partial(logn_sum, 10),  # 변경함
     [10, 20, 40],
     0,
 )
@@ -111,7 +111,7 @@ print(math.pow(10, result))
 
 
 print("Example 8")
-def logn_sum_last(logn_total, value, *, base=10):  # New last parameter
+def logn_sum_last(logn_total, value, *, base=10):  # 마지막에 새 kwarg
     logn_value = math.log(value, base)
     return logn_total + logn_value
 
@@ -119,7 +119,7 @@ def logn_sum_last(logn_total, value, *, base=10):  # New last parameter
 print("Example 9")
 import math
 
-log_sum_e = functools.partial(logn_sum_last, base=math.e)  # Pinned `base`
+log_sum_e = functools.partial(logn_sum_last, base=math.e)  # `base`를 고정함
 print(log_sum_e(3, math.e**10))
 
 

@@ -125,7 +125,7 @@ time_b = 4
 weight_diff = weight_b - weight_a
 time_diff = time_b - time_a
 flow = flow_rate(weight_diff, time_diff)
-print(f"{flow:.3} kg per second")
+print(f"{flow:.3} kg/초")
 
 
 print("Example 10")

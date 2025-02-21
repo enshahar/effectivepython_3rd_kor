@@ -35,7 +35,7 @@ def log_typed(message: str, when: datetime | None = None) -> None:
     print(f"{when}: {message}")
 
 
-log_typed("Hi there!")
+log_typed("안녕하세요!")
 sleep(0.1)
-log_typed("Hello again!")
-log_typed("And one more time", when=datetime.now())
+log_typed("다시 만나 반갑군요!")
+log_typed("한번 더 봅시다", when=datetime.now())

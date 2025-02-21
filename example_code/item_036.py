@@ -54,9 +54,9 @@ from datetime import datetime
 def log(message, when=datetime.now()):
     print(f"{when}: {message}")
 
-log("Hi there!")
+log("안녕하세요!")
 sleep(0.1)
-log("Hello again!")
+log("다시 만나 반갑군요!")
 
 
 print("Example 2")
@@ -74,9 +74,9 @@ def log(message, when=None):
 
 
 print("Example 3")
-log("Hi there!")
+log("안녕하세요!")
 sleep(0.1)
-log("Hello again!")
+log("다시 만나 반갑군요!")
 
 
 print("Example 4")
@@ -114,7 +114,7 @@ def decode(data, default=None):
     try:
         return json.loads(data)
     except ValueError:
-        if default is None:  # Check here
+        if default is None:  # 여기서 디폴트를 검사함
             default = {}
         return default
 

@@ -49,13 +49,13 @@ atexit.register(close_open_files)
 
 print("Example 1")
 stock = {
-    "nails": 125,
-    "screws": 35,
-    "wingnuts": 8,
-    "washers": 24,
+    "못": 125,
+    "나사못": 35,
+    "나비너트": 8,
+    "와셔": 24,
 }
 
-order = ["screws", "wingnuts", "clips"]
+order = ["나사못", "나비너트", "클립"]
 
 def get_batches(count, size):
     return count // size
@@ -78,18 +78,18 @@ print(found)
 
 
 print("Example 3")
-has_bug = {name: get_batches(stock.get(name, 0), 4)  # Wrong
+has_bug = {name: get_batches(stock.get(name, 0), 4)  # 틀림
            for name in order
            if get_batches(stock.get(name, 0), 8)}
 
-print("Expected:", found)
-print("Found:   ", has_bug)
+print("원하는 답:", found)
+print("실제 결과:", has_bug)
 
 
 print("Example 4")
 found = {name: batches for name in order
          if (batches := get_batches(stock.get(name, 0), 8))}
-assert found == {"screws": 4, "wingnuts": 1}, found
+assert found == {"나사못": 4, "나비너트": 1}, found
 
 
 print("Example 5")
@@ -112,7 +112,7 @@ print("Example 7")
 half = [(squared := last**2)
         for count in stock.values()
         if (last := count // 2) > 10]
-print(f"Last item of {half} is {last} ** 2 = {squared}")
+print(f"{half}의 마지막 원소는 {last} ** 2 = {squared}")
 
 
 print("Example 8")
@@ -127,8 +127,8 @@ print("Example 9")
 try:
     del count
     half = [count // 2 for count in stock.values()]
-    print(half)   # Works
-    print(count)  # Exception because loop variable didn't leak
+    print(half)   # 작동함
+    print(count)  # 루프 변수가 누출되지 않기 때문에 예외가 발생함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:

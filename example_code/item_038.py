@@ -64,7 +64,7 @@ def trace(func):
 print("Example 2")
 @trace
 def fibonacci(n):
-    """Return the n-th Fibonacci number"""
+    """n 번째 피보나치 수를 반환함"""
     if n in (0, 1):
         return n
     return fibonacci(n - 2) + fibonacci(n - 1)
@@ -72,7 +72,7 @@ def fibonacci(n):
 
 print("Example 3")
 def fibonacci(n):
-    """Return the n-th Fibonacci number"""
+    """n 번째 피보나치 수를 반환함"""
     if n in (0, 1):
         return n
     return fibonacci(n - 2) + fibonacci(n - 1)
@@ -107,7 +107,7 @@ print("Example 8")
 from functools import wraps
 
 def trace(func):
-    @wraps(func)  # Changed
+    @wraps(func)  # 변경함
     def wrapper(*args, **kwargs):
         args_repr = repr(args)
         kwargs_repr = repr(kwargs)
@@ -119,7 +119,7 @@ def trace(func):
 
 @trace
 def fibonacci(n):
-    """Return the n-th Fibonacci number"""
+    """n 번째 피보나치 수를 반환함"""
     if n in (0, 1):
         return n
     return fibonacci(n - 2) + fibonacci(n - 1)

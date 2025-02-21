@@ -82,8 +82,8 @@ print("Example 4")
 def safe_division_b(
     number,
     divisor,
-    ignore_overflow=False,       # Changed
-    ignore_zero_division=False,  # Changed
+    ignore_overflow=False,       # 변경함
+    ignore_zero_division=False,  # 변경함
 ):
     try:
         return number / divisor
@@ -115,7 +115,7 @@ print("Example 7")
 def safe_division_c(
     number,
     divisor,
-    *,  # Added
+    *,  # 추가함
     ignore_overflow=False,
     ignore_zero_division=False,
 ):
@@ -149,7 +149,7 @@ assert result == float("inf")
 try:
     result = safe_division_c(1.0, 0)
 except ZeroDivisionError:
-    pass  # Expected
+    pass  # 예상대로 예외가 발생함
 else:
     assert False
 
@@ -162,8 +162,8 @@ assert safe_division_c(2, divisor=5) == 0.4
 
 print("Example 11")
 def safe_division_d(
-    numerator,    # Changed
-    denominator,  # Changed
+    numerator,    # 변경함
+    denominator,  # 변경함
     *,
     ignore_overflow=False,
     ignore_zero_division=False
@@ -195,7 +195,7 @@ print("Example 13")
 def safe_division_e(
     numerator,
     denominator,
-    /,  # Added
+    /,  # 추가함
     *,
     ignore_overflow=False,
     ignore_zero_division=False,
@@ -232,14 +232,14 @@ def safe_division_f(
     numerator,
     denominator,
     /,
-    ndigits=10,  # Changed
+    ndigits=10,  # 변경함
     *,
     ignore_overflow=False,
     ignore_zero_division=False,
 ):
     try:
-        fraction = numerator / denominator  # Changed
-        return round(fraction, ndigits)     # Changed
+        fraction = numerator / denominator  # 변경함
+        return round(fraction, ndigits)     # 변경함
     except OverflowError:
         if ignore_overflow:
             return 0
