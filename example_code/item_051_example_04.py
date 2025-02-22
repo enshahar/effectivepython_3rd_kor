@@ -17,7 +17,7 @@
 
 
 print("Example 4")
-# Check types in this file with: python3 -m mypy <path>
+# 이 파일의 타입을 이렇게 체크해 보세요: python3 -m mypy <경로>
 
 from dataclasses import dataclass
 
@@ -27,5 +27,5 @@ class DataclassRGB:
     green: int
     blue: int
 
-obj = DataclassRGB(1, "bad", 3)
-obj.red = "also bad"
+obj = DataclassRGB(1, "bad", 3) # 잘못된 타입
+obj.red = "also bad"            # 잘못된 타입

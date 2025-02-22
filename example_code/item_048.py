@@ -48,31 +48,31 @@ atexit.register(close_open_files)
 
 
 print("Example 1")
-names = ["Socrates", "Archimedes", "Plato", "Aristotle"]
+names = ["소크라테스", "아르키메데스", "플라톤", "아리스토텔레스"]
 names.sort(key=len)
 print(names)
 
 
 print("Example 2")
 def log_missing():
-    print("Key added")
+    print("키가 추가됨")
     return 0
 
 
 print("Example 3")
 from collections import defaultdict
 
-current = {"green": 12, "blue": 3}
+current = {"초록": 12, "파랑": 3}
 increments = [
-    ("red", 5),
-    ("blue", 17),
-    ("orange", 9),
+    ("빨강", 5),
+    ("파랑", 17),
+    ("주황", 9),
 ]
 result = defaultdict(log_missing, current)
-print("Before:", dict(result))
+print("이전:", dict(result))
 for key, amount in increments:
     result[key] += amount
-print("After: ", dict(result))
+print("이후:", dict(result))
 
 
 print("Example 4")
@@ -80,7 +80,7 @@ def increment_with_report(current, increments):
     added_count = 0
 
     def missing():
-        nonlocal added_count  # Stateful closure
+        nonlocal added_count  # 상태가 있는 클로저
         added_count += 1
         return 0
 
@@ -109,7 +109,7 @@ class CountMissing:
 
 print("Example 7")
 counter = CountMissing()
-result = defaultdict(counter.missing, current)  # Method ref
+result = defaultdict(counter.missing, current)  # 메서드 참조
 for key, amount in increments:
     result[key] += amount
 assert counter.added == 2
@@ -132,7 +132,7 @@ assert callable(counter)
 
 print("Example 9")
 counter = BetterCountMissing()
-result = defaultdict(counter, current)  # Relies on __call__
+result = defaultdict(counter, current)  # __call__에 의존함
 for key, amount in increments:
     result[key] += amount
 assert counter.added == 2

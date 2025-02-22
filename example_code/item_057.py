@@ -61,10 +61,10 @@ class FrequencyList(list):
 
 print("Example 2")
 foo = FrequencyList(["a", "b", "a", "c", "b", "a", "d"])
-print("Length is", len(foo))
-foo.pop()  # Removes "d"
-print("After pop:", repr(foo))
-print("Frequency:", foo.frequency())
+print("길이:      ", len(foo))
+foo.pop()  # 맨 끝의 "d" 삭제
+print("pop한 다음:", repr(foo))
+print("빈도:      ", foo.frequency())
 
 
 print("Example 3")
@@ -113,12 +113,12 @@ tree = IndexableNode(
 
 
 print("Example 8")
-print("LRR is", tree.left.right.right.value)
-print("Index 0 is", tree[0])
-print("Index 1 is", tree[1])
-print("11 in the tree?", 11 in tree)
-print("17 in the tree?", 17 in tree)
-print("Tree is", list(tree))
+print("왼쪽.오른쪽.오른쪽:", tree.left.right.right.value)
+print("인덱스 0:          ", tree[0])
+print("인덱스 1:          ", tree[1])
+print("11이 트리에 있나?  ", 11 in tree)
+print("17이 트리에 있나?  ", 17 in tree)
+print("트리: ", list(tree))
 
 try:
     tree[100]
@@ -157,7 +157,7 @@ tree = SequenceNode(
     right=SequenceNode(15, left=SequenceNode(11)),
 )
 
-print("Tree length is", len(tree))
+print("트리 길이는", len(tree))
 
 
 print("Example 12")
@@ -198,5 +198,5 @@ tree = BetterNode(
     right=BetterNode(15, left=BetterNode(11)),
 )
 
-print("Index of 7 is", tree.index(7))
-print("Count of 10 is", tree.count(10))
+print("7의 인덱스는", tree.index(7))
+print("10이 등장한 횟수는", tree.count(10))

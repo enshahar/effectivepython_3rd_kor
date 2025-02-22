@@ -108,7 +108,7 @@ class BinaryTreeWithParent(BinaryTree):
             isinstance(value, BinaryTreeWithParent)
             and key == "parent"
         ):
-            return value.value  # Prevent cycles
+            return value.value  # 순환을 막음
         else:
             return super()._traverse(key, value)
 

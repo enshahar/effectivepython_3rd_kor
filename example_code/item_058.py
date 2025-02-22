@@ -61,9 +61,9 @@ class OldResistor:
 
 print("Example 2")
 r0 = OldResistor(50e3)
-print("Before:", r0.get_ohms())
+print("이전:", r0.get_ohms())
 r0.set_ohms(10e3)
-print("After: ", r0.get_ohms())
+print("이후:", r0.get_ohms())
 
 
 print("Example 3")
@@ -81,7 +81,7 @@ class Resistor:
 r1 = Resistor(50e3)
 r1.ohms = 10e3
 print(
-    f"{r1.ohms} ohms, " f"{r1.voltage} volts, " f"{r1.current} amps"
+    f"{r1.ohms} 옴, " f"{r1.voltage} 볼트, " f"{r1.current} 암페어"
 )
 
 
@@ -107,9 +107,9 @@ class VoltageResistance(Resistor):
 
 print("Example 7")
 r2 = VoltageResistance(1e2)
-print(f"Before: {r2.current:.2f} amps")
+print(f"이전: {r2.current:.2f} 암페어")
 r2.voltage = 10
-print(f"After:  {r2.current:.2f} amps")
+print(f"이후: {r2.current:.2f} 암페어")
 
 
 print("Example 8")
@@ -124,7 +124,7 @@ class BoundedResistance(Resistor):
     @ohms.setter
     def ohms(self, ohms):
         if ohms <= 0:
-            raise ValueError(f"ohms must be > 0; got {ohms}")
+            raise ValueError(f"저항은 > 0여야 함; 현재 값은 {ohms}")
         self._ohms = ohms
 
 
@@ -159,7 +159,7 @@ class FixedResistance(Resistor):
     @ohms.setter
     def ohms(self, ohms):
         if hasattr(self, "_ohms"):
-            raise AttributeError("Ohms is immutable")
+            raise AttributeError("저항은 불변임")
         self._ohms = ohms
 
 
@@ -188,6 +188,6 @@ class MysteriousResistor(Resistor):
 print("Example 14")
 r7 = MysteriousResistor(10)
 r7.current = 0.1
-print(f"Before: {r7.voltage:.2f}")
+print(f"이전: {r7.voltage:.2f}")
 r7.ohms
-print(f"After:  {r7.voltage:.2f}")
+print(f"이후: {r7.voltage:.2f}")

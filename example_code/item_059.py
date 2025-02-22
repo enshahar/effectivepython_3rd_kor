@@ -77,11 +77,11 @@ print("Example 3")
 def deduct(bucket, amount):
     now = datetime.now()
     if (now - bucket.reset_time) > bucket.period_delta:
-        return False  # Bucket hasn't been filled this period
+        return False  # 새 주기가 시작됐는데 아직 버킷 할당량이 재설정되지 않았다
     if bucket.quota - amount < 0:
-        return False  # Bucket was filled, but not enough
+        return False  # 버킷의 가용 용량이 충분하지 못하다
     bucket.quota -= amount
-    return True       # Bucket had enough, quota consumed
+    return True       # 버킷의 가용 용량이 충분하므로 필요한 분량을 사용한다
 
 
 print("Example 4")
@@ -92,18 +92,18 @@ print(bucket)
 
 print("Example 5")
 if deduct(bucket, 99):
-    print("Had 99 quota")
+    print("가용 용량이 99 이상이었음")
 else:
-    print("Not enough for 99 quota")
+    print("가용 용량이 99보다 작음")
 
 print(bucket)
 
 
 print("Example 6")
 if deduct(bucket, 3):
-    print("Had 3 quota")
+    print("가용 용량이 3 이상이었음")
 else:
-    print("Not enough for 3 quota")
+    print("가용 용량이 3보다 작음")
 
 print(bucket)
 
@@ -134,36 +134,36 @@ class NewBucket:
     def quota(self, amount):
         delta = self.max_quota - amount
         if amount == 0:
-            # Quota being reset for a new period
+            # 새로운 주기가 되고 가용 용량을 재설정하는 경우
             self.quota_consumed = 0
             self.max_quota = 0
         elif delta < 0:
-            # Quota being filled during the period
+            # 새로운 주기가 되고 가용 용량을 추가하는 경우
             self.max_quota = amount + self.quota_consumed
         else:
-            # Quota being consumed during the period
+            # 어떤 주기 안에서 가용 용량을 소비하는 경우
             self.quota_consumed = delta
 
 
 print("Example 10")
 bucket = NewBucket(60)
-print("Initial", bucket)
+print("초기   ", bucket)
 fill(bucket, 100)
-print("Filled", bucket)
+print("채운 후", bucket)
 
 if deduct(bucket, 99):
-    print("Had 99 quota")
+    print("가용 용량이 99 이상이었음")
 else:
-    print("Not enough for 99 quota")
+    print("가용 용량이 99보다 작음")
 
-print("Now", bucket)
+print("현재   ", bucket)
 
 if deduct(bucket, 3):
-    print("Had 3 quota")
+    print("가용 용량이 3 이상이었음")
 else:
-    print("Not enough for 3 quota")
+    print("가용 용량이 3보다 작음")
 
-print("Still", bucket)
+print("여전히 ", bucket)
 
 
 print("Example 11")

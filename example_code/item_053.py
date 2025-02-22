@@ -77,7 +77,7 @@ class OneWay(MyBaseClass, TimesTwo, PlusFive):
 
 print("Example 4")
 foo = OneWay(5)
-print("First ordering value is (5 * 2) + 5 =", foo.value)
+print("첫번째 순서에 의한 값 (5 * 2) + 5 =", foo.value)
 
 
 print("Example 5")
@@ -90,7 +90,7 @@ class AnotherWay(MyBaseClass, PlusFive, TimesTwo):
 
 print("Example 6")
 bar = AnotherWay(5)
-print("Second ordering should be (5 + 5) * 2, but is", bar.value)
+print("두번째 순서에 의한 값 (5 + 5) * 2 =", bar.value)
 
 
 print("Example 7")
@@ -112,7 +112,7 @@ class ThisWay(TimesSeven, PlusNine):
         PlusNine.__init__(self, value)
 
 foo = ThisWay(5)
-print("Should be (5 * 7) + 9 = 44 but is", foo.value)
+print("(5 * 7) + 9 = 44 여야 하지만 실제로는", foo.value)
 
 
 print("Example 9")
@@ -137,7 +137,7 @@ class GoodWay(TimesSevenCorrect, PlusNineCorrect):
         super().__init__(value)
 
 foo = GoodWay(5)
-print("Should be 7 * (5 + 9) = 98 and is", foo.value)
+print("7 * (5 + 9) = 98 여야 하며, 실제로도", foo.value)
 
 
 print("Example 11")

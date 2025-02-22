@@ -81,10 +81,10 @@ class ImmutablePoint:
         self.__dict__.update(name=name, x=x, y=y)
 
     def __setattr__(self, key, value):
-        raise AttributeError("Immutable object: set not allowed")
+        raise AttributeError("불변 객체: set을 쓸 수 없음")
 
     def __delattr__(self, key):
-        raise AttributeError("Immutable object: del not allowed")
+        raise AttributeError("불변 객체: del을 쓸 수 없음")
 
 
 # Verify del is also prevented
@@ -92,7 +92,7 @@ try:
     point = ImmutablePoint("foo", 5, 10)
     del point.x
 except AttributeError as e:
-    assert str(e) == "Immutable object: del not allowed"
+    assert str(e) == "불변 객체: del을 쓸 수 없음"
 else:
     assert False
 
@@ -150,29 +150,29 @@ class ImmutablePoint:
 
     def __setattr__(self, key: str, value: Any) -> None:
         if key in self.__annotations__ and key not in dir(self):
-            # Allow the very first assignment to happen
+            # 맨 처음 일어난 대입만 성공하게 한다
             super().__setattr__(key, value)
         else:
-            raise AttributeError("Immutable object: set not allowed")
+            raise AttributeError("불변 객체: set을 쓸 수 없음")
 
     def __delattr__(self, key: str) -> Never:
-        raise AttributeError("Immutable object: del not allowed")
+        raise AttributeError("불변 객체: del을 쓸 수 없음")
 
 # Verify set is also prevented
 try:
     point = ImmutablePoint("foo", 5, 10)
     point.x = -3
 except AttributeError as e:
-    assert str(e) == "Immutable object: set not allowed"
+    assert str(e) == "불변 객체: set을 쓸 수 없음"
 else:
     assert False
 
-# Verify del is also prevented
+# del도 쓸 수 없는지 검증해 보자
 try:
     point = ImmutablePoint("foo", 5, 10)
     del point.x
 except AttributeError as e:
-    assert str(e) == "Immutable object: del not allowed"
+    assert str(e) == "불변 객체: del을 쓸 수 없음"
 else:
     assert False
 
@@ -214,10 +214,10 @@ class ImmutablePoint:
         self.__dict__.update(name=name, x=x, y=y)
 
     def __setattr__(self, key, value):
-        raise AttributeError("Immutable object: set not allowed")
+        raise AttributeError("불변 객체: set을 쓸 수 없음")
 
     def __delattr__(self, key):
-        raise AttributeError("Immutable object: del not allowed")
+        raise AttributeError("불변 객체: del을 쓸 수 없음")
 
 
     def _replace(self, **overrides):
@@ -233,7 +233,7 @@ class ImmutablePoint:
 
 print("Example 18")
 def translate_replace(point, delta_x, delta_y):
-    return point._replace(  # Changed
+    return point._replace(  # 변경함
         x=point.x + delta_x,
         y=point.y + delta_y,
     )
@@ -249,7 +249,7 @@ print("Example 19")
 import dataclasses
 
 def translate_dataclass(point, delta_x, delta_y):
-    return dataclasses.replace(  # Changed
+    return dataclasses.replace(  # 변경함
         point,
         x=point.x + delta_x,
         y=point.y + delta_y,

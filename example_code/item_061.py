@@ -53,33 +53,33 @@ class LazyRecord:
         self.exists = 5
 
     def __getattr__(self, name):
-        value = f"Value for {name}"
+        value = f"{name}의 값"
         setattr(self, name, value)
         return value
 
 
 print("Example 2")
 data = LazyRecord()
-print("Before:", data.__dict__)
-print("foo:   ", data.foo)
-print("After: ", data.__dict__)
+print("이전:", data.__dict__)
+print("foo: ", data.foo)
+print("이후:", data.__dict__)
 
 
 print("Example 3")
 class LoggingLazyRecord(LazyRecord):
     def __getattr__(self, name):
         print(
-            f"* Called __getattr__({name!r}), "
-            f"populating instance dictionary"
+            f"* __getattr__({name!r}) 불림, "
+            f"인스턴스 딕셔너리 채워 넣음"
         )
         result = super().__getattr__(name)
-        print(f"* Returning {result!r}")
+        print(f"* {result!r} 반환")
         return result
 
 data = LoggingLazyRecord()
-print("exists:     ", data.exists)
-print("First foo:  ", data.foo)
-print("Second foo: ", data.foo)
+print("exists:    ", data.exists)
+print("첫번째 foo:", data.foo)
+print("두번째 foo:", data.foo)
 
 
 print("Example 4")
@@ -88,21 +88,21 @@ class ValidatingRecord:
         self.exists = 5
 
     def __getattribute__(self, name):
-        print(f"* Called __getattribute__({name!r})")
+        print(f"* __getattribute__({name!r}) 불림")
         try:
             value = super().__getattribute__(name)
-            print(f"* Found {name!r}, returning {value!r}")
+            print(f"* {name!r} 찾음, {value!r} 반환")
             return value
         except AttributeError:
-            value = f"Value for {name}"
-            print(f"* Setting {name!r} to {value!r}")
+            value = f"{name}의 값"
+            print(f"* {name!r}를 {value!r}로 설정")
             setattr(self, name, value)
             return value
 
 data = ValidatingRecord()
-print("exists:     ", data.exists)
-print("First foo:  ", data.foo)
-print("Second foo: ", data.foo)
+print("exists:    ", data.exists)
+print("첫번째 foo:", data.foo)
+print("두번째 foo:", data.foo)
 
 
 print("Example 5")
@@ -110,13 +110,13 @@ try:
     class MissingPropertyRecord:
         def __getattr__(self, name):
             if name == "bad_name":
-                raise AttributeError(f"{name} is missing")
-            value = f"Value for {name}"
+                raise AttributeError(f"{name} 없음")
+            value = f"{name}의 값"
             setattr(self, name, value)
             return value
     
     data = MissingPropertyRecord()
-    assert data.foo == "Value for foo"  # Test this works
+    assert data.foo == "foo의 값"  # Test this works
     data.bad_name
 except:
     logging.exception('이 예외가 발생해야 함')
@@ -125,23 +125,23 @@ else:
 
 
 print("Example 6")
-data = LoggingLazyRecord()  # Implements __getattr__
-print("Before:         ", data.__dict__)
-print("Has first foo:  ", hasattr(data, "foo"))
-print("After:          ", data.__dict__)
-print("Has second foo: ", hasattr(data, "foo"))
+data = LoggingLazyRecord()  # __getattr__을 구현
+print("이전:      ", data.__dict__)
+print("첫번째 foo:", hasattr(data, "foo"))
+print("이후:      ", data.__dict__)
+print("두번째 foo:", hasattr(data, "foo"))
 
 
 print("Example 7")
-data = ValidatingRecord()  # Implements __getattribute__
-print("Has first foo:  ", hasattr(data, "foo"))
-print("Has second foo: ", hasattr(data, "foo"))
+data = ValidatingRecord()  # __getattribute__를 구현
+print("첫번째 foo:", hasattr(data, "foo"))
+print("두번째 foo:", hasattr(data, "foo"))
 
 
 print("Example 8")
 class SavingRecord:
     def __setattr__(self, name, value):
-        # Save some data for the record
+        # 데이터를 데이터베이스 레코드에 저장한다
         pass
         super().__setattr__(name, value)
 
@@ -149,15 +149,15 @@ class SavingRecord:
 print("Example 9")
 class LoggingSavingRecord(SavingRecord):
     def __setattr__(self, name, value):
-        print(f"* Called __setattr__({name!r}, {value!r})")
+        print(f"* __setattr__({name!r}, {value!r}) 불림")
         super().__setattr__(name, value)
 
 data = LoggingSavingRecord()
-print("Before: ", data.__dict__)
+print("이전:", data.__dict__)
 data.foo = 5
-print("After:  ", data.__dict__)
+print("이후:", data.__dict__)
 data.foo = 7
-print("Finally:", data.__dict__)
+print("최종:", data.__dict__)
 
 
 print("Example 10")
@@ -166,14 +166,14 @@ class BrokenDictionaryRecord:
         self._data = data
 
     def __getattribute__(self, name):
-        print(f"* Called __getattribute__({name!r})")
+        print(f"* __getattribute__({name!r}) 불림")
         return self._data[name]
 
 
 print("Example 11")
 try:
     import sys
-    
+
     sys.setrecursionlimit(50)
     data = BrokenDictionaryRecord({"foo": 3})
     data.foo
@@ -189,11 +189,10 @@ class DictionaryRecord:
         self._data = data
 
     def __getattribute__(self, name):
-        # Prevent weird interactions with isinstance() used
-        # by example code harness.
+        # 예제 코드를 위해 이상한 isinstance() 상호작용을 방지함
         if name == "__class__":
             return DictionaryRecord
-        print(f"* Called __getattribute__({name!r})")
+        print(f"* __getattribute__({name!r}) 불림")
         data_dict = super().__getattribute__("_data")
         return data_dict[name]
 

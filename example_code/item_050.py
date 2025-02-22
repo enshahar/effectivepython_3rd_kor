@@ -123,7 +123,7 @@ class NodeAlt2:
     def derivative(self):
         raise NotImplementedError
 
-    # And 20 more methods...
+    # 그리고 20개의 추가 메서드...
 
 
 print("Example 4")

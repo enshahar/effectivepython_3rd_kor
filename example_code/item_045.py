@@ -70,7 +70,7 @@ def animate():
 print("Example 3")
 def render(delta):
     print(f"Delta: {delta:.1f}")
-    # Move the images onscreen
+    # 화면에서 이미지를 이동시킨다
 
 def run(func):
     for delta in func():

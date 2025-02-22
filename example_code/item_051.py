@@ -57,10 +57,10 @@ class RGB:
 
 print("Example 2")
 class BadRGB:
-    def __init__(self, green, red, blue):  # Bad: Order swapped
+    def __init__(self, green, red, blue):  # 나쁨: 순서가 바뀜
         self.red = red
         self.green = green
-        self.bloe = blue                   # Bad: Typo
+        self.bloe = blue                   # 나쁨: 오타
 
 
 print("Example 3")
@@ -94,7 +94,7 @@ print(color3.__dict__)
 
 print("Example 8")
 class RGB:
-    def __init__(self, *, red, green, blue):  # Changed
+    def __init__(self, *, red, green, blue):  # 변경함
         self.red = red
         self.green = green
         self.blue = blue
@@ -176,14 +176,14 @@ class BadContainer:
 obj1 = BadContainer()
 obj2 = BadContainer()
 obj1.value.append(1)
-print(obj2.value)  # Should be empty, but isn't
+print(obj2.value)  # 비어 있으면 안되지만, 비어 있음
 
 
 print("Example 19")
 class MyContainer:
     def __init__(self, *, value=None):
         if value is None:
-            value = []  # Create when not supplied
+            value = []  # 디폴트 값을 인자로 지정하지 않았을 때 생성
         self.value = value
 
 

@@ -36,10 +36,10 @@ class ImmutablePoint:
             # Allow the very first assignment to happen
             super().__setattr__(key, value)
         else:
-            raise AttributeError("Immutable object")
+            raise AttributeError("불변 객체: set을 쓸 수 없음")
 
     def __delattr__(self, key: str) -> Never:
-        raise AttributeError("Immutable object")
+        raise AttributeError("불변 객체: del을 쓸 수 없음")
 
 
 origin = ImmutablePoint("origin", 0, 0)

@@ -165,9 +165,9 @@ else:
 print("Example 13")
 class MyStringClass:
     def __init__(self, value):
-        # This stores the user-supplied value for the object.
-        # It should be coercible to a string. Once assigned in
-        # the object it should be treated as immutable.
+        # 여기서 객체에게 사용자가 제공한 값을 저장한다.
+        # 사용자가 제공하는 값은 문자열로 타입 변환이 가능해야 하며
+        # 일단 한번 객체 내부에 설정되고 나면 불변 값으로 취급돼야 한다.
         self._value = value
 
 
@@ -194,24 +194,24 @@ class ApiClass:
 class Child(ApiClass):
     def __init__(self):
         super().__init__()
-        self._value = "hello"  # Conflicts
+        self._value = "hello"  # 충돌
 
 a = Child()
-print(f"{a.get()} and {a._value} should be different")
+print(f"{a.get()} 와 {a._value} 는 달라야만 한다")
 
 
 print("Example 15")
 class ApiClass:
     def __init__(self):
-        self.__value = 5     # Double underscore
+        self.__value = 5     # 밑줄 2개!
 
     def get(self):
-        return self.__value  # Double underscore
+        return self.__value  # 밑줄 2개!
 
 class Child(ApiClass):
     def __init__(self):
         super().__init__()
-        self._value = "hello"  # OK!
+        self._value = "hello"  # 잘 됨!
 
 a = Child()
-print(f"{a.get()} and {a._value} are different")
+print(f"{a.get()} 와 {a._value} 는 달라야만 한다")

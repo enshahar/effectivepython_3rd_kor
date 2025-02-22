@@ -59,7 +59,7 @@ class Homework:
     @grade.setter
     def grade(self, value):
         if not (0 <= value <= 100):
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("점수는 0 이상 100 이하여야 함")
         self._grade = value
 
 
@@ -150,7 +150,7 @@ class Grade:
 
     def __set__(self, instance, value):
         if not (0 <= value <= 100):
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("점수는 0 이상 100 이하여야 함")
         self._value = value
 
 
@@ -163,15 +163,15 @@ class Exam:
 first_exam = Exam()
 first_exam.writing_grade = 82
 first_exam.science_grade = 99
-print("Writing", first_exam.writing_grade)
-print("Science", first_exam.science_grade)
+print("쓰기", first_exam.writing_grade)
+print("과학", first_exam.science_grade)
 
 
 print("Example 12")
 second_exam = Exam()
 second_exam.writing_grade = 75
-print(f"Second {second_exam.writing_grade} is right")
-print(f"First  {first_exam.writing_grade} is wrong; " f"should be 82")
+print(f"두번째 {second_exam.writing_grade} 는 맞음")
+print(f"첫번째  {first_exam.writing_grade} 는 틀림; " f"82가 맞는 값임")
 
 
 print("Example 13")
@@ -186,7 +186,7 @@ class DictGrade:
 
     def __set__(self, instance, value):
         if not (0 <= value <= 100):
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("점수는 0 이상 100 이하여야 함")
         self._values[instance] = value
 
 class DictExam:
@@ -216,7 +216,7 @@ class NamedGrade:
 
     def __set__(self, instance, value):
         if not (0 <= value <= 100):
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("점수는 0 이상 100 이하여야 함")
         setattr(instance, self.internal_name, value)
 
 

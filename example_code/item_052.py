@@ -140,7 +140,7 @@ tmpdir = "test_inputs"
 write_test_files(tmpdir)
 
 result = mapreduce(tmpdir)
-print(f"There are {result} lines")
+print(f"모두 {result} 줄이 있음")
 
 
 print("Example 10")
@@ -210,4 +210,4 @@ def mapreduce(worker_class, input_class, config):
 print("Example 15")
 config = {"data_dir": tmpdir}
 result = mapreduce(LineCountWorker, PathInputData, config)
-print(f"There are {result} lines")
+print(f"모두 {result} 줄이 있음")

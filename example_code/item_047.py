@@ -58,9 +58,9 @@ try:
         yield 3
     
     it = my_generator()
-    print(next(it))                         # Yields 1
-    print(next(it))                         # Yields 2
-    print(it.throw(MyError("test error")))  # Raises
+    print(next(it))                         # 1을 내놓음
+    print(next(it))                         # 2을 내놓음
+    print(it.throw(MyError("테스트 오류")))    # 예외 발생
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -74,16 +74,16 @@ def my_generator():
     try:
         yield 2
     except MyError:
-        print("Got MyError!")
+        print("MyError 발생!")
     else:
         yield 3
 
     yield 4
 
 it = my_generator()
-print(next(it))                         # Yields 1
-print(next(it))                         # Yields 2
-print(it.throw(MyError("test error")))  # Yields 4
+print(next(it))                         # 1을 내놓음
+print(next(it))                         # 2를 내놓음
+print(it.throw(MyError("테스트 오류")))    # 4를 내놓음
 
 
 print("Example 3")
@@ -96,7 +96,7 @@ def timer(period):
         try:
             yield current
         except Reset:
-            print("Resetting")
+            print("재설정")
             current = period
         else:
             current -= 1
@@ -122,11 +122,11 @@ ORIGINAL_RESETS = [
 RESETS = ORIGINAL_RESETS[:]
 
 def check_for_reset():
-    # Poll for external event
+    # 외부 이벤트를 폴링한다
     return RESETS.pop(0)
 
 def announce(remaining):
-    print(f"{remaining} ticks remaining")
+    print(f"{remaining} 틱 남음")
 
 def run():
     it = timer(4)
@@ -151,7 +151,7 @@ class Timer:
         self.period = period
 
     def reset(self):
-        print("Resetting")
+        print("재설정")
         self.current = self.period
 
     def tick(self):

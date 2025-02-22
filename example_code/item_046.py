@@ -62,9 +62,9 @@ def wave(amplitude, steps):
 print("Example 2")
 def transmit(output):
     if output is None:
-        print(f"Output is None")
+        print(f"출력: 없음")
     else:
-        print(f"Output: {output:>5.1f}")
+        print(f"출력: {output:>5.1f}")
 
 def run(it):
     for output in it:
@@ -79,11 +79,11 @@ def my_generator():
     print(f"{received=}")
 
 it = my_generator()
-output = next(it)  # Get first generator output
+output = next(it)  # 첫 번째 제너레이터 출력을 얻는다
 print(f"{output=}")
 
 try:
-    next(it)       # Run generator until it exits
+    next(it)       # 종료될 때까지 제너레이터를 실행한다
 except StopIteration:
     pass
 else:
@@ -92,11 +92,11 @@ else:
 
 print("Example 4")
 it = my_generator()
-output = it.send(None)  # Get first generator output
+output = it.send(None)  # 첫 번째 제너레이터 출력을 얻는다
 print(f"{output=}")
 
 try:
-    it.send("hello!")   # Send value into the generator
+    it.send("안녕하세요!")   # 값을 제너레이터에 보낸다
 except StopIteration:
     pass
 else:
@@ -106,12 +106,12 @@ else:
 print("Example 5")
 def wave_modulating(steps):
     step_size = 2 * math.pi / steps
-    amplitude = yield              # Receive initial amplitude
+    amplitude = yield              # 초기 진폭을 받는다
     for step in range(steps):
         radians = step * step_size
         fraction = math.sin(radians)
         output = amplitude * fraction
-        amplitude = yield output   # Receive next amplitude
+        amplitude = yield output   # 다음 진폭을 받는다
 
 
 print("Example 6")
@@ -148,7 +148,7 @@ def wave_cascading(amplitude_it, steps):
     for step in range(steps):
         radians = step * step_size
         fraction = math.sin(radians)
-        amplitude = next(amplitude_it)  # Get next input
+        amplitude = next(amplitude_it)  # 다음 입력을 받는다
         output = amplitude * fraction
         yield output
 
@@ -163,7 +163,7 @@ def complex_wave_cascading(amplitude_it):
 print("Example 11")
 def run_cascading():
     amplitudes = [7, 7, 7, 2, 2, 2, 2, 10, 10, 10, 10, 10]
-    it = complex_wave_cascading(iter(amplitudes))  # Supplies iterator
+    it = complex_wave_cascading(iter(amplitudes))  # 이터레이터를 전달한다
     for amplitude in amplitudes:
         output = next(it)
         transmit(output)
