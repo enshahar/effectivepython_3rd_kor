@@ -101,10 +101,10 @@ class Worker(Thread):
             try:
                 item = self.in_queue.get()
             except IndexError:
-                time.sleep(0.01)  # No work to do
+                time.sleep(0.01)  # 처리할 작업이 없음
             except AttributeError:
-                # The magic exit signal to make this easy to show in
-                # example code, but don't use this in practice.
+                # 예제 코드에서 쉽게 종료를 시키기 위한 장치.
+                # 하지만 실전에서는 이런 방식을 쓰면 안됨
                 return
             else:
                 result = self.func(item)
@@ -134,10 +134,9 @@ for _ in range(1000):
 
 print("Example 9")
 while len(done_queue.items) < 1000:
-    # Do something useful while waiting
+    # 기다리는 동안 다른 유용한 작업을 수행한다
     time.sleep(0.1)
-# Stop all the threads by causing an exception in their
-# run methods.
+# run 메서드에서 예외를 발생시켜서 모든 스레드를 종료시킨다
 for thread in threads:
     thread.in_queue = None
     thread.join()
@@ -146,7 +145,7 @@ for thread in threads:
 print("Example 10")
 processed = len(done_queue.items)
 polled = sum(t.polled_count for t in threads)
-print(f"Processed {processed} items after " f"polling {polled} times")
+print(f"아이템을 {processed} 개 처리하는 동안 " f" 폴링을 {polled} 번 수행함")
 
 
 print("Example 11")
@@ -155,42 +154,41 @@ from queue import Queue
 my_queue = Queue()
 
 def consumer():
-    print("Consumer waiting")
-    my_queue.get()  # Runs after put() below
-    print("Consumer done")
+    print("소비자 대기중")
+    my_queue.get()            # 다음에 보여줄 put()이 실행된 다음에 시행된다
+    print("소비자 끝남")
 
 thread = Thread(target=consumer)
 thread.start()
 
 
-print("Example 12")
-print("Producer putting")
-my_queue.put(object())  # Runs before get() above
-print("Producer done")
+print("생산자 put 실행")
+my_queue.put(object())     # 앞에서 본 get()이 실행되기 전에 실행된다.
+print("생산자 끝남")
 thread.join()
 
 
 print("Example 13")
-my_queue = Queue(1)  # Buffer size of 1
+my_queue = Queue(1)  # 버퍼 크기 1
 
 def consumer():
-    time.sleep(0.1)  # Wait
-    my_queue.get()   # Runs second
-    print("Consumer got 1")
-    my_queue.get()   # Runs fourth
-    print("Consumer got 2")
-    print("Consumer done")
+    time.sleep(0.1)  # 대기
+    my_queue.get()   # 두번째로 실행됨
+    print("소비자 얻음 1")
+    my_queue.get()   # 네번째로 실행됨
+    print("소비자 얻음 2")
+    print("소비자 끝남")
 
 thread = Thread(target=consumer)
 thread.start()
 
 
 print("Example 14")
-my_queue.put(object())  # Runs first
-print("Producer put 1")
-my_queue.put(object())  # Runs third
-print("Producer put 2")
-print("Producer done")
+my_queue.put(object())  # 첫번째로 실행됨
+print("생산자 put 1")
+my_queue.put(object()) # 세번째로 실행됨
+print("생산자 put 2")
+print("생산자 끝남")
 thread.join()
 
 
@@ -198,23 +196,23 @@ print("Example 15")
 in_queue = Queue()
 
 def consumer():
-    print("Consumer waiting")
-    work = in_queue.get()      # Runs second
-    print("Consumer working")
-    # Doing work
-    print("Consumer done")
-    in_queue.task_done()       # Runs third
+    print("소비자 대기중")
+    work = in_queue.get()  # 두 번째로 실행됨
+    print("소비자 작업중")
+    # 작업을 수행한다
+    print("소비자 끝남")
+    in_queue.task_done()  # 세 번째로 실행됨
 
 thread = Thread(target=consumer)
 thread.start()
 
 
 print("Example 16")
-print("Producer putting")
-in_queue.put(object())     # Runs first
-print("Producer waiting")
-in_queue.join()            # Runs fourth
-print("Producer done")
+print("생산자 put 하는 중")
+in_queue.put(object())    # 첫 번째로 실행됨
+print("생산자 대기중")
+in_queue.join()           # 네 번째로 실행됨
+print("생산자 끝남")
 thread.join()
 
 
@@ -228,10 +226,10 @@ def consumer():
         try:
             item = my_queue2.get()
         except ShutDown:
-            print("Terminating!")
+            print("끝내는 중!")
             return
         else:
-            print("Got item", item)
+            print("아이템 얻음", item)
             my_queue2.task_done()
 
 thread = Thread(target=consumer)
@@ -244,7 +242,7 @@ thread.start()
 
 my_queue2.join()
 thread.join()
-print("Done")
+print("끝남")
 
 
 print("Example 18")
@@ -310,7 +308,7 @@ while True:
     except ShutDown:
         break
     else:
-        # Process the item
+        # 원소를 처리한다
         done_queue.task_done()
         counter += 1
 
@@ -319,7 +317,7 @@ done_queue.join()
 for thread in threads:
     thread.join()
 
-print(counter, "items finished")
+print(counter, "개의 아이템 끝남")
 
 
 print("Example 23")
@@ -379,4 +377,4 @@ counter = drain_queue(done_queue)
 for thread in threads:
     thread.join()
 
-print(counter, "items finished")
+print(counter, "개의 아이템 끝남")

@@ -75,14 +75,14 @@ class Grid:
 
 
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -91,7 +91,7 @@ def count_neighbors(y, x, get_cell):
     return count
 
 async def game_logic(state, neighbors):
-    # Do some input/output in here:
+    # 여기서 I/O를 수행한다
     data = await my_socket.read(50)
 
 
@@ -124,10 +124,10 @@ async def simulate(grid):
     tasks = []
     for y in range(grid.height):
         for x in range(grid.width):
-            task = step_cell(y, x, grid.get, next_grid.set)  # Fan-out
+            task = step_cell(y, x, grid.get, next_grid.set)  # 팬아웃
             tasks.append(task)
 
-    await asyncio.gather(*tasks)                             # Fan-in
+    await asyncio.gather(*tasks)                             # 팬인
 
     return next_grid
 
@@ -173,7 +173,7 @@ grid.set(2, 4, ALIVE)
 columns = ColumnPrinter()
 for i in range(5):
     columns.append(str(grid))
-    grid = asyncio.run(simulate(grid))  # Run the event loop
+    grid = asyncio.run(simulate(grid))  # 이벤트 루프를 실행한다
 
 print(columns)
 
@@ -182,14 +182,14 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 print("Example 5")
 async def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:

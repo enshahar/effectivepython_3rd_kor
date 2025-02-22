@@ -80,7 +80,7 @@ class StoppableWorker(Thread):
 
 
 def game_logic(state, neighbors):
-    # Do some blocking input/output in here:
+    # 여기서 블러킹 I/O를 수행한다
     data = my_socket.recv(100)
 
 def game_logic(state, neighbors):
@@ -102,7 +102,7 @@ def game_logic_thread(item):
         next_state = e
     return (y, x, next_state)
 
-# Start the threads upfront
+# 스레드를 미리 시작한다
 threads = []
 for _ in range(5):
     thread = StoppableWorker(game_logic_thread, in_queue, out_queue)
@@ -141,14 +141,14 @@ class Grid:
 
 
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -180,7 +180,7 @@ def simulate_pipeline(grid, in_queue, out_queue):
 print("Example 4")
 try:
     def game_logic(state, neighbors):
-        raise OSError("Problem with I/O in game_logic")
+        raise OSError("game_logic에서 I/O 오류")
     
     simulate_pipeline(Grid(1, 1), in_queue, out_queue)
 except:
@@ -190,7 +190,7 @@ else:
 
 
 print("Example 5")
-# Restore the working version of this function
+# 정상 작동하는 버전으로 돌려놓기
 def game_logic(state, neighbors):
     if state == ALIVE:
         if neighbors < 2:
@@ -253,20 +253,20 @@ for thread in threads:
 
 print("Example 6")
 def count_neighbors(y, x, get_cell):
-    # Do some blocking input/output in here:
+    # 여기서 블러킹 I/O를 수행한다
     data = my_socket.recv(100)
 
 
 print("Example 7")
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -341,15 +341,15 @@ def simulate_phased_pipeline(grid, in_queue, logic_queue, out_queue):
         for x in range(grid.width):
             state = grid.get(y, x)
             item = (y, x, state, grid.get)
-            in_queue.put(item)              # Fan-out
+            in_queue.put(item)              # 팬아웃
 
     in_queue.join()
-    logic_queue.join()                      # Pipeline sequencing
+    logic_queue.join()                      # 파이프라인을 순서대로 실행한다
     item_count = out_queue.qsize()
 
     next_grid = LockingGrid(grid.height, grid.width)
     for _ in range(item_count):
-        y, x, next_state = out_queue.get()  # Fan-in
+        y, x, next_state = out_queue.get()  # 팬인
         if isinstance(next_state, Exception):
             raise SimulationError(y, x) from next_state
         next_grid.set(y, x, next_state)
@@ -385,9 +385,9 @@ for thread in threads:
 
 
 print("Example 11")
-# Make sure exception propagation works as expected
+# 예외 전파가 예상대로 이뤄지도록 한다
 def count_neighbors(*args):
-    raise OSError("Problem with I/O in count_neighbors")
+    raise OSError("count_neighbors에서 I/O 오류")
 
 in_queue = Queue()
 logic_queue = Queue()
@@ -408,6 +408,6 @@ for thread in threads:
 try:
     simulate_phased_pipeline(grid, in_queue, logic_queue, out_queue)
 except SimulationError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False

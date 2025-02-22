@@ -75,14 +75,14 @@ class Customer:
 
 print("Example 4")
 cust = Customer()
-print(f"Before: {cust.first_name!r} {cust.__dict__}")
-cust.first_name = "Euclid"
-print(f"After:  {cust.first_name!r} {cust.__dict__}")
+print(f"이전: {cust.first_name!r} {cust.__dict__}")
+cust.first_name = "유클리드"
+print(f"이후:  {cust.first_name!r} {cust.__dict__}")
 
 
 print("Example 5")
 class Customer:
-    # Left side is redundant with right side
+    # =의 좌변과 우변의 정보가 불필요하게 중복된다
     first_name = Field("first_name")
     last_name = Field("last_name")
     prefix = Field("prefix")
@@ -108,7 +108,7 @@ class DatabaseRow(metaclass=Meta):
 print("Example 8")
 class Field:
     def __init__(self):
-        # These will be assigned by the metaclass.
+        # 이 두 정보를 메타클래스가 채워 준다
         self.column_name = None
         self.internal_name = None
 
@@ -131,21 +131,21 @@ class BetterCustomer(DatabaseRow):
 
 print("Example 10")
 cust = BetterCustomer()
-print(f"Before: {cust.first_name!r} {cust.__dict__}")
-cust.first_name = "Euler"
-print(f"After:  {cust.first_name!r} {cust.__dict__}")
+print(f"이전: {cust.first_name!r} {cust.__dict__}")
+cust.first_name = "오일러"
+print(f"이후:  {cust.first_name!r} {cust.__dict__}")
 
 
 print("Example 11")
 try:
-    class BrokenCustomer:  # Missing inheritance
+    class BrokenCustomer:  # 상속을 잊어버림
         first_name = Field()
         last_name = Field()
         prefix = Field()
         suffix = Field()
     
     cust = BrokenCustomer()
-    cust.first_name = "Mersenne"
+    cust.first_name = "메르센"
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -180,6 +180,6 @@ class FixedCustomer:  # No parent class
     suffix = Field()
 
 cust = FixedCustomer()
-print(f"Before: {cust.first_name!r} {cust.__dict__}")
-cust.first_name = "Mersenne"
-print(f"After:  {cust.first_name!r} {cust.__dict__}")
+print(f"이전: {cust.first_name!r} {cust.__dict__}")
+cust.first_name = "메르센"
+print(f"이후: {cust.first_name!r} {cust.__dict__}")

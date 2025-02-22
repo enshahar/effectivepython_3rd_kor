@@ -69,8 +69,8 @@ class Point2D(Serializable):
         return f"Point2D({self.x}, {self.y})"
 
 point = Point2D(5, 3)
-print("Object:    ", point)
-print("Serialized:", point.serialize())
+print("객체:  ", point)
+print("직렬화:", point.serialize())
 
 
 print("Example 3")
@@ -92,11 +92,11 @@ class BetterPoint2D(Deserializable):
         return f"Point2D({self.x}, {self.y})"
 
 before = BetterPoint2D(5, 3)
-print("Before:    ", before)
+print("객체:    ", before)
 data = before.serialize()
-print("Serialized:", data)
+print("직렬화:  ", data)
 after = BetterPoint2D.deserialize(data)
-print("After:     ", after)
+print("역직렬화:", after)
 
 
 print("Example 5")
@@ -143,11 +143,11 @@ register_class(EvenBetterPoint2D)
 
 print("Example 8")
 before = EvenBetterPoint2D(5, 3)
-print("Before:    ", before)
+print("객체:    ", before)
 data = before.serialize()
-print("Serialized:", data)
+print("직렬화:  ", data)
 after = deserialize(data)
-print("After:     ", after)
+print("역직렬화:", after)
 
 
 print("Example 9")
@@ -158,7 +158,7 @@ class Point3D(BetterSerializable):
         self.y = y
         self.z = z
 
-# Forgot to call register_class! Whoops!
+# register_class 호출을 잊어버렸다. 이런!
 
 
 print("Example 10")
@@ -190,10 +190,10 @@ class Vector3D(RegisteredSerializable):
         self.x, self.y, self.z = x, y, z
 
 before = Vector3D(10, -7, 3)
-print("Before:    ", before)
+print("객체:    ", before)
 data = before.serialize()
-print("Serialized:", data)
-print("After:     ", deserialize(data))
+print("직렬화:  ", data)
+print("역직렬화:", deserialize(data))
 
 
 print("Example 13")
@@ -210,7 +210,8 @@ class Vector1D(BetterRegisteredSerializable):
 
 print("Example 14")
 before = Vector1D(6)
-print("Before:    ", before)
+print("객체:    ", before)
 data = before.serialize()
-print("Serialized:", data)
-print("After:     ", deserialize(data))
+print("직렬화:  ", data)
+print("역직렬화:", deserialize(data))
+

@@ -50,33 +50,33 @@ atexit.register(close_open_files)
 print("Example 1")
 import subprocess
 
-# Enable these lines to make this example work on Windows
+# 윈도우즈에서는 다음 두 줄의 주석을 제거해서 활성화해야 한다
 # import os
 # os.environ['COMSPEC'] = 'powershell'
 result = subprocess.run(
-    ["echo", "Hello from the child!"],
+    ["echo", "자식 프로세스로부터 안녕!"],
     capture_output=True,
-    # Enable this line to make this example work on Windows
+    # 윈도우즈에서는 다음 줄을 활성화해야 한다
     # shell=True,
     encoding="utf-8",
 )
 
-result.check_returncode()  # No exception means it exited cleanly
+result.check_returncode()  # 예외가 발생하지 않으면 문제 없이 잘 종료한 것이다
 print(result.stdout)
 
 
 print("Example 2")
-# Use this line instead to make this example work on Windows
+# 윈도우즈에서는 원래 예제 코드가 아니라 다음 줄을 사용해야 한다
 # proc = subprocess.Popen(['sleep', '1'], shell=True)
 proc = subprocess.Popen(["sleep", "1"])
 while proc.poll() is None:
-    print("Working...")
-    # Some time-consuming work here
+    print("작업중...")
+    # 시간이 걸리는 작업을 여기서 수행한다
     import time
 
     time.sleep(0.3)
 
-print("Exit status", proc.poll())
+print("종료 상태", proc.poll())
 
 
 print("Example 3")
@@ -85,7 +85,7 @@ import time
 start = time.perf_counter()
 sleep_procs = []
 for _ in range(10):
-    # Use this line instead to make this example work on Windows
+    # 윈도우즈에서는 원래 예제 코드가 아니라 다음 줄을 사용해야 한다
     # proc = subprocess.Popen(['sleep', '1'], shell=True)
     proc = subprocess.Popen(["sleep", "1"])
     sleep_procs.append(proc)
@@ -97,14 +97,14 @@ for proc in sleep_procs:
 
 end = time.perf_counter()
 delta = end - start
-print(f"Finished in {delta:.3} seconds")
+print(f"{delta:.3} 초 걸림")
 
 
 print("Example 5")
 import os
 
-# On Windows, after installing OpenSSL, you may need to
-# alias it in your PowerShell path with a command like:
+# 윈도우에서는 OpenSSL을 설치한 다음에,
+# 파워셀(파이썬 인터프리터가 아님)에서 다음과 같은 명령을 실행해 경로를 지정해야 할 수도 있다:
 # $env:path = $env:path + ";C:\Program Files\OpenSSL-Win64\bin"
 
 def run_encrypt(data):
@@ -117,7 +117,7 @@ def run_encrypt(data):
         stdout=subprocess.PIPE,
     )
     proc.stdin.write(data)
-    proc.stdin.flush()  # Ensure that the child gets input
+    proc.stdin.flush()  # 자식이 입력을 받도록 보장한다
     return proc
 
 
@@ -156,10 +156,9 @@ for _ in range(3):
     hash_proc = run_hash(encrypt_proc.stdout)
     hash_procs.append(hash_proc)
 
-    # Ensure that the child consumes the input stream and
-    # the communicate() method doesn't inadvertently steal
-    # input from the child. Also lets SIGPIPE propagate to
-    # the upstream process if the downstream process dies.
+    # 자식이 입력 스트림에 들어오는 데이터를 소비하고 communicate() 메서드가
+    # 불필요하게 자식으로부터 오는 입력을 훔쳐가지 못하게 만든다.
+    # 또 다운스트림 프로세스가 죽으면 SIGPIPE를 업스트림 프로세스에 전달한다.
     encrypt_proc.stdout.close()
     encrypt_proc.stdout = None
 
@@ -176,7 +175,7 @@ for proc in hash_procs:
 
 
 print("Example 11")
-# Use this line instead to make this example work on Windows
+# 윈도우즈에서는 원래 예제 코드가 아니라 다음 줄을 사용해야 한다
 # proc = subprocess.Popen(['sleep', '10'], shell=True)
 proc = subprocess.Popen(["sleep", "10"])
 try:
@@ -185,4 +184,4 @@ except subprocess.TimeoutExpired:
     proc.terminate()
     proc.wait()
 
-print("Exit status", proc.poll())
+print("종료 상태", proc.poll())

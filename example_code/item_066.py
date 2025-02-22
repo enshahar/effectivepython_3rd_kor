@@ -51,7 +51,7 @@ print("Example 1")
 from functools import wraps
 
 def trace_func(func):
-    if hasattr(func, "tracing"):  # Only decorate once
+    if hasattr(func, "tracing"):  # 단 한번만 데코레이터를 적용한다
         return func
 
     @wraps(func)
@@ -96,9 +96,9 @@ trace_dict = TraceDict([("hi", 1)])
 trace_dict["there"] = 2
 trace_dict["hi"]
 try:
-    trace_dict["does not exist"]
+    trace_dict["존재하지 않음"]
 except KeyError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False
 
@@ -147,9 +147,9 @@ trace_dict = TraceDict([("hi", 1)])
 trace_dict["there"] = 2
 trace_dict["hi"]
 try:
-    trace_dict["does not exist"]
+    trace_dict["존재하지 않음"]
 except KeyError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False
 
@@ -202,9 +202,9 @@ trace_dict = ChildTraceDict([("hi", 1)])
 trace_dict["there"] = 2
 trace_dict["hi"]
 try:
-    trace_dict["does not exist"]
+    trace_dict["존재하지 않음"]
 except KeyError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False
 
@@ -247,9 +247,9 @@ trace_dict = DecoratedTraceDict([("hi", 1)])
 trace_dict["there"] = 2
 trace_dict["hi"]
 try:
-    trace_dict["does not exist"]
+    trace_dict["존재하지 않음"]
 except KeyError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False
 
@@ -266,8 +266,8 @@ trace_dict = HasMetaTraceDict([("hi", 1)])
 trace_dict["there"] = 2
 trace_dict["hi"]
 try:
-    trace_dict["does not exist"]
+    trace_dict["존재하지 않음"]
 except KeyError:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
     assert False

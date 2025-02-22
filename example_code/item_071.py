@@ -88,14 +88,14 @@ print(grid)
 
 print("Example 4")
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -132,12 +132,12 @@ print("Example 5")
 def game_logic(state, neighbors):
     if state == ALIVE:
         if neighbors < 2:
-            return EMPTY     # Die: Too few
+            return EMPTY     # 살아 있는 이웃이 너무 적음: 죽음
         elif neighbors > 3:
-            return EMPTY     # Die: Too many
+            return EMPTY     # 살아 있는 이웃이 너무 많음: 죽음
     else:
         if neighbors == 3:
-            return ALIVE     # Regenerate
+            return ALIVE     # 죽은 셀에서 살아있는 셀로 변함
     return state
 
 assert game_logic(ALIVE, 0) == EMPTY
@@ -233,5 +233,5 @@ print(columns)
 
 print("Example 9")
 def game_logic(state, neighbors):
-    # Do some blocking input/output in here:
+    #  블러킹 I/O를 여기서 수행한다
     data = my_socket.recv(100)

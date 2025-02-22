@@ -54,11 +54,11 @@ import csv
 with open("packages.csv", "w") as f:
     f.write(
         """\
-Sydney,truck,25
-Melbourne,boat,6
-Brisbane,plane,12
-Perth,road train,90
-Adelaide,truck,17
+시드니,트럭,25
+멜번,보트,6
+브리즈번,비행기,12
+퍼스,로드 트레인,90
+아들레이드,트럭,17
 """
     )
 
@@ -82,25 +82,25 @@ class Delivery:
 
 
 print("Example 3")
-row1 = ["Sydney", "truck", "25"]
+row1 = ["시드니", "트럭", "25"]
 obj1 = Delivery.from_row(row1)
 print(obj1.__dict__)
 
 
 print("Example 4")
 class RowMapper:
-    fields = ()  # Must be in CSV column order
+    fields = ()  # CSV 파일의 열 순서와 일치해야 함
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             if key not in type(self).fields:
-                raise TypeError(f"Invalid field: {key}")
+                raise TypeError(f"잘못된 필드: {key}")
             setattr(self, key, value)
 
     @classmethod
     def from_row(cls, row):
         if len(row) != len(cls.fields):
-            raise ValueError("Wrong number of fields")
+            raise ValueError("필드 개수가 다름")
         kwargs = dict(pair for pair in zip(cls.fields, row))
         return cls(**kwargs)
 
@@ -113,17 +113,17 @@ class DeliveryMapper(RowMapper):
 try:
     DeliveryMapper.from_row([1, 2, 3, 4])
 except ValueError as e:
-    assert str(e) == "Wrong number of fields"
+    assert str(e) == "필드 개수가 다름"
 
 try:
     DeliveryMapper(bad=1)
 except TypeError as e:
-    assert str(e) == "Invalid field: bad"
+    assert str(e) == "잘못된 필드: bad"
 
 
 obj2 = DeliveryMapper.from_row(row1)
-assert obj2.destination == "Sydney"
-assert obj2.method == "truck"
+assert obj2.destination == "시드니"
+assert obj2.method == "트럭"
 assert obj2.weight == "25"
 
 
@@ -159,17 +159,17 @@ class BetterDeliveryMapper(BetterRowMapper):
 try:
     DeliveryMapper.from_row([1, 2, 3, 4])
 except ValueError as e:
-    assert str(e) == "Wrong number of fields"
+    assert str(e) == "필드 개수가 다름"
 
 try:
     BetterDeliveryMapper(bad=1)
 except TypeError as e:
-    assert str(e) == "Invalid field: bad"
+    assert str(e) == "잘못된 필드: bad"
 
 
 obj3 = BetterDeliveryMapper.from_row(row1)
-assert obj3.destination == "Sydney"
-assert obj3.method == "truck"
+assert obj3.destination == "시드니"
+assert obj3.method == "트럭"
 assert obj3.weight == "25"
 
 
@@ -177,9 +177,9 @@ print("Example 10")
 class ReorderedDeliveryMapper(BetterRowMapper):
     method = ...
     weight = ...
-    destination = ...  # Moved
+    destination = ...  # 위치를 옮김
 
-row4 = ["road train", "90", "Perth"]  # Different order
+row4 = ["로드 트레인", "90", "퍼스"]  # 순서가 다름
 obj4 = ReorderedDeliveryMapper.from_row(row4)
 print(obj4.__dict__)
 
@@ -222,19 +222,19 @@ class DescriptorRowMapper(RowMapper):
     def __init_subclass__(cls):
         fields = []
         for key, value in cls.__dict__.items():
-            if isinstance(value, Field):  # Changed
+            if isinstance(value, Field):  # 변경함
                 fields.append(key)
         cls.fields = tuple(fields)
 
 try:
     DescriptorRowMapper.from_row([1, 2, 3, 4])
 except ValueError as e:
-    assert str(e) == "Wrong number of fields"
+    assert str(e) == "필드 개수가 다름"
 
 try:
     DescriptorRowMapper(bad=1)
 except TypeError as e:
-    assert str(e) == "Invalid field: bad"
+    assert str(e) == "잘못된 필드: bad"
 
 
 print("Example 14")
@@ -244,9 +244,9 @@ class ConvertingDeliveryMapper(DescriptorRowMapper):
     weight = FloatField()
 
 obj5 = ConvertingDeliveryMapper.from_row(row1)
-assert obj5.destination == "Sydney"
-assert obj5.method == "truck"
-assert obj5.weight == 25.0  # Number, not string
+assert obj5.destination == "시드니"
+assert obj5.method == "트럭"
+assert obj5.weight == 25.0  # 문자열이 아니고 숫자임
 
 
 print("Example 15")
@@ -258,7 +258,7 @@ class HypotheticalWorkflow:
         pass
 
     def run(self):
-        # Runs `start_engine` then `release_brake`
+        # `start_engine`을 실행한 후 `release_brake` 실행
         pass
 
 
@@ -289,14 +289,14 @@ print("Example 19")
 class MyWorkflow(Workflow):
     @step
     def start_engine(self):
-        print("Engine is on!")
+        print("엔진 켜짐!")
 
     def my_helper_function(self):
-        raise RuntimeError("Should not be called")
+        raise RuntimeError("호출해서는 안됨")
 
     @step
     def release_brake(self):
-        print("Brake is off!")
+        print("브레이크 풂!")
 
 
 print("Example 20")

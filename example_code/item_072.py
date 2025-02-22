@@ -98,14 +98,14 @@ print("Example 2")
 from threading import Thread
 
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -114,10 +114,10 @@ def count_neighbors(y, x, get_cell):
     return count
 
 def game_logic(state, neighbors):
-    # This version of the function is just to illustrate the point
-    # that I/O is possible, but for example code we'll simply run
-    # the normal game logic (below) so it's easier to understand.
-    # Do some blocking input/output in here:
+    # 함수의 이 버전은 I/O가 가능한 지점을 보여줄 뿐이다.
+    # 예를 들어 다음 game_logic 함수처럼 실제 일반 게임 로직을
+    # 실행하면 이해하기 쉽다.
+    #  블러킹 I/O를 여기서 수행한다
     data = my_socket.recv(100)
 
 def game_logic(state, neighbors):
@@ -145,11 +145,11 @@ def simulate_threaded(grid):
         for x in range(grid.width):
             args = (y, x, grid.get, next_grid.set)
             thread = Thread(target=step_cell, args=args)
-            thread.start()  # Fan-out
+            thread.start()  # 팬아웃
             threads.append(thread)
 
     for thread in threads:
-        thread.join()  # Fan-in
+        thread.join()  # 팬인
 
     return next_grid
 
@@ -193,14 +193,14 @@ grid.set(2, 4, ALIVE)
 columns = ColumnPrinter()
 for i in range(5):
     columns.append(str(grid))
-    grid = simulate_threaded(grid)  # Changed
+    grid = simulate_threaded(grid)  # 변경함
 
 print(columns)
 
 
 print("Example 4")
 def game_logic(state, neighbors):
-    raise OSError("Problem with I/O")
+    raise OSError("I/O 오류")
 
 
 print("Example 5")

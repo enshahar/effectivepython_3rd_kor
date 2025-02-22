@@ -68,7 +68,7 @@ for number in numbers:
 
 end = time.perf_counter()
 delta = end - start
-print(f"Took {delta:.3f} seconds")
+print(f"{delta:.3f} 초 걸림")
 
 
 print("Example 3")
@@ -99,7 +99,7 @@ for thread in threads:
 
 end = time.perf_counter()
 delta = end - start
-print(f"Took {delta:.3f} seconds")
+print(f"{delta:.3f} 초 걸림")
 
 
 print("Example 6")
@@ -118,7 +118,7 @@ for _ in range(5):
 
 end = time.perf_counter()
 delta = end - start
-print(f"Took {delta:.3f} seconds")
+print(f"{delta:.3f} 초 걸림")
 
 
 print("Example 8")
@@ -143,4 +143,4 @@ for thread in threads:
 
 end = time.perf_counter()
 delta = end - start
-print(f"Took {delta:.3f} seconds")
+print(f"{delta:.3f} 초 걸림")

@@ -95,14 +95,14 @@ class LockingGrid(Grid):
 
 
 def count_neighbors(y, x, get_cell):
-    n_ = get_cell(y - 1, x + 0)  # North
-    ne = get_cell(y - 1, x + 1)  # Northeast
-    e_ = get_cell(y + 0, x + 1)  # East
-    se = get_cell(y + 1, x + 1)  # Southeast
-    s_ = get_cell(y + 1, x + 0)  # South
-    sw = get_cell(y + 1, x - 1)  # Southwest
-    w_ = get_cell(y + 0, x - 1)  # West
-    nw = get_cell(y - 1, x - 1)  # Northwest
+    n_ = get_cell(y - 1, x + 0) # 북(N)
+    ne = get_cell(y - 1, x + 1) # 북동(NE)
+    e_ = get_cell(y + 0, x + 1) # 동(E)
+    se = get_cell(y + 1, x + 1) # 남동(SE)
+    s_ = get_cell(y + 1, x + 0) # 남(S)
+    sw = get_cell(y + 1, x - 1) # 남서(SW)
+    w_ = get_cell(y + 0, x - 1) # 서(W)
+    nw = get_cell(y - 1, x - 1) # 북서(NW)
     neighbor_states = [n_, ne, e_, se, s_, sw, w_, nw]
     count = 0
     for state in neighbor_states:
@@ -111,7 +111,7 @@ def count_neighbors(y, x, get_cell):
     return count
 
 def game_logic(state, neighbors):
-    # Do some blocking input/output in here:
+    # 여기서 블러킹 I/O를 수행한다
     data = my_socket.recv(100)
 
 def game_logic(state, neighbors):
@@ -142,11 +142,11 @@ def simulate_pool(pool, grid):
     for y in range(grid.height):
         for x in range(grid.width):
             args = (y, x, grid.get, next_grid.set)
-            future = pool.submit(step_cell, *args)  # Fan-out
+            future = pool.submit(step_cell, *args)  # 팬아웃
             futures.append(future)
 
     for future in futures:
-        future.result()                             # Fan-in
+        future.result()                             # 팬인
 
     return next_grid
 
@@ -199,7 +199,7 @@ print(columns)
 print("Example 4")
 try:
     def game_logic(state, neighbors):
-        raise OSError("Problem with I/O")
+        raise OSError("I/O 오류")
     
     with ThreadPoolExecutor(max_workers=10) as pool:
         task = pool.submit(game_logic, ALIVE, 3)

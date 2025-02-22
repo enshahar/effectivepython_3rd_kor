@@ -51,27 +51,26 @@ print("Example 1")
 counter = 0
 
 def read_sensor(sensor_index):
-    # Returns sensor data or raises an exception
-    # Nothing actually happens here, but this is where
-    # the blocking I/O would go.
+    # 센서 데이터를 반환하거나 예외를 발생시킨다
+    # 현재 코드로는 여기서 실제 무슨 일이 발생하지는 않지만,
+    # 블러킹 I/O가 벌어지는 장소가 여기다
     pass
 
 def get_offset(data):
-    # Always returns 1 or greater
+    # 항상 1 이상의 값을 반환한다
     return 1
 
 def worker(sensor_index, how_many):
     global counter
-    # I have a barrier in here so the workers synchronize
-    # when they start counting, otherwise it's hard to get a race
-    # because the overhead of starting a thread is high.
+    # 작업자들이 카운팅을 시작할 때 동기화할 수 있게 여기 장벽을 설정한다.
+    # 장벽이 없으면 스레드 시작 부가 비용이 높기 때문에 경합 상태가 발생하기 힘들다.
     BARRIER.wait()
     for _ in range(how_many):
         data = read_sensor(sensor_index)
-        # Note that the value passed to += must be a function call or other
-        # non-trivial expression in order to cause the CPython eval loop to
-        # check whether it should release the GIL. This is a side-effect of
-        # an optimization. See https://github.com/python/cpython/commit/4958f5d69dd2bf86866c43491caf72f774ddec97 for details.
+        # CPytho의 eval 루프가 GIL을 해제할지 검사하게 하려면
+        # +=에 전달하는 값이 함수 호출 등 단순하지 않은 식이어야만 한다.
+        # 최적화로 인해 이런 현상이 발생한다.
+        # 참조: https://github.com/python/cpython/commit/4958f5d69dd2bf86866c43491caf72f774ddec97
         counter += get_offset(data)
 
 
@@ -95,7 +94,7 @@ for thread in threads:
     thread.join()
 
 expected = how_many * sensor_count
-print(f"Counter should be {expected}, got {counter}")
+print(f"카운터 값은 {expected}이어야 하며, 실제로 {counter} 임")
 
 
 print("Example 3")
@@ -113,15 +112,15 @@ counter = result
 print("Example 5")
 data_a = None
 data_b = None
-# Running in Thread A
+# 스레드 A에서 실행
 value_a = counter
 delta_a = get_offset(data_a)
-# Context switch to Thread B
+# 스레드 B로 컨텍스트 스위칭
 value_b = counter
 delta_b = get_offset(data_b)
 result_b = value_b + delta_b
 counter = result_b
-# Context switch back to Thread A
+# 다시 스레드 A로 컨텍스트 스위칭
 result_a = value_a + delta_a
 counter = result_a
 
@@ -137,7 +136,7 @@ def locking_worker(sensor_index, how_many):
     BARRIER.wait()
     for _ in range(how_many):
         data = read_sensor(sensor_index)
-        with counter_lock:                  # Added
+        with counter_lock:                  # 추가함
             counter += get_offset(data)
 
 
@@ -153,4 +152,4 @@ for thread in threads:
     thread.join()
 
 expected = how_many * sensor_count
-print(f"Counter should be {expected}, got {counter}")
+print(f"카운터 값은 {expected}이어야 하며, 실제로 {counter} 임")
