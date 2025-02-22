@@ -70,10 +70,10 @@ async def run_tasks(handles, interval, output_path):
 
 print("Example 2")
 async def run_tasks_simpler(handles, interval, output_path):
-    with open(output_path, "wb") as output:  # Changed
+    with open(output_path, "wb") as output:  # 변경함
 
         async def write_async(data):
-            output.write(data)  # Changed
+            output.write(data)  # 변경함
 
         async with asyncio.TaskGroup() as group:
             for handle in handles:
@@ -86,7 +86,7 @@ print("Example 3")
 import time
 
 async def slow_coroutine():
-    time.sleep(0.5)  # Simulating slow I/O
+    time.sleep(0.5)  # 느린 I/O를 시뮬레이션
 
 asyncio.run(slow_coroutine(), debug=True)
 
@@ -106,8 +106,8 @@ class WriteThread(Thread):
         with open(self.output_path, "wb") as self.output:
             self.loop.run_forever()
 
-        # Run one final round of callbacks so the await on
-        # stop() in another event loop will be resolved.
+        # 맨 마지막에 한번 더 이벤트 루프를 실행해서
+        # 다른 이벤트 루프가 stop()에 await하는 경우를 해결한다.
         self.loop.run_until_complete(asyncio.sleep(0))
 
 
@@ -181,7 +181,7 @@ async def run_fully_async(handles, interval, output_path):
 
 
 print("Example 9")
-# This is all code to simulate the writers to the handles
+# 핸들에 쓰는 라이터를 시뮬레이션하는 전체 코드
 import collections
 import os
 import random
@@ -202,8 +202,7 @@ def start_write_threads(directory, file_count):
     for i in range(file_count):
         path = os.path.join(directory, str(i))
         with open(path, "w"):
-            # Make sure the file at this path will exist when
-            # the reading thread tries to poll it.
+            # 읽기 스레드를 폴링할 때 파일이 경로상에 존재하게 함
             pass
         paths.append(path)
         args = (path, 10, 0.1)

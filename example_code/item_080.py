@@ -49,14 +49,14 @@ atexit.register(close_open_files)
 
 print("Example 1")
 def try_finally_example(filename):
-    print("* Opening file")
-    handle = open(filename, encoding="utf-8")  # May raise OSError
+    print("* 파일 열기")
+    handle = open(filename, encoding="utf-8") # OSError 발생할 수 있음
     try:
-        print("* Reading data")
-        return handle.read()                   # May raise UnicodeDecodeError
+        print("* 데이터 읽기")
+        return handle.read()                  # UnicodeDecodeError 발생할 수 있음
     finally:
-        print("* Calling close()")
-        handle.close()                         # Always runs after try block
+        print("* close() 호출")
+        handle.close()                        # try블록이 실행된 다음에 항상 실행됨
 
 
 print("Example 2")
@@ -64,10 +64,10 @@ try:
     filename = "random_data.txt"
     
     with open(filename, "wb") as f:
-        f.write(b"\xf1\xf2\xf3\xf4\xf5")  # Invalid utf-8
+        f.write(b"\xf1\xf2\xf3\xf4\xf5")  # 잘못된 utf-8 코드
     
     data = try_finally_example(filename)
-    # This should not be reached.
+    # 아래 코드에 도달하지 못해야 한다
     import sys
     
     sys.exit(1)
@@ -91,14 +91,14 @@ import json
 
 def load_json_key(data, key):
     try:
-        print("* Loading JSON data")
-        result_dict = json.loads(data)  # May raise ValueError
-    except ValueError:
-        print("* Handling ValueError")
-        raise KeyError(key)
+        print("* JSON 데이터 로딩")
+        result_dict = json.loads(data)     # ValueError가 발생할 수 있음
+    except ValueError as e:
+        print("* ValueError 처리")
+        raise KeyError(key) from e
     else:
-        print("* Looking up key")
-        return result_dict[key]         # May raise KeyError
+        print("* 키 탐색")
+        return result_dict[key]            # KeyError가 발생할 수 있음
 
 
 print("Example 5")
@@ -116,7 +116,7 @@ else:
 
 print("Example 7")
 try:
-    load_json_key('{"foo": "bar"}', "does not exist")
+    load_json_key('{"foo": "bar"}', "존재하지 않음")
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -128,33 +128,35 @@ UNDEFINED = object()
 DIE_IN_ELSE_BLOCK = False
 
 def divide_json(path):
-    print("* Opening file")
-    handle = open(path, "r+")                        # May raise OSError
+    print("* 파일 열기")
+    handle = open(path, "r+")             # OSError가 발생할 수 있음
     try:
-        print("* Reading data")
-        data = handle.read()                         # May raise UnicodeDecodeError
-        print("* Loading JSON data")
-        op = json.loads(data)                        # May raise ValueError
-        print("* Performing calculation")
-        value = op["numerator"] / op["denominator"]  # May raise ZeroDivisionError
+        print("* 데이터 읽기")
+        data = handle.read()              # UnicodeDecodeError가 발생할 수 있음
+        print("* JSON 데이터 로딩")
+        op = json.loads(data)             # ValueError가 발생할 수 있음
+        print("* 계산 수행")
+        value = (
+            op["numerator"] /
+            op["denominator"])            # ZeroDivisionError가 발생할 수 있음
     except ZeroDivisionError:
-        print("* Handling ZeroDivisionError")
+        print("* ZeroDivisionError 처리")
         return UNDEFINED
     else:
-        print("* Writing calculation")
+        print("* 계산 쓰기")
         op["result"] = value
         result = json.dumps(op)
-        handle.seek(0)                               # May raise OSError
+        handle.seek(0)                    # OSError가 발생할 수 있음
         if DIE_IN_ELSE_BLOCK:
             import errno
             import os
 
             raise OSError(errno.ENOSPC, os.strerror(errno.ENOSPC))
-        handle.write(result)                         # May raise OSError
+        handle.write(result)              # OSError가 발생할 수 있음
         return value
     finally:
-        print("* Calling close()")
-        handle.close()                               # Always runs
+        print("* close() 호출")
+        handle.close()                    # 어떤 경우든 실행됨
 
 
 print("Example 9")

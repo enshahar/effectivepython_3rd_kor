@@ -64,7 +64,7 @@ class Connection:
     def receive(self):
         line = self.file.readline()
         if not line:
-            raise EOFError("Connection closed")
+            raise EOFError("연결 닫힘")
         return line[:-1].decode()
 
 
@@ -131,7 +131,7 @@ class ServerSession(Connection):
         if decision == CORRECT:
             self.secret = last
 
-        print(f"Server: {last} is {decision}")
+        print(f"서버: {last}은 {decision}")
 
 
     print("Example 7")
@@ -149,8 +149,8 @@ import time
 @contextlib.contextmanager
 def new_game(connection, lower, upper, secret):
     print(
-        f"Guess a number between {lower} and {upper}!"
-        f" Shhhhh, it's {secret}."
+        f"{lower}와 {upper} 사이의 수를 정합니다!"
+        f" 조용, 비밀 번호는 {secret}입니다."
     )
     connection.send(f"PARAMS {lower} {upper}")
     try:
@@ -160,7 +160,7 @@ def new_game(connection, lower, upper, secret):
             secret,
         )
     finally:
-        # Make it so the output printing matches what you expect
+        # 출력이 여러분의 예상과 맞아 떨어지게 함
         time.sleep(0.1)
         connection.send("CLEAR")
 
@@ -228,7 +228,7 @@ def handle_connection(connection):
 
 def run_server(address):
     with socket.socket() as listener:
-        # Allow the port to be reused
+        # 포트를 재사용하게 설정함
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         listener.bind(address)
         listener.listen()
@@ -277,45 +277,45 @@ def main():
 
     results = run_client(address)
     for number, outcome in results:
-        print(f"Client: {number} is {outcome}")
+        print(f"클라이언트: {number}은 {outcome}")
 
 main()
 
 
 print("Example 16")
 class AsyncConnection:
-    def __init__(self, reader, writer):      # Changed
-        self.reader = reader                 # Changed
-        self.writer = writer                 # Changed
+    def __init__(self, reader, writer):      # 변경함
+        self.reader = reader                 # 변경함
+        self.writer = writer                 # 변경함
 
     async def send(self, command):
         line = command + "\n"
         data = line.encode()
-        self.writer.write(data)              # Changed
-        await self.writer.drain()            # Changed
+        self.writer.write(data)              # 변경함
+        await self.writer.drain()            # 변경함
 
     async def receive(self):
-        line = await self.reader.readline()  # Changed
+        line = await self.reader.readline()  # 변경함
         if not line:
-            raise EOFError("Connection closed")
+            raise EOFError("연결 닫힘")
         return line[:-1].decode()
 
 
 print("Example 17")
-class AsyncServerSession(AsyncConnection):  # Changed
+class AsyncServerSession(AsyncConnection):  # 변경함
     def __init__(self, *args):
         super().__init__(*args)
         self.clear_state()
 
 
     print("Example 18")
-    async def loop(self):                       # Changed
-        while command := await self.receive():  # Changed
+    async def loop(self):                       # 변경함
+        while command := await self.receive():  # 변경함
             match command.split(" "):
                 case "PARAMS", lower, upper:
                     self.set_params(lower, upper)
                 case ["NUMBER"]:
-                    await self.send_number()    # Changed
+                    await self.send_number()    # 변경함
                 case "REPORT", decision:
                     self.receive_report(decision)
                 case ["CLEAR"]:
@@ -341,10 +341,10 @@ class AsyncServerSession(AsyncConnection):  # Changed
             if guess not in self.guesses:
                 return guess
 
-    async def send_number(self):                    # Changed
+    async def send_number(self):                    # 변경함
         guess = self.next_guess()
         self.guesses.append(guess)
-        await self.send(format(guess))              # Changed
+        await self.send(format(guess))              # 변경함
 
 
     print("Example 21")
@@ -353,7 +353,7 @@ class AsyncServerSession(AsyncConnection):  # Changed
         if decision == CORRECT:
             self.secret = last
 
-        print(f"Server: {last} is {decision}")
+        print(f"서버: {last}은 {decision}")
 
     def clear_state(self):
         self.lower = None
@@ -363,13 +363,13 @@ class AsyncServerSession(AsyncConnection):  # Changed
 
 
 print("Example 22")
-@contextlib.asynccontextmanager                              # Changed
-async def new_async_game(connection, lower, upper, secret):  # Changed
+@contextlib.asynccontextmanager                              # 변경함
+async def new_async_game(connection, lower, upper, secret):  # 변경함
     print(
-        f"Guess a number between {lower} and {upper}!"
-        f" Shhhhh, it's {secret}."
+        f"{lower}와 {upper} 사이의 수를 정합니다!"
+        f" 조용, 비밀 번호는 {secret} 입니다."
     )
-    await connection.send(f"PARAMS {lower} {upper}")         # Changed
+    await connection.send(f"PARAMS {lower} {upper}")         # 변경함
     try:
         yield AsyncClientSession(
             connection.send,
@@ -377,10 +377,9 @@ async def new_async_game(connection, lower, upper, secret):  # Changed
             secret,
         )
     finally:
-        # Make it so the output printing is in
-        # the same order as the threaded version.
+        # 출력이 스레드 버전과 똑같게 조정함
         await asyncio.sleep(0.1)
-        await connection.send("CLEAR")                       # Changed
+        await connection.send("CLEAR")                       # 변경함
 
 
 print("Example 23")
@@ -416,15 +415,15 @@ class AsyncClientSession:
 
         self.last_distance = new_distance
 
-        await self.send(f"REPORT {decision}")  # Changed
+        await self.send(f"REPORT {decision}")  # 변경함
         return decision
 
 
     print("Example 26")
-    async def __aiter__(self):                            # Changed
+    async def __aiter__(self):                            # 변경함
         while True:
-            number = await self.request_number()          # Changed
-            decision = await self.report_outcome(number)  # Changed
+            number = await self.request_number()          # 변경함
+            decision = await self.report_outcome(number)  # 변경함
             yield number, decision
             if decision == CORRECT:
                 return
@@ -450,11 +449,11 @@ async def run_async_server(address):
 
 print("Example 28")
 async def run_async_client(address):
-    # Wait for the server to listen before trying to connect
+    # 연결을 시도하기 전에 서버를 기다린다
     await asyncio.sleep(0.1)
 
-    streams = await asyncio.open_connection(*address)  # New
-    client = AsyncConnection(*streams)                 # New
+    streams = await asyncio.open_connection(*address)  # 새 기능
+    client = AsyncConnection(*streams)                 # 새 기능
 
     async with new_async_game(client, 1, 5, 3) as session:
         results = [outcome async for outcome in session]
@@ -473,9 +472,9 @@ async def run_async_client(address):
             else:
                 results.append(outcome)
 
-    _, writer = streams                                # New
-    writer.close()                                     # New
-    await writer.wait_closed()                         # New
+    _, writer = streams                                # 새 기능
+    writer.close()                                     # 새 기능
+    await writer.wait_closed()                         # 새 기능
 
     return results
 
@@ -489,7 +488,7 @@ async def main_async():
 
     results = await run_async_client(address)
     for number, outcome in results:
-        print(f"Client: {number} is {outcome}")
+        print(f"클라이언트: {number}은 {outcome}")
 
 logging.getLogger().setLevel(logging.ERROR)
 

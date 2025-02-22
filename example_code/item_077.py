@@ -99,7 +99,7 @@ def run_threads(handles, interval, output_path):
 
 
 print("Example 4")
-# This is all code to simulate the writers to the handles
+# 핸들에 쓰는 라이터를 시뮬레이션하는 전체 코드
 import collections
 import os
 import random
@@ -120,8 +120,7 @@ def start_write_threads(directory, file_count):
     for i in range(file_count):
         path = os.path.join(directory, str(i))
         with open(path, "w"):
-            # Make sure the file at this path will exist when
-            # the reading thread tries to poll it.
+            # 읽기 스레드를 폴링할 때 파일이 경로상에 존재하게 함
             pass
         paths.append(path)
         args = (path, 10, 0.1)
@@ -185,12 +184,12 @@ tmpdir.cleanup()
 print("Example 6")
 import asyncio
 
-# TODO: Verify this is no longer needed
+# TODO: 더이상 아래 조치가 필요하지 않은지 검증해봐야 함
 #
-# On Windows, a ProactorEventLoop can't be created within
-# threads because it tries to register signal handlers. This
-# is a work-around to always use the SelectorEventLoop policy
-# instead. See: https://bugs.python.org/issue33792
+# 윈도우에서 ProactorEventLoop를 스레드 내부에서 생성할 수 없다.
+# 시그널 핸들러를 등록하려고 하기 때문이다.
+# 다음은 SelectorEventLoop 정책을 사용하는 대안이다.
+# 참조: https://bugs.python.org/issue33792
 # policy = asyncio.get_event_loop_policy()
 # policy._loop_factory = asyncio.SelectorEventLoop
 async def run_tasks_mixed(handles, interval, output_path):

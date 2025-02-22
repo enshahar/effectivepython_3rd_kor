@@ -33,11 +33,11 @@ NUMBERS = [
 
 def main():
     start = time.perf_counter()
-    pool = ProcessPoolExecutor(max_workers=8)  # The one change
+    pool = ProcessPoolExecutor(max_workers=8)  # 유일하게 바뀐 부분
     results = list(pool.map(my_module.gcd, NUMBERS))
     end = time.perf_counter()
     delta = end - start
-    print(f"Took {delta:.3f} seconds")
+    print(f"{delta:.3f} 초 걸림")
 
 if __name__ == "__main__":
     main()

@@ -20,4 +20,4 @@ def gcd(pair):
     for i in range(low, 0, -1):
         if a % i == 0 and b % i == 0:
             return i
-    raise RuntimeError("Not reachable")
+    raise RuntimeError("이 줄은 실행되지 않음")
