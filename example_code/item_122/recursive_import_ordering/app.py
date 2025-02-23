@@ -21,6 +21,6 @@ class Prefs:
 
 prefs = Prefs()
 
-import dialog  # Moved
+import dialog  # 위치 바꿈
 
 dialog.show()

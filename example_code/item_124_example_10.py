@@ -22,4 +22,4 @@ print("Example 10")
 def get_or_default(value: int | None, default: int) -> int:
     if value is not None:
         return value
-    return value  # Oops: should have returned "default"
+    return value  # 아차! "default"를 반환했어야 한다

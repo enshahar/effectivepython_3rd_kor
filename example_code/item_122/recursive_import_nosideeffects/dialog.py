@@ -24,7 +24,7 @@ class Dialog:
 save_dialog = Dialog()
 
 def show():
-    print("Showing the dialog!")
+    print("대화창을 표시합니다!")
 
 def configure():
     save_dialog.save_dir = app.prefs.get("save_dir")

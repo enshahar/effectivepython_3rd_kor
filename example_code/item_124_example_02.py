@@ -19,7 +19,7 @@
 print("Example 2")
 # Check types in this file with: python3 -m mypy <path>
 
-def subtract(a: int, b: int) -> int:  # Function annotation
+def subtract(a: int, b: int) -> int:  # 함수에 타입 애너테이션을 붙임
     return a - b
 
-subtract(10, "5")  # Oops: passed string value
+subtract(10, "5")  # 아차! 문자열 값을 넘김

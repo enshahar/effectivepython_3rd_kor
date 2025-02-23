@@ -22,7 +22,7 @@ class Dialog:
         pass
 
 
-# Using this instead will break things
+# 다음과 같은 코드를 쓰면 코드가 깨진다
 # save_dialog = Dialog(app.prefs.get('save_dir'))
 save_dialog = Dialog()
 
@@ -30,4 +30,4 @@ def show():
     import app  # Dynamic import
 
     save_dialog.save_dir = app.prefs.get("save_dir")
-    print("Showing the dialog!")
+    print("대화창을 표시합니다!")

@@ -39,6 +39,6 @@ Real = TypeVar("Real", int, float)
 def add(x: Real, y: Real) -> Real:
     return x + y
 
-inputs = [1, 2, 3, 4j]  # Oops: included a complex number
+inputs = [1, 2, 3, 4j]  # 아차! 복소수를 넣었다
 result = combine(add, inputs)
 assert result == 10

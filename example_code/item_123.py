@@ -114,21 +114,21 @@ def print_distance(
 ):
     if speed_units is None:
         warnings.warn(
-            "speed_units required",
+            "speed_units가 필요합니다",
             DeprecationWarning,
         )
         speed_units = "mph"
 
     if time_units is None:
         warnings.warn(
-            "time_units required",
+            "time_units가 필요합니다",
             DeprecationWarning,
         )
         time_units = "hours"
 
     if distance_units is None:
         warnings.warn(
-            "distance_units required",
+            "distance_units가 필요합니다",
             DeprecationWarning,
         )
         distance_units = "miles"
@@ -161,7 +161,7 @@ def require(name, value, default):
     if value is not None:
         return value
     warnings.warn(
-        f"{name} will be required soon, update your code",
+        f"{name}이 필수로 될 예정입니다. 코드를 변경해 주세요",
         DeprecationWarning,
         stacklevel=3,
     )
@@ -218,11 +218,11 @@ print("Example 9")
 warnings.simplefilter("error")
 try:
     warnings.warn(
-        "This usage is deprecated",
+        "이 사용법은 앞으로 금지될 예정입니다",
         DeprecationWarning,
     )
 except DeprecationWarning:
-    pass  # Expected
+    pass  # 예외가 발생하리라 예상함
 else:
     assert False
 
@@ -233,7 +233,7 @@ print("Example 10")
 warnings.resetwarnings()
 
 warnings.simplefilter("ignore")
-warnings.warn("This will not be printed to stderr")
+warnings.warn("stderr에 출력되지 않음")
 
 warnings.resetwarnings()
 
@@ -253,7 +253,7 @@ logger.setLevel(logging.DEBUG)
 
 warnings.resetwarnings()
 warnings.simplefilter("default")
-warnings.warn("This will go to the logs output")
+warnings.warn("로그 출력에 표시됨")
 
 print(fake_stderr.getvalue())
 
@@ -271,6 +271,6 @@ print("Example 13")
 assert len(found_warnings) == 1
 single_warning = found_warnings[0]
 assert str(single_warning.message) == (
-    "my_arg will be required soon, update your code"
+    "my_arg이 필수로 될 예정입니다. 코드를 변경해 주세요"
 )
 assert single_warning.category == DeprecationWarning

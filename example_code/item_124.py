@@ -108,7 +108,7 @@ try:
     
     inputs = [1, 2, 3, 4j]
     result = combine(add, inputs)
-    assert result == 10, result  # Fails
+    assert result == 10, result  # 실패함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -126,7 +126,7 @@ try:
     assert found == 3
     
     found = get_or_default(None, 5)
-    assert found == 5, found  # Fails
+    assert found == 5, found  # 실패함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -152,7 +152,7 @@ del SecondClass
 print("Example 13")
 try:
     class FirstClass:
-        def __init__(self, value: SecondClass) -> None:  # Breaks
+        def __init__(self, value: SecondClass) -> None:  # 깨짐
             self.value = value
     
     class SecondClass:

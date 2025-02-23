@@ -21,13 +21,13 @@ print("Example 6")
 
 class Counter:
     def __init__(self) -> None:
-        self.value: int = 0  # Field / variable annotation
+        self.value: int = 0  # 필드/변수 애너테이션
 
     def add(self, offset: int) -> None:
-        value += offset      # Oops: forgot "self."
+        value += offset      # 아차! "self."를 안 씀
 
     def get(self) -> int:
-        self.value           # Oops: forgot "return"
+        self.value           # 아차! "return"을 안 씀
 
 counter = Counter()
 counter.add(5)

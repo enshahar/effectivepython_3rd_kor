@@ -17,7 +17,7 @@
 
 
 print("Example 12")
-# Check types in this file with: python3 -m mypy <path>
+# 다음 명령으로 이 파일을 체크하세요: python3 -m mypy <경로>
 
 class FirstClass:
     def __init__(self, value: SecondClass) -> None:
