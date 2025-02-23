@@ -26,5 +26,5 @@ time2 = tracemalloc.take_snapshot()
 
 stats = time2.compare_to(time1, "traceback")
 top = stats[0]
-print("Biggest offender is:")
+print("가장 문제가 되는 장본인:")
 print("\n".join(top.traceback.format()))

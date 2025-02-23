@@ -29,7 +29,7 @@ def compute_rmse(observed, ideal):
     return rmse
 
 result = compute_rmse(
-    [1.8, 1.7, 3.2, 7j],  # Bad input
+    [1.8, 1.7, 3.2, 7j],  # 잘못된 입력
     [2, 1.5, 3, 5],
 )
 print(result)

@@ -96,16 +96,16 @@ def produce_emails(queue):
         except NoEmailError:
             return
         else:
-            queue.append(email)  # Producer
+            queue.append(email)  # 생산자
 
 
 print("Example 4")
 def consume_one_email(queue):
     if not queue:
         return
-    email = queue.pop(0)  # Consumer
-    # Index the message for long-term archival
-    print(f"Consumed email: {email.message}")
+    email = queue.pop(0)  # 소비자
+    # 장기 보관을 위해 메시지를 인덱싱함
+    print(f"소비한 이메일: {email.message}")
 
 
 print("Example 5")
@@ -154,7 +154,7 @@ print("Example 7")
 for i in range(1, 6):
     count = i * 1_000_000
     delay = list_append_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수: {count:>5,} 시간: {delay * 1e3:>6.2f}밀리초")
 
 
 print("Example 8")
@@ -178,7 +178,7 @@ print("Example 9")
 for i in range(1, 6):
     count = i * 10_000
     delay = list_pop_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수: {count:>5,} 시간: {delay * 1e3:>6.2f}밀리초")
 
 
 print("Example 10")
@@ -187,9 +187,9 @@ import collections
 def consume_one_email(queue):
     if not queue:
         return
-    email = queue.popleft()  # Consumer
-    # Process the email message
-    print(f"Consumed email: {email.message}")
+    email = queue.popleft()  # 소비자
+    # 전자우편 메시지를 처리한다
+    print(f"소비한 이메일: {email.message}")
 
 def my_end_func():
     pass
@@ -218,7 +218,7 @@ def deque_append_benchmark(count):
 for i in range(1, 6):
     count = i * 100_000
     delay = deque_append_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수: {count:>5,} 시간: {delay * 1e3:>6.2f}밀리초")
 
 
 print("Example 12")
@@ -240,4 +240,4 @@ def dequeue_popleft_benchmark(count):
 for i in range(1, 6):
     count = i * 100_000
     delay = dequeue_popleft_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수: {count:>5,} 시간: {delay * 1e3:>6.2f}밀리초")

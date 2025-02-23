@@ -50,7 +50,7 @@ atexit.register(close_open_files)
 print("Example 1")
 try:
     my_dict = {}
-    my_dict["does_not_exist"]
+    my_dict["존재하지_않는_키"]
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -60,9 +60,9 @@ else:
 print("Example 2")
 my_dict = {}
 try:
-    my_dict["does_not_exist"]
+    my_dict["존재하지_않는_키"]
 except KeyError:
-    print("Could not find key!")
+    print("키를 찾을 수 없음!")
 
 
 print("Example 3")
@@ -71,9 +71,9 @@ try:
         pass
     
     try:
-        my_dict["does_not_exist"]    # Raises first exception
+        my_dict["존재하지_않는_키"]    # 첫 번째 예외 발생
     except KeyError:
-        raise MissingError("Oops!")  # Raises second exception
+        raise MissingError("이런!")  # 두 번째 예외 발생
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -83,9 +83,9 @@ else:
 print("Example 4")
 try:
     try:
-        my_dict["does_not_exist"]
+        my_dict["존재하지_않는_키"]
     except KeyError:
-        raise MissingError("Oops!")
+        raise MissingError("이런!")
 except MissingError as e:
     print("Second:", repr(e))
     print("First: ", repr(e.__context__))
@@ -100,13 +100,13 @@ def lookup(my_key):
 
 
 print("Example 6")
-my_dict["my key 1"] = 123
-print(lookup("my key 1"))
+my_dict["내 키 1"] = 123
+print(lookup("내 키 1"))
 
 
 print("Example 7")
 try:
-    print(lookup("my key 2"))
+    print(lookup("내 키 2"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -115,23 +115,23 @@ else:
 
 print("Example 8")
 def contact_server(my_key):
-    print(f"Looking up {my_key!r} in server")
-    return "my value 2"
+    print(f"서버에서 {my_key!r} 검색")
+    return "내 값 2"
 
 def lookup(my_key):
     try:
         return my_dict[my_key]
     except KeyError:
         result = contact_server(my_key)
-        my_dict[my_key] = result  # Fill the local cache
+        my_dict[my_key] = result  # 로컬 캐시를 채운다
         return result
 
 
 print("Example 9")
-print("Call 1")
-print("Result:", lookup("my key 2"))
-print("Call 2")
-print("Result:", lookup("my key 2"))
+print("호출 1")
+print("결과:", lookup("내 키 2"))
+print("호출 2")
+print("결과:", lookup("내 키 2"))
 
 
 print("Example 10")
@@ -139,13 +139,13 @@ class ServerMissingKeyError(Exception):
     pass
 
 def contact_server(my_key):
-    print(f"Looking up {my_key!r} in server")
+    print(f"서버에서 {my_key!r} 검색")
     raise ServerMissingKeyError
 
 
 print("Example 11")
 try:
-    print(lookup("my key 3"))
+    print(lookup("내 키 3"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -160,15 +160,15 @@ def lookup(my_key):
         try:
             result = contact_server(my_key)
         except ServerMissingKeyError:
-            raise MissingError        # Convert the server error
+            raise MissingError        # 서버 오류를 변환
         else:
-            my_dict[my_key] = result  # Fill the local cache
+            my_dict[my_key] = result  # 로컬 캐시 채우기
             return result
 
 
 print("Example 13")
 try:
-    print(lookup("my key 4"))
+    print(lookup("내 키 4"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -191,7 +191,7 @@ def lookup_explicit(my_key):
 
 print("Example 15")
 try:
-    print(lookup_explicit("my key 5"))
+    print(lookup_explicit("내 키 5"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -200,7 +200,7 @@ else:
 
 print("Example 16")
 try:
-    lookup_explicit("my key 6")
+    lookup_explicit("내 키 6")
 except Exception as e:
     print("Exception:", repr(e))
     print("Context:  ", repr(e.__context__))
@@ -212,7 +212,7 @@ print("Example 17")
 import traceback
 
 try:
-    lookup("my key 7")
+    lookup("내 키 7")
 except Exception as e:
     stack = traceback.extract_tb(e.__traceback__)
     for frame in stack:
@@ -231,7 +231,7 @@ def get_cause(exc):
 
 print("Example 19")
 try:
-    lookup("my key 8")
+    lookup("내 키 8")
 except Exception as e:
     while e is not None:
         stack = traceback.extract_tb(e.__traceback__)
@@ -239,17 +239,17 @@ except Exception as e:
             print(i, frame.line)
         e = get_cause(e)
         if e:
-            print("Caused by")
+            print("발생 원인:")
 
 
 print("Example 20")
 def contact_server(key):
-    raise ServerMissingKeyError from None  # Suppress
+    raise ServerMissingKeyError from None  # 원인이 되는 예외 무시
 
 
 print("Example 21")
 try:
-    print(lookup("my key 9"))
+    print(lookup("내 키 9"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:

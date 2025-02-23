@@ -50,7 +50,7 @@ atexit.register(close_open_files)
 print("Example 1")
 try:
     n = 3
-    assert n % 2 == 0, f"{n=} not even"
+    assert n % 2 == 0, f"{n=}은 짝수 아님"
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -61,7 +61,7 @@ print("Example 2")
 try:
     if __debug__:
         if not (n % 2 == 0):
-            raise AssertionError(f"{n=} not even")
+            raise AssertionError(f"{n=}은 짝수 아님")
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -76,7 +76,7 @@ try:
     items = [1, 2, 3]
     if __debug__:
         for i in items:
-            assert expensive_check(i), f"Failed {i=}"
+            assert expensive_check(i), f"실패함 {i=}"
 except:
     logging.exception('이 예외가 발생해야 함')
 else:

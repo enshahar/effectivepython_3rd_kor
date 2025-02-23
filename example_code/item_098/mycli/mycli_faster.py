@@ -21,15 +21,15 @@ def main():
     args = parser.PARSER.parse_args()
 
     if args.command == "enhance":
-        import enhance  # Changed
+        import enhance  # 변경함
 
         enhance.do_enhance(args.file, args.amount)
     elif args.command == "adjust":
-        import adjust   # Changed
+        import adjust   # 변경함
 
         adjust.do_adjust(args.file, args.brightness, args.contrast)
     else:
-        raise RuntimeError("Not reachable")
+        raise RuntimeError("도달하지 못함")
 
 if __name__ == "__main__":
     main()

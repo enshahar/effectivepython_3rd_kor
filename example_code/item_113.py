@@ -55,7 +55,7 @@ try:
         def test_equal(self):
             n = 5
             d = 3
-            self.assertEqual(1.667, n / d)  # Raises
+            self.assertEqual(1.667, n / d)  # 예외가 발생함
     
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(MyTestCase)
     suite.debug()

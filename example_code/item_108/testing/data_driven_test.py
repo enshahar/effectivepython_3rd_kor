@@ -21,7 +21,7 @@ class DataDrivenTestCase(TestCase):
     def test_good(self):
         good_cases = [
             (b"my bytes", "my bytes"),
-            ("no error", b"no error"),  # This one will fail
+            ("no error", b"no error"),  # 이 케이스는 실패함
             ("other str", "other str"),
         ]
         for value, expected in good_cases:

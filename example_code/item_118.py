@@ -49,7 +49,7 @@ atexit.register(close_open_files)
 
 print("Example 1")
 def palindrome(word):
-    """Return True if the given word is a palindrome."""
+    """주어진 단어가 회문(palindrome)이면 True를 반환한다."""
     return word == word[::-1]
 
 assert palindrome("tacocat")

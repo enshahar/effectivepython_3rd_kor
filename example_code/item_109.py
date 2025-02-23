@@ -65,7 +65,7 @@ class Toaster:
         self.timer.countdown(self._get_duration(), self.pop_up)
 
     def pop_up(self):
-        print("Pop!")  # Release the spring
+        print("철컥!")  # 스프링을 풀어줌
         self.hot = False
         self.timer.end()
 
@@ -89,15 +89,14 @@ class ReusableTimer:
 
 print("Example 3")
 toaster = Toaster(ReusableTimer())
-print("Initially hot:  ", toaster.hot)
-toaster.doneness = 5
+print("초기 hot:        ", toaster.hot)
 toaster.doneness = 0
 toaster.push_down()
-print("After push down:", toaster.hot)
+print("누른 다음:       ", toaster.hot)
 
-# Time passes
+# 시간이 흐름
 toaster.timer.timer.join()
-print("After time:     ", toaster.hot)
+print("시간이 흐른 다음:", toaster.hot)
 
 
 print("Example 4")

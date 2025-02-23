@@ -15,7 +15,7 @@
 # limitations under the License.
 
 from analysis.utils import inspect
-from frontend.utils import inspect  # Overwrites!
+from frontend.utils import inspect  # 앞줄에서 임포트한 inspect를 덮어씀!
 
 "frontend" in inspect.__module__
 print(inspect.__module__)

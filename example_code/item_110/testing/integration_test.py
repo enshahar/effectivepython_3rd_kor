@@ -16,24 +16,27 @@
 
 from unittest import TestCase, main
 
+
 def setUpModule():
-    print("* Module setup")
+    print("* 모듈 설정")
+
 
 def tearDownModule():
-    print("* Module clean-up")
+    print("* 모듈 정리")
+
 
 class IntegrationTest(TestCase):
     def setUp(self):
-        print("* Test setup")
+        print("* 테스트 설정")
 
     def tearDown(self):
-        print("* Test clean-up")
+        print("* 테스트 정리")
 
     def test_end_to_end1(self):
-        print("* Test 1")
+        print("* 테스트 1")
 
     def test_end_to_end2(self):
-        print("* Test 2")
+        print("* 테스트 2")
 
 if __name__ == "__main__":
     main()

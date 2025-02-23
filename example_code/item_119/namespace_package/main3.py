@@ -19,4 +19,4 @@ from frontend.utils import inspect as frontend_inspect
 
 value = 33
 if analysis_inspect(value) == frontend_inspect(value):
-    print("Inspection equal!")
+    print("인스펙션 결과 같음!")

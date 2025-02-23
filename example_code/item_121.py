@@ -51,7 +51,7 @@ print("Example 1")
 # my_module.py
 def determine_weight(volume, density):
     if density <= 0:
-        raise ValueError("Density must be positive")
+        raise ValueError("density는 양수여야 함")
 
 
 try:
@@ -75,9 +75,9 @@ class InvalidVolumeError(Error):
 
 def determine_weight(volume, density):
     if density < 0:
-        raise InvalidDensityError("Density must be positive")
+        raise InvalidDensityError("density는 양수여야 함")
     if volume < 0:
-        raise InvalidVolumeError("Volume must be positive")
+        raise InvalidVolumeError("volume은 양수여야 함")
     if volume == 0:
         density / volume
 
@@ -90,16 +90,16 @@ class my_module:
     @staticmethod
     def determine_weight(volume, density):
         if density < 0:
-            raise InvalidDensityError("Density must be positive")
+            raise InvalidDensityError("density는 양수여야 함")
         if volume < 0:
-            raise InvalidVolumeError("Volume must be positive")
+            raise InvalidVolumeError("volume은 양수여야 함")
         if volume == 0:
             density / volume
 
 try:
     weight = my_module.determine_weight(1, -1)
 except my_module.Error:
-    logging.exception("Unexpected error")
+    logging.exception("예상못한 오류")
 else:
     assert False
 
@@ -112,7 +112,7 @@ try:
 except my_module.InvalidDensityError:
     weight = 0
 except my_module.Error:
-    logging.exception("Bug in the calling code")
+    logging.exception("호출하는 코드의 오류")
 else:
     assert False
 
@@ -127,10 +127,10 @@ try:
     except my_module.InvalidDensityError:
         weight = 0
     except my_module.Error:
-        logging.exception("Bug in the calling code")
+        logging.exception("호출하는 코드의 오류")
     except Exception:
-        logging.exception("Bug in the API code!")
-        raise  # Re-raise exception to the caller
+        logging.exception("API 코드의 오류!")
+        raise  # 예외를 호출하는 쪽으로 다시 던짐
     else:
         assert False
     
@@ -150,7 +150,7 @@ class NegativeDensityError(InvalidDensityError):
 
 def determine_weight(volume, density):
     if density < 0:
-        raise NegativeDensityError("Density must be positive")
+        raise NegativeDensityError("density는 양수여야 함")
 
 
 print("Example 7")
@@ -160,13 +160,13 @@ try:
     try:
         weight = my_module.determine_weight(1, -1)
     except my_module.NegativeDensityError:
-        raise ValueError("Must supply non-negative density")
+        raise ValueError("0 또는 양수만 제공해야 함")
     except my_module.InvalidDensityError:
         weight = 0
     except my_module.Error:
-        logging.exception("Bug in the calling code")
+        logging.exception("호출하는 코드의 오류")
     except Exception:
-        logging.exception("Bug in the API code!")
+        logging.exception("API 코드의 오류!")
         raise
     else:
         assert False

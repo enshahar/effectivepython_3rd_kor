@@ -50,9 +50,9 @@ atexit.register(close_open_files)
 print("Example 1")
 try:
     list_a = [1, 2, 3]
-    assert list_a, "a empty"
+    assert list_a, "a 비어있음"
     list_b = []
-    assert list_b, "b empty"  # Raises
+    assert list_b, "b 비어있음"  # 예외 발생함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -66,7 +66,7 @@ try:
     
     list_c = []
     if not list_c:
-        raise EmptyError("c empty")
+        raise EmptyError("c 비어있음")
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -75,16 +75,16 @@ else:
 
 print("Example 3")
 try:
-    raise EmptyError("From raise statement")
+    raise EmptyError("raise 문에 의해 발생함")
 except EmptyError as e:
-    print(f"Caught: {e}")
+    print(f"잡아냄: {e}")
 
 
 print("Example 4")
 try:
-    assert False, "From assert statement"
+    assert False, "raise 문에 의해 발생함"
 except AssertionError as e:
-    print(f"Caught: {e}")
+    print(f"잡아냄: {e}")
 
 
 print("Example 5")
@@ -94,7 +94,7 @@ class RatingError(Exception):
 class Rating:
     def __init__(self, max_rating):
         if not (max_rating > 0):
-            raise RatingError("Invalid max_rating")
+            raise RatingError("잘못된 max_rating")
         self.max_rating = max_rating
         self.ratings = []
 
@@ -108,7 +108,7 @@ print("Example 6")
 try:
     movie = Rating(5)
     movie.rate(5)
-    movie.rate(7)  # Raises
+    movie.rate(7)  # 예외 발생함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -118,12 +118,12 @@ else:
 print("Example 7")
 class RatingInternal:
     def __init__(self, max_rating):
-        assert max_rating > 0, f"Invalid {max_rating=}"
+        assert max_rating > 0, f"잘못된 {max_rating=}"
         self.max_rating = max_rating
         self.ratings = []
 
     def rate(self, rating):
-        assert 0 < rating <= self.max_rating, f"Invalid {rating=}"
+        assert 0 < rating <= self.max_rating, f"잘못된 {rating=}"
         self.ratings.append(rating)
 
 

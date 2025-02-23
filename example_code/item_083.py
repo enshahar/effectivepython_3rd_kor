@@ -54,15 +54,15 @@ class RpcError(Exception):
     pass
 
 def lookup_request(connection):
-    raise RpcError("From lookup_request")
+    raise RpcError("lookup_request에서 발생")
 
 def close_connection(connection):
-    print("Connection closed")
+    print("연결 닫힘")
 
 try:
     request = lookup_request(connection)
 except RpcError:
-    print("Encountered error!")
+    print("오류 발생함!")
     close_connection(connection)
 
 
@@ -72,14 +72,14 @@ def lookup_request(connection):
     return object()
 
 def is_cached(connection, request):
-    raise RpcError("From is_cached")
+    raise RpcError("is_cached에서 발생")
 
 try:
     request = lookup_request(connection)
     if is_cached(connection, request):
         request = None
 except RpcError:
-    print("Encountered error!")
+    print("오류 발생함!")
     close_connection(connection)
 
 

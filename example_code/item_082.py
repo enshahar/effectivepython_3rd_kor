@@ -52,14 +52,14 @@ from threading import Lock
 
 lock = Lock()
 with lock:
-    # Do something while maintaining an invariant
+    # 어떤 불변 조건을 유지하면서 작업을 수행한다
     pass
 
 
 print("Example 2")
 lock.acquire()
 try:
-    # Do something while maintaining an invariant
+    # 어떤 불변 조건을 유지하면서 작업을 수행한다
     pass
 finally:
     lock.release()
@@ -71,10 +71,9 @@ import logging
 logging.getLogger().setLevel(logging.WARNING)
 
 def my_function():
-    logging.debug("Some debug data")
-    logging.error("Error log here")
-    logging.debug("More debug data")
-
+    logging.debug("디버깅 데이터")
+    logging.error("오류 로그")
+    logging.debug("추가 디버깅 데이터")
 
 print("Example 4")
 my_function()
@@ -96,22 +95,22 @@ def debug_logging(level):
 
 print("Example 6")
 with debug_logging(logging.DEBUG):
-    print("* Inside:")
+    print("* 컨텍스트 내부:")
     my_function()
 
-print("* After:")
+print("* 컨텍스트 이후:")
 my_function()
 
 
 print("Example 7")
 with open("my_output.txt", "w") as handle:
-    handle.write("This is some data!")
+    handle.write("데이터입니다!")
 
 
 print("Example 8")
 handle = open("my_output.txt", "w")
 try:
-    handle.write("This is some data!")
+    handle.write("데이터입니다!")
 finally:
     handle.close()
 
@@ -130,17 +129,20 @@ def log_level(level, name):
 
 print("Example 10")
 with log_level(logging.DEBUG, "my-log") as my_logger:
-    my_logger.debug(f"This is a message for {my_logger.name}!")
-    logging.debug("This will not print")
+    # 영문판 소스코드에서는 로거 이름이 포함된 메시지를 만들어냈지만,
+    # 애초 로그 함수가 로거 이름을 출력해 주기 때문에 중복임.
+    # 이에 따라 한글판 소스코드에서는 메시지를 변경했음
+    my_logger.debug(f"my_logger.debug() 호출")
+    logging.debug("이 내용은 출력되지 않습니다")
 
 
 print("Example 11")
 logger = logging.getLogger("my-log")
-logger.debug("Debug will not print")
-logger.error("Error will print")
+logger.debug("디버깅 로그는 출력되지 않습니다")
+logger.error("오류 로그는 출력됩니다")
 
 
 print("Example 12")
-with log_level(logging.DEBUG, "other-log") as my_logger:  # Changed
-    my_logger.debug(f"This is a message for {my_logger.name}!")
-    logging.debug("This will not print")
+with log_level(logging.DEBUG, "other-log") as my_logger:  # 변경함
+    my_logger.debug(f"my_logger.debug() 호출")
+    logging.debug("이 내용은 출력되지 않습니다")

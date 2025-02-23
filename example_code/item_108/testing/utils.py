@@ -20,4 +20,4 @@ def to_str(data):
     elif isinstance(data, bytes):
         return data.decode("utf-8")
     else:
-        raise TypeError(f"Must supply str or bytes, found: {data}")
+        raise TypeError(f"str이나 bytes가 필요합니다. 전달받은 데이터: {data}")

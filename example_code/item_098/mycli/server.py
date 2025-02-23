@@ -25,7 +25,7 @@ def do_adjust():
         the_file = request.files["the_file"]
         brightness = request.form["brightness"]
         contrast = request.form["contrast"]
-        import adjust   # Dynamic import
+        import adjust   # 동적 임포트
 
         return adjust.do_adjust(the_file, brightness, contrast)
     else:
@@ -36,7 +36,7 @@ def do_enhance():
     if request.method == "POST":
         the_file = request.files["the_file"]
         amount = request.form["amount"]
-        import enhance  # Dynamic import
+        import enhance  # 동적 임포트
 
         return enhance.do_enhance(the_file, amount)
     else:

@@ -96,22 +96,22 @@ now_func.return_value = datetime(2019, 6, 5, 15, 45)
 database = Mock(spec=ZooDatabase)
 database.get_food_period.return_value = timedelta(hours=3)
 database.get_animals.return_value = [
-    ("Spot", datetime(2019, 6, 5, 11, 15)),
-    ("Fluffy", datetime(2019, 6, 5, 12, 30)),
-    ("Jojo", datetime(2019, 6, 5, 12, 55)),
+    ("점박이", datetime(2019, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2019, 6, 5, 12, 30)),
+    ("조조", datetime(2019, 6, 5, 12, 55)),
 ]
 
 
 print("Example 5")
-result = do_rounds(database, "Meerkat", now_func=now_func)
+result = do_rounds(database, "미어캣", now_func=now_func)
 assert result == 2
 
-database.get_food_period.assert_called_once_with("Meerkat")
-database.get_animals.assert_called_once_with("Meerkat")
+database.get_food_period.assert_called_once_with("미어캣")
+database.get_animals.assert_called_once_with("미어캣")
 database.feed_animal.assert_has_calls(
     [
-        call("Spot", now_func.return_value),
-        call("Fluffy", now_func.return_value),
+        call("점박이", now_func.return_value),
+        call("털복숭이", now_func.return_value),
     ],
     any_order=True,
 )
@@ -139,7 +139,7 @@ def main(argv):
     database = get_database()
     species = argv[1]
     count = do_rounds(database, species)
-    print(f"Fed {count} {species}(s)")
+    print(f"{count} {species}에게 먹이를 줍니다")
     return 0
 
 
@@ -153,16 +153,16 @@ with patch("__main__.DATABASE", spec=ZooDatabase):
 
     DATABASE.get_food_period.return_value = timedelta(hours=3)
     DATABASE.get_animals.return_value = [
-        ("Spot", now - timedelta(minutes=4.5)),
-        ("Fluffy", now - timedelta(hours=3.25)),
-        ("Jojo", now - timedelta(hours=3)),
+        ("점박이", now - timedelta(minutes=4.5)),
+        ("털복숭이", now - timedelta(hours=3.25)),
+        ("조조", now - timedelta(hours=3)),
     ]
 
     fake_stdout = io.StringIO()
     with contextlib.redirect_stdout(fake_stdout):
-        main(["program name", "Meerkat"])
+        main(["program name", "미어켓"])
 
     found = fake_stdout.getvalue()
-    expected = "Fed 2 Meerkat(s)\n"
+    expected = "2 미어켓에게 먹이를 줍니다\n"
 
     assert found == expected

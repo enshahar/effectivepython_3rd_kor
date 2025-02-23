@@ -92,9 +92,9 @@ print("Example 8")
 from decimal import ROUND_UP
 
 rounded = cost.quantize(Decimal("0.01"), rounding=ROUND_UP)
-print(f"Rounded {cost} to {rounded}")
+print(f"{cost}를 {rounded}로 반올림")
 
 
 print("Example 9")
 rounded = small_cost.quantize(Decimal("0.01"), rounding=ROUND_UP)
-print(f"Rounded {small_cost} to {rounded}")
+print(f"{small_cost}를 {rounded}로 반올림")

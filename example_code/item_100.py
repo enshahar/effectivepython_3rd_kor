@@ -63,10 +63,10 @@ class Tool:
         return f"Tool({self.name!r}, {self.weight})"
 
 tools = [
-    Tool("level", 3.5),
-    Tool("hammer", 1.25),
-    Tool("screwdriver", 0.5),
-    Tool("chisel", 0.25),
+    Tool("수평기", 3.5),
+    Tool("망치", 1.25),
+    Tool("십자드라이버", 0.5),
+    Tool("치즐", 0.25),
 ]
 
 
@@ -80,45 +80,45 @@ else:
 
 
 print("Example 4")
-print("Unsorted:", repr(tools))
+print("정렬전:", repr(tools))
 tools.sort(key=lambda x: x.name)
-print("\nSorted:  ", tools)
+print("\n정렬후:  ", tools)
 
 
 print("Example 5")
 tools.sort(key=lambda x: x.weight)
-print("By weight:", tools)
+print("무게로 정렬:", tools)
 
 
 print("Example 6")
 places = ["home", "work", "New York", "Paris"]
 places.sort()
-print("Case sensitive:  ", places)
+print("대소문자 구분:    ", places)
 places.sort(key=lambda x: x.lower())
-print("Case insensitive:", places)
+print("대소문자 구분없음:", places)
 
 
 print("Example 7")
 power_tools = [
-    Tool("drill", 4),
-    Tool("circular saw", 5),
-    Tool("jackhammer", 40),
-    Tool("sander", 4),
+    Tool("드릴", 4),
+    Tool("원형 톱", 5),
+    Tool("착암기", 40),
+    Tool("연마기", 4),
 ]
 
 
 print("Example 8")
-saw = (5, "circular saw")
-jackhammer = (40, "jackhammer")
-assert not (jackhammer < saw)  # Matches expectations
+saw = (5, "원형 톱")
+jackhammer = (40, "착암기")
+assert not (jackhammer < saw)  # 예상한 대로 결과가 나온다
 
 
 print("Example 9")
-drill = (4, "drill")
-sander = (4, "sander")
-assert drill[0] == sander[0]  # Same weight
-assert drill[1] < sander[1]   # Alphabetically less
-assert drill < sander         # Thus, drill comes first
+drill = (4, "드릴")
+sander = (4, "연마기")
+assert drill[0] == sander[0]  # 무게가 같다
+assert drill[1] < sander[1]   # 알파벳순으로 볼 때 더 작다
+assert drill < sander         # 그러므로 drill이 더 먼저다
 
 
 print("Example 10")
@@ -129,7 +129,7 @@ print(power_tools)
 print("Example 11")
 power_tools.sort(
     key=lambda x: (x.weight, x.name),
-    reverse=True,  # Makes all criteria descending
+    reverse=True,  # 모든 비교 기준을 내림차순으로 만든다
 )
 print(power_tools)
 
@@ -150,10 +150,10 @@ else:
 
 print("Example 14")
 power_tools.sort(
-    key=lambda x: x.name,    # Name ascending
+    key=lambda x: x.name,    # name 기준 오름차순
 )
 power_tools.sort(
-    key=lambda x: x.weight,  # Weight descending
+    key=lambda x: x.weight,  # weight 기준 내림차순
     reverse=True,
 )
 print(power_tools)

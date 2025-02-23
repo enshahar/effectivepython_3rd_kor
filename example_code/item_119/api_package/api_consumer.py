@@ -27,6 +27,6 @@ try:
     mypackage._dot_product
     assert False
 except AttributeError:
-    pass  # Expected
+    pass  # 예외가 발생해 이 문장이 실행됨
 
-mypackage.utils._dot_product  # But this is defined
+mypackage.utils._dot_product  # 하지만 이 애트리뷰트는 정의됨

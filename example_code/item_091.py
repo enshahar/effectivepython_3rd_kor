@@ -56,10 +56,10 @@ print("Example 2")
 try:
     eval(
         """
-    if True:
-        print('okay')
-    else:
-        print('no')
+if True:
+    print('참')
+else:
+    print('거짓')
     """
     )
 except:
@@ -75,9 +75,9 @@ local_scope = {}
 exec(
     """
 if my_condition:
-    x = 'yes'
+    x = '참'
 else:
-    x = 'no'
+    x = '거짓'
 """,
     global_scope,
     local_scope,

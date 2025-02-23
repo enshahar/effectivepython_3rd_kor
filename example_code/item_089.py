@@ -54,9 +54,9 @@ def my_func():
     finally:
         print("Finally my_func")
 
-print("Before")
+print("이전")
 print(my_func())
-print("After")
+print("이후")
 
 
 print("Example 2")
@@ -68,20 +68,20 @@ def my_generator():
     finally:
         print("Finally my_generator")
 
-print("Before")
+print("이전")
 
 for i in my_generator():
     print(i)
 
-print("After")
+print("이후")
 
 
 print("Example 3")
 it = my_generator()
-print("Before")
+print("이전")
 print(next(it))
 print(next(it))
-print("After")
+print("이후")
 
 
 print("Example 4")
@@ -97,17 +97,17 @@ def catching_generator():
         yield 40
         yield 50
         yield 60
-    except BaseException as e:  # Catches GeneratorExit
-        print("Catching handler", type(e), e)
+    except BaseException as e:  # GeneratorExit도 잡아냄
+        print("핸들러가 잡아냄", type(e), e)
         raise
 
 
 print("Example 6")
 it = catching_generator()
-print("Before")
+print("이전")
 print(next(it))
 print(next(it))
-print("After")
+print("이후")
 del it
 gc.collect()
 
@@ -122,7 +122,7 @@ def lengths_path(path):
     try:
         with open(path) as handle:
             for i, line in enumerate(handle):
-                print(f"Line {i}")
+                print(f"줄 {i}")
                 yield len(line.strip())
     finally:
         print("Finally lengths_path")
@@ -150,7 +150,7 @@ print("Example 11")
 def lengths_handle(handle):
     try:
         for i, line in enumerate(handle):
-            print(f"Line {i}")
+            print(f"줄 {i}")
             yield len(line.strip())
     finally:
         print("Finally lengths_handle")
@@ -168,4 +168,4 @@ with open("my_file.txt") as handle:
             max_head = max(max_head, length)
 
 print(max_head)
-print("Handle closed:", handle.closed)
+print("핸들 닫혔나:", handle.closed)

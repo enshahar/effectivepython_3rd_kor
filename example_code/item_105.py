@@ -65,16 +65,16 @@ print(utc_now)
 
 print("Example 3")
 parse_format = "%Y-%m-%d %H:%M:%S %Z"
-depart_sfo = "2024-03-09 21:17:45 PST"
-time_tuple = time.strptime(depart_sfo, parse_format)
+depart_icn = "2025-02-23 11:30:00 KST"
+time_tuple = time.strptime(depart_icn, parse_format)
 time_str = time.strftime(time_format, time_tuple)
 print(time_str)
 
 
 print("Example 4")
 try:
-    arrival_nyc = "2024-03-10 03:31:18 EDT"
-    time_tuple = time.strptime(arrival_nyc, parse_format)
+    arrival_sfo = "2025-02-24 04:40:00 PDT"
+    time_tuple = time.strptime(arrival_sfo, time_format)
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -84,39 +84,46 @@ else:
 print("Example 5")
 from datetime import datetime, timezone
 
-now = datetime(2024, 3, 10, 5, 17, 45)
-now_utc = now.replace(tzinfo=timezone.utc)
-now_local = now_utc.astimezone()
+now = datetime(2025, 2, 23, 11, 30, 0) # 시간대 설정이 안된 시간을 만듦
+now_utc = now.replace(tzinfo=timezone.utc) # 시간대를 UTC로 강제 지정
+now_local = now_utc.astimezone()           # UTC 시간을 디폴트 시간대로 변환
 print(now_local)
 
 
 print("Example 6")
-time_str = "2024-03-09 21:17:45"
-now = datetime.strptime(time_str, time_format)
-time_tuple = now.timetuple()
-utc_now = time.mktime(time_tuple)
+time_str = "2025-02-23 20:30:00"
+now = datetime.strptime(time_str, time_format) # 시간대 설정이 안된 시간으로 문자열을 구문분석
+time_tuple = now.timetuple()         # 유닉스 시간 구조체로 변환
+utc_now = time.mktime(time_tuple)    # 구조체로부터 유닉스 타임스탬프 생성
 print(utc_now)
 
+# 로컬 시간으로 변환해 시간이 일치하나 보기(책에는 없음)
+print("Example 6 결과에서 로컬 시간 얻기")
+local_tuple = time.localtime(utc_now)
+time_format = "%Y-%m-%d %H:%M:%S"
+time_str = time.strftime(time_format, local_tuple)
+print(time_str)
 
 print("Example 7")
 from zoneinfo import ZoneInfo
 
-arrival_nyc = "2024-03-10 03:31:18"
-nyc_dt_naive = datetime.strptime(arrival_nyc, time_format)
-eastern = ZoneInfo("US/Eastern")
-nyc_dt = nyc_dt_naive.replace(tzinfo=eastern)
-utc_dt = nyc_dt.astimezone(timezone.utc)
-print("EDT:", nyc_dt)
-print("UTC:", utc_dt)
+arrival_sfo = "2025-02-24 04:40:00"
+sfo_dt_naive = datetime.strptime(arrival_sfo, time_format)   # 시간대가 설정되지 않은 시간
+pacific = ZoneInfo("US/Pacific")                             # 샌프란시스코의 시간대
+sfo_dt = sfo_dt_naive.replace(tzinfo=pacific)                # 시간대를 샌프란시스코 시간대로 변경
+utc_dt = sfo_dt.astimezone(timezone.utc)                     # UTC로 변경
+print("PST: ",sfo_dt)
+print("UTC: ",utc_dt)
+
 
 
 print("Example 8")
-pacific = ZoneInfo("US/Pacific")
-sf_dt = utc_dt.astimezone(pacific)
-print("PST:", sf_dt)
+korea = ZoneInfo("Asia/Seoul")
+korea_dt = utc_dt.astimezone(korea)
+print("KST:", korea_dt)
 
 
 print("Example 9")
 nepal = ZoneInfo("Asia/Katmandu")
 nepal_dt = utc_dt.astimezone(nepal)
-print("NPT", nepal_dt)
+print("NPT:", nepal_dt)

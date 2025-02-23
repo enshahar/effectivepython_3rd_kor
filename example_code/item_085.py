@@ -52,7 +52,7 @@ def load_data(path):
     open(path).read()
 
 def analyze_data(data):
-    return "my summary"
+    return "내 요약 정보"
 
 def run_report(path):
     data = load_data(path)
@@ -74,7 +74,7 @@ print("Example 3")
 try:
     summary = run_report("pizza_data.csv")
 except FileNotFoundError:
-    print("Transient file error")
+    print("중간 파일 오류")
 else:
     print(summary)
 
@@ -82,8 +82,8 @@ else:
 print("Example 4")
 try:
     summary = run_report("pizza_data.csv")
-except Exception:  # Changed
-    print("Transient report issue")
+except Exception:  # 변경함
+    print("중간 파일 오류")
 else:
     print(summary)
 
@@ -104,6 +104,6 @@ print("Example 6")
 try:
     summary = run_report("my_data.csv")
 except Exception as e:
-    print("Fail:", type(e), e)
+    print("실패:", type(e), e)
 else:
     print(summary)

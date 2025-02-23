@@ -61,11 +61,11 @@ def handle(request):
         do_work(request.body)
     except BaseException as e:
         print(repr(e))
-        request.response = 400  # Bad request error
+        request.response = 400  # 잘못된 요청(Bad request) 응답
 
 
 print("Example 2")
-request = Request("My message")
+request = Request("내 메시지")
 handle(request)
 
 
@@ -80,7 +80,7 @@ def handle2(request):
         print(repr(e))
         request.response = 400
 
-request = Request("My message 2")
+request = Request("내 메시지 2")
 handle2(request)
 
 
@@ -95,7 +95,7 @@ def handle3(request):
         print(repr(e))
         request.response = 400
 
-request = Request("My message 3")
+request = Request("내 메시지 3")
 handle3(request)
 
 
@@ -121,8 +121,8 @@ def log_if_error(file_path, target, *args, **kwargs):
 
 
 print("Example 6")
-log_if_error("my_log.jsonl", do_work, "First error")
-log_if_error("my_log.jsonl", do_work, "Second error")
+log_if_error("my_log.jsonl", do_work, "첫번째 오류")
+log_if_error("my_log.jsonl", do_work, "second error")
 
 with open("my_log.jsonl") as f:
     for line in f:

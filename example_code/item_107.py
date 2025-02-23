@@ -56,8 +56,8 @@ class GameState:
 
 print("Example 2")
 state = GameState()
-state.level += 1  # Player beat a level
-state.lives -= 1  # Player had to try again
+state.level += 1  # 플레이어가 레벨을 깼다
+state.lives -= 1  # 플레이어가 재시도해야 한다
 
 print(state.__dict__)
 
@@ -82,7 +82,7 @@ class GameState:
     def __init__(self):
         self.level = 0
         self.lives = 4
-        self.points = 0  # New field
+        self.points = 0  # 새로운 필드
 
 
 print("Example 6")
@@ -143,7 +143,7 @@ class GameState:
         self.level = level
         self.lives = lives
         self.points = points
-        self.magic = magic  # New field
+        self.magic = magic  # 새로운 필드
 
 
 print("Example 15")

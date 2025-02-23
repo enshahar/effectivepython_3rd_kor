@@ -58,7 +58,7 @@ def find_closest(sequence, goal):
     for index, value in enumerate(sequence):
         if goal < value:
             return index
-    raise ValueError(f"{goal} is out of bounds")
+    raise ValueError(f"{goal}이 범위를 벗어남")
 
 index = find_closest(data, 91234.56)
 assert index == 91235
@@ -66,7 +66,7 @@ assert index == 91235
 try:
     find_closest(data, 100000000)
 except ValueError:
-    pass  # Expected
+    pass  # 예외가 발생해 이 줄이 실행됨
 else:
     assert False
 
@@ -74,10 +74,10 @@ else:
 print("Example 3")
 from bisect import bisect_left
 
-index = bisect_left(data, 91234)     # Exact match
+index = bisect_left(data, 91234)     # 정확히 일치
 assert index == 91234
 
-index = bisect_left(data, 91234.56)  # Closest match
+index = bisect_left(data, 91234.56)  # 근접한 값과 일치
 assert index == 91235
 
 
@@ -107,7 +107,7 @@ baseline = (
     )
     / 10
 )
-print(f"Linear search takes {baseline:.6f}s")
+print(f"선형 탐색: {baseline:.6f}초")
 
 comparison = (
     timeit.timeit(
@@ -117,7 +117,7 @@ comparison = (
     )
     / 10
 )
-print(f"Bisect search takes {comparison:.6f}s")
+print(f"이진 탐색: {comparison:.6f}초")
 
 slowdown = 1 + ((baseline - comparison) / comparison)
-print(f"{slowdown:.1f}x slower")
+print(f"{slowdown:.1f}배 느림")

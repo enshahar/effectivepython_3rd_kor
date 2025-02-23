@@ -25,14 +25,14 @@ def broken_generator():
         yield 70
         yield 80
     except BaseException as e:
-        print("Broken handler", type(e), e)
-        raise RuntimeError("Broken")
+        print("깨진 핸들러", type(e), e)
+        raise RuntimeError("깨짐")
 
 it = broken_generator()
-print("Before")
+print("이전")
 print(next(it))
-print("After")
+print("이후")
 sys.stdout.flush()
 del it
 gc.collect()
-print("Still going")
+print("여전히 진행중")

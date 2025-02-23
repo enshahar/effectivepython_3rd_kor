@@ -30,7 +30,7 @@ class HelperTestCase(TestCase):
 
         for i, (expect, found) in enumerate(test_it):
             if found != expect:
-                self.fail(f"Index {i} is wrong: {found} != {expect}")
+                self.fail(f"인덱스 {i}가 잘못됐습니다: {found} != {expect}")
 
     def test_too_short(self):
         values = [1.1, 2.2]

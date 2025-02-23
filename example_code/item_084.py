@@ -55,9 +55,9 @@ try:
     try:
         raise MyError(123)
     except MyError as e:
-        print(f"Inside {e=}")
+        print(f"내부 {e=}")
     
-    print(f"Outside {e=}")  # Raises
+    print(f"외부 {e=}")  # Raises
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -69,9 +69,9 @@ try:
     try:
         raise MyError(123)
     except MyError as e:
-        print(f"Inside {e=}")
+        print(f"내부 {e=}")
     finally:
-        print(f"Finally {e=}")  # Raises
+        print(f"Finally {e=}")  # 예외가 발생함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -82,7 +82,7 @@ print("Example 3")
 class OtherError(Exception):
     pass
 
-result = "Unexpected exception"
+result = "예상 못한 예외"
 try:
     raise MyError(123)
 except MyError as e:
@@ -90,22 +90,22 @@ except MyError as e:
 except OtherError as e:
     result = e
 else:
-    result = "Success"
+    result = "성공"
 finally:
-    print(f"Log {result=}")
+    print(f"로그 {result=}")
 
 
 print("Example 4")
 try:
     del result
     try:
-        raise OtherError(123)  # Not handled
+        raise OtherError(123)  # 처리되지 않음
     except MyError as e:
         result = e
     else:
         result = "Success"
     finally:
-        print(f"{result=}")    # Raises
+        print(f"{result=}")    # 예외가 발생함
 except:
     logging.exception('이 예외가 발생해야 함')
 else:

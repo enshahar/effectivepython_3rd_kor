@@ -57,16 +57,16 @@ class DatabaseConnectionError(Exception):
     pass
 
 def get_animals(database, species):
-    # Query the Database
-    raise DatabaseConnectionError("Not connected")
-    # Return a list of (name, last_mealtime) tuples
+    # 데이터베이스에 질의한다
+    raise DatabaseConnectionError("연결되지 않음")
+    # (이름, 먹이 급여 시간) 튜플 리스트를 반환한다
 
 
 print("Example 2")
 try:
     database = DatabaseConnection("localhost", "4444")
     
-    get_animals(database, "Meerkat")
+    get_animals(database, "미어캣")
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -79,9 +79,9 @@ from unittest.mock import Mock
 
 mock = Mock(spec=get_animals)
 expected = [
-    ("Spot", datetime(2024, 6, 5, 11, 15)),
-    ("Fluffy", datetime(2024, 6, 5, 12, 30)),
-    ("Jojo", datetime(2024, 6, 5, 12, 45)),
+    ("점박이", datetime(2024, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2024, 6, 5, 12, 30)),
+    ("조조", datetime(2024, 6, 5, 12, 45)),
 ]
 mock.return_value = expected
 
@@ -97,17 +97,17 @@ else:
 
 print("Example 5")
 database = object()
-result = mock(database, "Meerkat")
+result = mock(database, "미어켓")
 assert result == expected
 
 
 print("Example 6")
-mock.assert_called_once_with(database, "Meerkat")
+mock.assert_called_once_with(database, "미어켓")
 
 
 print("Example 7")
 try:
-    mock.assert_called_once_with(database, "Giraffe")
+    mock.assert_called_once_with(database, "기린")
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -118,11 +118,11 @@ print("Example 8")
 from unittest.mock import ANY
 
 mock = Mock(spec=get_animals)
-mock("database 1", "Rabbit")
-mock("database 2", "Bison")
-mock("database 3", "Meerkat")
+mock("database 1", "토끼")
+mock("database 2", "아메리카 들소")
+mock("database 3", "미어켓")
 
-mock.assert_called_with(ANY, "Meerkat")
+mock.assert_called_with(ANY, "미어켓")
 
 
 print("Example 9")
@@ -131,7 +131,7 @@ try:
         pass
     
     mock = Mock(spec=get_animals)
-    mock.side_effect = MyError("Whoops! Big problem")
+    mock.side_effect = MyError("아아악! 큰 문제")
     result = mock(database, "Meerkat")
 except:
     logging.exception('이 예외가 발생해야 함')
@@ -141,12 +141,12 @@ else:
 
 print("Example 10")
 def get_food_period(database, species):
-    # Query the Database
+    # 데이터베이스에 기록한다
     pass
-    # Return a time delta
+    # 시간 차이를 반환한다
 
 def feed_animal(database, name, when):
-    # Write to the Database
+    # 데이터베이스에 기록한다
     pass
 
 def do_rounds(database, species):
@@ -197,9 +197,9 @@ food_func.return_value = timedelta(hours=3)
 
 animals_func = Mock(spec=get_animals)
 animals_func.return_value = [
-    ("Spot", datetime(2024, 6, 5, 11, 15)),
-    ("Fluffy", datetime(2024, 6, 5, 12, 30)),
-    ("Jojo", datetime(2024, 6, 5, 12, 45)),
+    ("점박이", datetime(2024, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2024, 6, 5, 12, 30)),
+    ("조조", datetime(2024, 6, 5, 12, 45)),
 ]
 
 feed_func = Mock(spec=feed_animal)
@@ -208,7 +208,7 @@ feed_func = Mock(spec=feed_animal)
 print("Example 13")
 result = do_rounds(
     database,
-    "Meerkat",
+    "미어캣",
     now_func=now_func,
     food_func=food_func,
     animals_func=animals_func,
@@ -221,14 +221,14 @@ assert result == 2
 print("Example 14")
 from unittest.mock import call
 
-food_func.assert_called_once_with(database, "Meerkat")
+food_func.assert_called_once_with(database, "미어캣")
 
-animals_func.assert_called_once_with(database, "Meerkat")
+animals_func.assert_called_once_with(database, "미어캣")
 
 feed_func.assert_has_calls(
     [
-        call(database, "Spot", now_func.return_value),
-        call(database, "Fluffy", now_func.return_value),
+        call(database, "점박이", now_func.return_value),
+        call(database, "털복숭이", now_func.return_value),
     ],
     any_order=True,
 )
@@ -242,13 +242,12 @@ del feed_func
 print("Example 15")
 from unittest.mock import patch
 
-print("Outside patch:", get_animals)
+print("바깥쪽 패치:   ", get_animals)
 
 with patch("__main__.get_animals"):
-    print("Inside patch: ", get_animals)
+    print("안쪽 패치:     ", get_animals)
 
-print("Outside again:", get_animals)
-
+print("또 바깥쪽 패치:", get_animals)
 
 print("Example 16")
 try:
@@ -302,22 +301,22 @@ with patch.multiple(
     now_func.return_value = datetime(2024, 6, 5, 15, 45)
     get_food_period.return_value = timedelta(hours=3)
     get_animals.return_value = [
-        ("Spot", datetime(2024, 6, 5, 11, 15)),
-        ("Fluffy", datetime(2024, 6, 5, 12, 30)),
-        ("Jojo", datetime(2024, 6, 5, 12, 45)),
+        ("점박이", datetime(2024, 6, 5, 11, 15)),
+        ("털복숭이", datetime(2024, 6, 5, 12, 30)),
+        ("조조", datetime(2024, 6, 5, 12, 45)),
     ]
 
 
     print("Example 20")
-    result = do_rounds(database, "Meerkat", now_func=now_func)
+    result = do_rounds(database, "미어캣", now_func=now_func)
     assert result == 2
 
-    get_food_period.assert_called_once_with(database, "Meerkat")
-    get_animals.assert_called_once_with(database, "Meerkat")
+    get_food_period.assert_called_once_with(database, "미어캣")
+    get_animals.assert_called_once_with(database, "미어캣")
     feed_animal.assert_has_calls(
         [
-            call(database, "Spot", now_func.return_value),
-            call(database, "Fluffy", now_func.return_value),
+            call(database, "점박이", now_func.return_value),
+            call(database, "털복숭이", now_func.return_value),
         ],
         any_order=True,
     )

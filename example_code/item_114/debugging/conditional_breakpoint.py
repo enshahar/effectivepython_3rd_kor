@@ -21,7 +21,7 @@ def compute_rmse(observed, ideal):
     count = 0
     for got, wanted in zip(observed, ideal):
         err_2 = (got - wanted) ** 2
-        if err_2 >= 1:  # Start the debugger if True
+        if err_2 >= 1:  # True인 경우에만 디버거를 실행함
             breakpoint()
         total_err_2 += err_2
         count += 1

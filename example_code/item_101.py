@@ -48,26 +48,26 @@ atexit.register(close_open_files)
 
 
 print("Example 1")
-butterflies = ["Swallowtail", "Monarch", "Red Admiral"]
-print(f"Before {butterflies}")
+butterflies = ["호랑나비", "제왕나비", "붉은 제독나비"]
+print(f"이전: {butterflies}")
 butterflies.sort()
-print(f"After {butterflies}")
+print(f"이후: {butterflies}")
 
 
 print("Example 2")
-original = ["Swallowtail", "Monarch", "Red Admiral"]
+original = ["호랑나비", "제왕나비", "붉은 제독나비"]
 alphabetical = sorted(original)
-print(f"Original {original}")
-print(f"Sorted   {alphabetical}")
+print(f"원본:        {original}")
+print(f"sorted 결과: {alphabetical}")
 
 
 print("Example 3")
-patterns = {"solid", "spotted", "cells"}
+patterns = {"무지", "땡땡이", "체크"}
 print(sorted(patterns))
 
 
 print("Example 4")
-legs = {"insects": 6, "spiders": 8, "lizards": 4}
+legs = {"곤충": 6, "거미": 8, "파충류": 4}
 sorted_legs = sorted(
     legs,
     key=lambda x: legs[x],

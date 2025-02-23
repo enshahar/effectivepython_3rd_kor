@@ -45,7 +45,7 @@ def close_open_files():
 
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
-
+import sys
 
 print("Example 1")
 try:
@@ -55,9 +55,9 @@ try:
     def main(argv):
         while True:
             try:
-                do_processing()  # Interrupted
+                do_processing()  # 인터럽트가 여기서 발생함
             except Exception as e:
-                print("Error:", type(e), e)
+                print("오류:", type(e), e)
     
         return 0
     
@@ -87,9 +87,9 @@ try:
             try:
                 do_processing(handle)
             except Exception as e:
-                print("Error:", type(e), e)
+                print("오류:", type(e), e)
             except BaseException:
-                print("Cleaning up interrupt")
+                print("인터럽트 정리")
                 handle.flush()
                 handle.close()
                 return 1
@@ -120,9 +120,9 @@ try:
                 try:
                     do_processing(handle)
                 except Exception as e:
-                    print("Error:", type(e), e)
+                    print("오류:", type(e), e)
         finally:
-            print("Cleaning up finally")  # Always runs
+            print("finally에서 정리")  # 항상 실행됨
             handle.flush()
             handle.close()
     
@@ -150,11 +150,11 @@ try:
             try:
                 do_processing()
             except Exception as e:
-                print("Error:", type(e), e)
+                print("오류:", type(e), e)
             except KeyboardInterrupt:
-                found = input("Terminate? [y/n]: ")
+                found = input("끝내겠습니까? [y/n]: ")
                 if found == "y":
-                    raise  # Propagate the error
+                    raise  # 오류를 전파함
     
     if __name__ == "__main__":
         sys.exit(main(sys.argv))
@@ -181,9 +181,9 @@ def log(func):
             raise
         finally:
             print(
-                f"Called {func.__name__}"
+                f"{func.__name__} 호출됨"
                 f"(*{args!r}, **{kwargs!r}) "
-                f"got {result!r}"
+                f"{result!r} 얻음"
             )
 
     return wrapper
@@ -227,9 +227,9 @@ def fixed_log(func):
             raise
         finally:
             print(
-                f"Called {func.__name__}"
+                f"{func.__name__} 호출됨"
                 f"(*{args!r}, **{kwargs!r}) "
-                f"got {result!r}"
+                f"{result!r} 얻음"
             )
 
     return wrapper

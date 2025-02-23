@@ -27,7 +27,7 @@ def main():
     elif args.command == "adjust":
         adjust.do_adjust(args.file, args.brightness, args.contrast)
     else:
-        raise RuntimeError("Not reachable")
+        raise RuntimeError("도달하지 못함")
 
 if __name__ == "__main__":
     main()

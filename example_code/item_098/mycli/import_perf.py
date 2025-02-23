@@ -26,4 +26,4 @@ result = timeit.timeit(
     number=trials,
 )
 
-print(f"{result/trials * 1e9:2.1f} nanos per call")
+print(f"{result/trials * 1e9:2.1f} 나노초/호출")

@@ -26,16 +26,16 @@ initialized_lock = threading.Lock()
 result = timeit.timeit(
     stmt="""
 global initialized
-# Speculatively check without the lock
+# 잠금 없이 사전 검사
 if not initialized:
     with initialized_lock:
-        # Double check after holding the lock
+        # 잠금을 획득한 후 다시 확인
         if not initialized:
-            # Do expensive initialization
+            # 비용이 큰 초기화 작업 실행
             initialized = True
 """,
     globals=globals(),
     number=trials,
 )
 
-print(f"{result/trials * 1e9:2.1f} nanos per call")
+print(f"{result/trials * 1e9:2.1f} 나노초/호출")

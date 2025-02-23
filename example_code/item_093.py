@@ -64,7 +64,7 @@ count = 1_000_000
 
 delay = timeit.timeit(stmt="1+2", number=count)
 
-print(f"{delay/count*1e9:.2f} nanoseconds")
+print(f"{delay/count*1e9:.2f} 나노초")
 
 
 print("Example 4")
@@ -85,7 +85,7 @@ probe in numbers
     number=count,
 )
 
-print(f"{delay/count*1e9:.2f} nanoseconds")
+print(f"{delay/count*1e9:.2f} 나노초")
 
 
 print("Example 5")
@@ -101,7 +101,7 @@ probe in numbers
     number=count,
 )
 
-print(f"{delay/count*1e9:.2f} nanoseconds")
+print(f"{delay/count*1e9:.2f} 나노초")
 
 
 print("Example 6")
@@ -120,8 +120,8 @@ delay = timeit.timeit(
     number=count,
 )
 
-print(f"{delay/count*1e9:.2f} nanoseconds")
+print(f"{delay/count*1e9:.2f} 나노초")
 
 
 print("Example 7")
-print(f"{delay/count/10_000*1e9:.2f} nanoseconds")
+print(f"{delay/count/10_000*1e9:.2f} 나노초")

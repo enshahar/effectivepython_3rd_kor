@@ -50,11 +50,11 @@ atexit.register(close_open_files)
 print("Example 1")
 def timecode_to_index(video_id, timecode):
     return 1234
-    # Returns the byte offset in the video data
+    # 비디오 데이터의 바이트 오프셋을 반환한다
 
 def request_chunk(video_id, byte_offset, size):
     pass
-    # Returns size bytes of video_id's data from the offset
+    # video_id에 대한 비디오 데이터 중에 바이트 오프셋부터 size만큼을 반환한다
 
 video_id = ...
 timecode = "01:09:14:28"
@@ -71,10 +71,10 @@ class NullSocket:
     def send(self, data):
         self.handle.write(data)
 
-socket = ...             # socket connection to client
-video_data = ...         # bytes containing data for video_id
-byte_offset = ...        # Requested starting position
-size = 20 * 1024 * 1024  # Requested chunk size
+socket = ...            # 클라이언트가 연결한 소켓
+video_data = ...        # video_id에 해당하는 데이터가 들어 있는 bytes
+byte_offset = ...       # 요청받은 시작 위치
+size = 20 * 1024 * 1024 # 요청받은 데이터 크기
 import os
 
 socket = NullSocket()
@@ -90,7 +90,7 @@ import timeit
 
 def run_test():
     chunk = video_data[byte_offset : byte_offset + size]
-    # Call socket.send(chunk), but ignoring for benchmark
+    # socket.send(chunk)를 호출해야 하지만 벤치마크를 위해 무시한다
 
 result = (
     timeit.timeit(
@@ -101,7 +101,7 @@ result = (
     / 100
 )
 
-print(f"{result:0.9f} seconds")
+print(f"{result:0.9f} 초")
 
 
 print("Example 4")
@@ -109,9 +109,9 @@ data = b"shave and a haircut, two bits"
 view = memoryview(data)
 chunk = view[12:19]
 print(chunk)
-print("Size:           ", chunk.nbytes)
-print("Data in view:   ", chunk.tobytes())
-print("Underlying data:", chunk.obj)
+print("크기:       ", chunk.nbytes)
+print("뷰데이터:   ", chunk.tobytes())
+print("기저 데이터:", chunk.obj)
 
 
 print("Example 5")
@@ -119,7 +119,7 @@ video_view = memoryview(video_data)
 
 def run_test():
     chunk = video_view[byte_offset : byte_offset + size]
-    # Call socket.send(chunk), but ignoring for benchmark
+    # socket.send(chunk)를 호출해야 하지만 벤치마크를 위해 무시한다
 
 result = (
     timeit.timeit(
@@ -130,7 +130,7 @@ result = (
     / 100
 )
 
-print(f"{result:0.9f} seconds")
+print(f"{result:0.9f} 초")
 
 
 print("Example 6")
@@ -143,10 +143,10 @@ class FakeSocket:
         source_data = video_view[byte_offset : byte_offset + size]
         buffer[:] = source_data
 
-socket = ...        # socket connection to the client
-video_cache = ...   # Cache of incoming video stream
-byte_offset = ...   # Incoming buffer position
-size = 1024 * 1024  # Incoming chunk size
+socket = ...       # 클라이언트가 연결한 소켓
+video_cache = ...  # 서버로 들어오는 비디오 스트림의 캐시
+byte_offset = ...  # 데이터 버퍼 위치
+size = 1024 * 1024 # 데이터 덩어리 크기
 socket = FakeSocket()
 video_cache = video_data[:]
 byte_offset = 1234
@@ -174,7 +174,7 @@ result = (
     / 100
 )
 
-print(f"{result:0.9f} seconds")
+print(f"{result:0.9f} 초")
 
 
 print("Example 8")
@@ -222,4 +222,4 @@ result = (
     / 100
 )
 
-print(f"{result:0.9f} seconds")
+print(f"{result:0.9f} 초")
