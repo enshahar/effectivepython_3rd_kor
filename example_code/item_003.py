@@ -47,9 +47,10 @@ atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
 
+print("아이템 3")
 print("Example 1")
 try:
-    # 컴파일되지 않음
+    # 컴파일되지 않기 때문에 eval로 컴파일 안됨을 보임
     source = """if True  # 잘못된 구문
       print('hello')"""
     eval(source)
@@ -70,6 +71,7 @@ else:
     assert False
 
 
+# 함수를 호출하기 전에는 오류가 발생하지 않음
 print("Example 3")
 def bad_reference():
     print(my_var)
@@ -84,7 +86,7 @@ except:
 else:
     assert False
 
-
+# 함수를 호출하기 전에는 오류가 발생하지 않고, x에 따라 결과가 달라짐
 print("Example 5")
 def sometimes_ok(x):
     if x:
@@ -104,7 +106,7 @@ except:
 else:
     assert False
 
-
+# 함수를 호출하기 전에는 오류가 발생하지 않음
 print("Example 8")
 def bad_math():
     return 1 / 0

@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 14")
 print("Example 1")
 a = ["a", "b", "c", "d", "e", "f", "g", "h"]
 print("중간 2개:   ", a[3:5])

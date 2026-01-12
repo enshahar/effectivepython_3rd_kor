@@ -46,12 +46,12 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 19")
 print("Example 1")
 for i in range(3):
     print("Loop", i)
 else:
-    print("Else block!")
+    print("Else 블록!")
 
 
 print("Example 2")
@@ -60,14 +60,14 @@ for i in range(3):
     if i == 1:
         break
 else:
-    print("Else block!")
+    print("Else 블록!")
 
 
 print("Example 3")
 for x in []:
     print("이 줄은 실행되지 않음")
 else:
-    print("For의 Else 블럭!")
+    print("For의 Else 블록!")
 
 
 
@@ -75,7 +75,7 @@ print("Example 4")
 while False:
     print("이 줄은 실행되지 않음")
 else:
-    print("While의 Else 블럭!")
+    print("While의 Else 블록!")
 
 
 print("Example 5")

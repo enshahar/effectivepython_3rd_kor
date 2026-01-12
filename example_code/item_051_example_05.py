@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-
+print("아이템 51")
 print("Example 5")
 # 이 파일의 타입을 이렇게 체크해 보세요: python3 -m mypy <경로>
 

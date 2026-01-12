@@ -47,6 +47,7 @@ atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 import sys
 
+print("아이템 86")
 print("Example 1")
 try:
     def do_processing():

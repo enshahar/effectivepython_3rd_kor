@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 13")
 print("Example 1")
 my_test1 = "hello" "아름다운" "world"
 my_test2 = "hello" + "아름다운" + "world"

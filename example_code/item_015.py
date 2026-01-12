@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 15")
 print("Example 1")
 x = ["red", "orange", "yellow", "green", "blue", "purple"]
 odds = x[::2]    # 1, 3, 5번째 (인덱스로는 0, 2, 4)

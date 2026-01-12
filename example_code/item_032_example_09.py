@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-
+print("아이템 32")
 print("Example 9")
 # Check types in this file with: python3 -m mypy <path>
 
@@ -33,7 +33,7 @@ def careful_divide(a: float, b: float) -> float:
 try:
     result = careful_divide(1, 0)
 except ValueError:
-    print("Invalid inputs")  # 이 부분이 실행되리라 예상함
+    print("잘못된 입력")  # 이 부분이 실행되리라 예상함
 else:
     print(f"결과는 {result:.1f}")
 

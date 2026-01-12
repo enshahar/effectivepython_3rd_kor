@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 121")
 print("Example 1")
 # my_module.py
 def determine_weight(volume, density):

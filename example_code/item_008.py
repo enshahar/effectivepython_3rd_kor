@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 8")
 print("Example 1")
 fresh_fruit = {
     "사과": 10,
@@ -106,7 +106,7 @@ def make_smoothies(count):
     print(f"{count} 바나나 슬라이스를 스무디로 만듭니다")
 
 pieces = 0
-count = fresh_fruit.get("banana", 0)
+count = fresh_fruit.get("바나나", 0)
 if count >= 2:
     pieces = slice_bananas(count)
 
@@ -117,7 +117,7 @@ except OutOfBananas:
 
 
 print("Example 7")
-count = fresh_fruit.get("banana", 0)
+count = fresh_fruit.get("바나나", 0)
 if count >= 2:
     pieces = slice_bananas(count)
 else:
@@ -131,7 +131,7 @@ except OutOfBananas:
 
 print("Example 8")
 pieces = 0
-if (count := fresh_fruit.get("바나나", 0)) >= 2:  # 변경됨
+if (count := fresh_fruit.get("바나나", 0)) >= 2:  # 변경함
     pieces = slice_bananas(count)
 
 try:
@@ -215,7 +215,7 @@ FRUIT_TO_PICK = [
     {"오렌지": 3, "멜론": 2},
 ]
 bottles = []
-while True:                     # 루프
+while True:                     # 무한 루프
     fresh_fruit = pick_fruit()
     if not fresh_fruit:         # 중간에서 끝내기
         break
@@ -234,7 +234,7 @@ FRUIT_TO_PICK = [
 ]
 
 bottles = []
-while fresh_fruit := pick_fruit():  # 변경됨
+while fresh_fruit := pick_fruit():  # 변경함
     for fruit, count in fresh_fruit.items():
         batch = make_juice(fruit, count)
         bottles.extend(batch)

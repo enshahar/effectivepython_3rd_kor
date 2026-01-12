@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 101")
 print("Example 1")
 butterflies = ["호랑나비", "제왕나비", "붉은 제독나비"]
 print(f"이전: {butterflies}")

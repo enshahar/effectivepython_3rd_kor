@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-
+print("아이템 89")
 print("Example 7")
 import gc
 import sys

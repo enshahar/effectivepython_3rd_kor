@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-
+print("아이템 124")
 print("Example 6")
 # Check types in this file with: python3 -m mypy <path>
 

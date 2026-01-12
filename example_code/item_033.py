@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 33")
 print("Example 1")
 def sort_priority(values, group):
     def helper(x):
@@ -66,16 +66,16 @@ print(numbers)
 
 print("Example 3")
 def sort_priority2(numbers, group):
-    found = False         # Flag initial value
+    found = False         # 플래그의 초깃값
 
     def helper(x):
         if x in group:
-            found = True  # Flip the flag
+            found = True  # 플래그를 설정함
             return (0, x)
         return (1, x)
 
     numbers.sort(key=helper)
-    return found          # Flag final value
+    return found          # 플래그의 최종 값
 
 
 print("Example 4")
@@ -132,7 +132,7 @@ print(numbers)
 
 print("Example 9")
 class Sorter:
-    def __init__(self, group):
+    def __init__(self, group):  
         self.group = group
         self.found = False
 

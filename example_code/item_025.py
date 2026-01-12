@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 25")
 print("Example 2")
 baby_names = {
     "cat": "kitten",
@@ -168,7 +168,7 @@ def get_winner(ranks):
         if rank == 1:
             return name
 
-winner = get_winner(sorted_ranks)
+winner = get_winner(ranks)
 print(winner)
 
 

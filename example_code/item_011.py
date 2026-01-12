@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 11")
 print("Example 1")
 a = 0b10111011
 b = 0xC5F
@@ -170,7 +170,7 @@ print(formatted)
 print("Example 13")
 menu = {
     "soup": "lentil",
-    "oyster": "kumamoto",
+    "oyster": "tongyoung",
     "special": "schnitzel",
 }
 template = (
@@ -251,7 +251,7 @@ old_template = (
 )
 old_formatted = old_template % {
     "soup": "lentil",
-    "oyster": "kumamoto",
+    "oyster": "tongyoung",
     "special": "schnitzel",
 }
 
@@ -262,7 +262,7 @@ new_template = (
 )
 new_formatted = new_template.format(
     soup="lentil",
-    oyster="kumamoto",
+    oyster="tongyoung",
     special="schnitzel",
 )
 

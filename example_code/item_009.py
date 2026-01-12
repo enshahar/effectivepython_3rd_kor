@@ -46,11 +46,11 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 9")
 print("Example 1")
 def take_action(light):
     if light == "빨강":
-        print("Stop")
+        print("멈추자")
     elif light == "노랑":
         print("속도를 줄이자")
     elif light == "초록":

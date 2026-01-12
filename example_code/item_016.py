@@ -46,7 +46,7 @@ def close_open_files():
 atexit.register(close_open_files)
 ### 책 예제에 맞는 환경설정 끝
 
-
+print("아이템 16")
 print("Example 1")
 try:
     car_ages = [0, 9, 4, 8, 7, 20, 19, 1, 6, 15]
@@ -127,8 +127,8 @@ print("Example 10")
 def generate_csv():
     yield ("날짜", "제조사", "모델", "연식", "가격")
     for i in range(100):
-        yield ("2019-03-25", "Honda", "Fit", "2010", "$3400")
-        yield ("2019-03-26", "Ford", "F150", "2008", "$2400")
+        yield ("2019-03-25", "Hyundai", "Santa Fe", "2010", "$3400")
+        yield ("2019-03-26", "Kia", "K5", "2008", "$2400")
 
 
 print("Example 11")

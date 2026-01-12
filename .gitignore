@@ -9,4 +9,5 @@ pyvenv.cfg
 *.so
 *.lib
 build
+.idea/**
 

@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-
+print("아이템 124")
 print("Example 12")
 # 다음 명령으로 이 파일을 체크하세요: python3 -m mypy <경로>
 
