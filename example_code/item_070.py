@@ -104,7 +104,7 @@ class Worker(Thread):
                 time.sleep(0.01)  # 처리할 작업이 없음
             except AttributeError:
                 # 예제 코드에서 쉽게 종료를 시키기 위한 장치.
-                # 하지만 실전에서는 이런 방식을 쓰면 안됨
+                # 하지만 실전에서는 오류 원인에 따라 적절한 처리를 해야 함.
                 return
             else:
                 result = self.func(item)

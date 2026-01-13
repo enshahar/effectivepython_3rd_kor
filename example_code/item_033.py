@@ -132,7 +132,7 @@ print(numbers)
 
 print("Example 9")
 class Sorter:
-    def __init__(self, group):  
+    def __init__(self, group):
         self.group = group
         self.found = False
 

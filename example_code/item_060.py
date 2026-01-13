@@ -78,7 +78,7 @@ class Exam:
     @staticmethod
     def _check_grade(value):
         if not (0 <= value <= 100):
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("점수는 0 이상 100 이하여야 함")
 
 
     print("Example 4")

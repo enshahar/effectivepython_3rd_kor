@@ -59,8 +59,7 @@ def index_words(text):
 
 
 print("Example 2")
-address = "여든 하고도 일곱해 전..."
-address = "여든 하고도 일곱해 전, 우리의 선조들은 자유속에 잉태된 나라, 모든 사람은 평등하다는 믿음에 바쳐진 새 나라를 이 대륙에 낳았습니다."
+address = "여든 하고도 일곱 해 전..."
 result = index_words(address)
 print(result[:10])
 
@@ -98,11 +97,10 @@ def index_file(handle):
 
 
 print("Example 7")
-address_lines = """Four score and seven years
-ago our fathers brought forth on this
-continent a new nation, conceived in liberty,
-and dedicated to the proposition that all men
-are created equal."""
+address_lines = """여든 하고도 일곱 해 전,
+우리의 선조들은 자유속에 잉태된 나라,
+모든 사람은 평등하다는 믿음에 바쳐진
+새 나라를 이 대륙에 낳았습니다."""
 
 with open("address.txt", "w") as f:
     f.write(address_lines)
