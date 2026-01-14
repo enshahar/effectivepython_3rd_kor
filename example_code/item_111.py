@@ -79,9 +79,9 @@ from unittest.mock import Mock
 
 mock = Mock(spec=get_animals)
 expected = [
-    ("점박이", datetime(2024, 6, 5, 11, 15)),
-    ("털복숭이", datetime(2024, 6, 5, 12, 30)),
-    ("조조", datetime(2024, 6, 5, 12, 45)),
+    ("점박이", datetime(2026, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2026, 6, 5, 12, 30)),
+    ("조조", datetime(2026, 6, 5, 12, 45)),
 ]
 mock.return_value = expected
 
@@ -190,16 +190,16 @@ print("Example 12")
 from datetime import timedelta
 
 now_func = Mock(spec=datetime.now)
-now_func.return_value = datetime(2024, 6, 5, 15, 45)
+now_func.return_value = datetime(2026, 6, 5, 15, 45)
 
 food_func = Mock(spec=get_food_period)
 food_func.return_value = timedelta(hours=3)
 
 animals_func = Mock(spec=get_animals)
 animals_func.return_value = [
-    ("점박이", datetime(2024, 6, 5, 11, 15)),
-    ("털복숭이", datetime(2024, 6, 5, 12, 30)),
-    ("조조", datetime(2024, 6, 5, 12, 45)),
+    ("점박이", datetime(2026, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2026, 6, 5, 12, 30)),
+    ("조조", datetime(2026, 6, 5, 12, 45)),
 ]
 
 feed_func = Mock(spec=feed_animal)
@@ -251,7 +251,7 @@ print("또 바깥쪽 패치:", get_animals)
 
 print("Example 16")
 try:
-    fake_now = datetime(2024, 6, 5, 15, 45)
+    fake_now = datetime(2026, 6, 5, 15, 45)
     
     with patch("datetime.datetime.now"):
         datetime.now.return_value = fake_now
@@ -298,12 +298,12 @@ with patch.multiple(
     feed_animal=DEFAULT,
 ):
     now_func = Mock(spec=datetime.now)
-    now_func.return_value = datetime(2024, 6, 5, 15, 45)
+    now_func.return_value = datetime(2026, 6, 5, 15, 45)
     get_food_period.return_value = timedelta(hours=3)
     get_animals.return_value = [
-        ("점박이", datetime(2024, 6, 5, 11, 15)),
-        ("털복숭이", datetime(2024, 6, 5, 12, 30)),
-        ("조조", datetime(2024, 6, 5, 12, 45)),
+        ("점박이", datetime(2026, 6, 5, 11, 15)),
+        ("털복숭이", datetime(2026, 6, 5, 12, 30)),
+        ("조조", datetime(2026, 6, 5, 12, 45)),
     ]
 
 

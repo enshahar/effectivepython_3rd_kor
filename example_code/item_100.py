@@ -82,7 +82,7 @@ else:
 print("Example 4")
 print("정렬전:", repr(tools))
 tools.sort(key=lambda x: x.name)
-print("\n정렬후:  ", tools)
+print("정렬후:", tools)
 
 
 print("Example 5")

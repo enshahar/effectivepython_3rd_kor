@@ -17,7 +17,7 @@
 
 print("아이템 124")
 print("Example 6")
-# Check types in this file with: python3 -m mypy <path>
+# 다음 명령으로 이 파일의 타입을 체크하세요: python3 -m mypy <path>
 
 class Counter:
     def __init__(self) -> None:

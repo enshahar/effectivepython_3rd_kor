@@ -56,7 +56,6 @@ out_queue = Queue()
 
 print("Example 2")
 from threading import Thread
-
 from queue import ShutDown
 
 

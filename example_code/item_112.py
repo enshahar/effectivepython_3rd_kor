@@ -91,14 +91,14 @@ from datetime import timedelta
 from unittest.mock import call
 
 now_func = Mock(spec=datetime.now)
-now_func.return_value = datetime(2019, 6, 5, 15, 45)
+now_func.return_value = datetime(2026, 6, 5, 15, 45)
 
 database = Mock(spec=ZooDatabase)
 database.get_food_period.return_value = timedelta(hours=3)
 database.get_animals.return_value = [
-    ("점박이", datetime(2019, 6, 5, 11, 15)),
-    ("털복숭이", datetime(2019, 6, 5, 12, 30)),
-    ("조조", datetime(2019, 6, 5, 12, 55)),
+    ("점박이", datetime(2026, 6, 5, 11, 15)),
+    ("털복숭이", datetime(2026, 6, 5, 12, 30)),
+    ("조조", datetime(2026, 6, 5, 12, 55)),
 ]
 
 

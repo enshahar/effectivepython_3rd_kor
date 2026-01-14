@@ -17,7 +17,7 @@
 
 print("아이템 124")
 print("Example 2")
-# Check types in this file with: python3 -m mypy <path>
+# 다음 명령으로 이 파일의 타입을 체크하세요: python3 -m mypy <path>
 
 def subtract(a: int, b: int) -> int:  # 함수에 타입 애너테이션을 붙임
     return a - b

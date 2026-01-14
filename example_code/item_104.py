@@ -60,10 +60,10 @@ def add_book(queue, book):
     queue.sort(key=lambda x: x.due_date, reverse=True)
 
 queue = []
-add_book(queue, Book("Don Quixote", "2019-06-07"))
-add_book(queue, Book("Frankenstein", "2019-06-05"))
-add_book(queue, Book("Les Misérables", "2019-06-08"))
-add_book(queue, Book("War and Peace", "2019-06-03"))
+add_book(queue, Book("돈키호테", "2025-06-07"))
+add_book(queue, Book("프랑켄슈타인", "2025-06-05"))
+add_book(queue, Book("레미제라블", "2025-06-08"))
+add_book(queue, Book("전쟁과 평화", "2025-06-03"))
 
 
 print("Example 3")
@@ -81,7 +81,7 @@ def next_overdue_book(queue, now):
 
 
 print("Example 4")
-now = "2019-06-10"
+now = "2025-06-10"
 
 found = next_overdue_book(queue, now)
 print(found.due_date, found.title)
@@ -95,22 +95,22 @@ def return_book(queue, book):
     queue.remove(book)
 
 queue = []
-book = Book("Treasure Island", "2019-06-04")
+book = Book("보물섬", "2025-06-04")
 
 add_book(queue, book)
-print("Before return:", [x.title for x in queue])
+print("반납 전:", [x.title for x in queue])
 
 return_book(queue, book)
-print("After return: ", [x.title for x in queue])
+print("반납 후: ", [x.title for x in queue])
 
 
 print("Example 6")
 try:
     next_overdue_book(queue, now)
 except NoOverdueBooks:
-    pass          # Expected
+    pass          # 이 문장이 실행되리라 예상함
 else:
-    assert False  # Doesn't happen
+    assert False  # 이 문장은 결코 실행되지 않음
 
 
 print("Example 7")
@@ -143,7 +143,7 @@ print("Example 8")
 for i in range(1, 6):
     count = i * 1_000
     delay = list_overdue_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수 {count:>5,} 시간: {delay*1e3:>6.2f}밀리초")
 
 
 print("Example 9")
@@ -173,7 +173,7 @@ print("Example 10")
 for i in range(1, 6):
     count = i * 1_000
     delay = list_return_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수 {count:>5,} 시간: {delay*1e3:>6.2f}밀리초")
 
 
 print("Example 11")
@@ -186,8 +186,8 @@ def add_book(queue, book):
 print("Example 12")
 try:
     queue = []
-    add_book(queue, Book("Little Women", "2019-06-05"))
-    add_book(queue, Book("The Time Machine", "2019-05-30"))
+    add_book(queue, Book("작은 아씨들", "2025-06-05"))
+    add_book(queue, Book("타임 머신", "2025-05-30"))
 except:
     logging.exception('이 예외가 발생해야 함')
 else:
@@ -209,19 +209,19 @@ class Book:
 
 print("Example 14")
 queue = []
-add_book(queue, Book("Pride and Prejudice", "2019-06-01"))
-add_book(queue, Book("The Time Machine", "2019-05-30"))
-add_book(queue, Book("Crime and Punishment", "2019-06-06"))
-add_book(queue, Book("Wuthering Heights", "2019-06-12"))
+add_book(queue, Book("오만과 편견", "2025-06-01"))
+add_book(queue, Book("타임 머신", "2025-05-30"))
+add_book(queue, Book("죄와 벌", "2025-06-06"))
+add_book(queue, Book("폭풍의 언덕", "2025-06-12"))
 print([b.title for b in queue])
 
 
 print("Example 15")
 queue = [
-    Book("Pride and Prejudice", "2019-06-01"),
-    Book("The Time Machine", "2019-05-30"),
-    Book("Crime and Punishment", "2019-06-06"),
-    Book("Wuthering Heights", "2019-06-12"),
+    Book("오만과 편견", "2025-06-01"),
+    Book("타임 머신", "2025-05-30"),
+    Book("죄와 벌", "2025-06-06"),
+    Book("폭풍의 언덕", "2025-06-12"),
 ]
 queue.sort()
 print([b.title for b in queue])
@@ -231,10 +231,10 @@ print("Example 16")
 from heapq import heapify
 
 queue = [
-    Book("Pride and Prejudice", "2019-06-01"),
-    Book("The Time Machine", "2019-05-30"),
-    Book("Crime and Punishment", "2019-06-06"),
-    Book("Wuthering Heights", "2019-06-12"),
+    Book("오만과 편견", "2025-06-01"),
+    Book("타임 머신", "2025-05-30"),
+    Book("죄와 벌", "2025-06-06"),
+    Book("폭풍의 언덕", "2025-06-12"),
 ]
 heapify(queue)
 print([b.title for b in queue])
@@ -245,16 +245,16 @@ from heapq import heappop
 
 def next_overdue_book(queue, now):
     if queue:
-        book = queue[0]     # Most overdue first
+        book = queue[0]     # 만기가 가장 이른 책이 맨 앞에 있다
         if book.due_date < now:
-            heappop(queue)  # Remove the overdue book
+            heappop(queue)  # 연체된 책을 제거한다
             return book
 
     raise NoOverdueBooks
 
 
 print("Example 18")
-now = "2019-06-02"
+now = "2025-06-02"
 
 book = next_overdue_book(queue, now)
 print(book.due_date, book.title)
@@ -265,9 +265,9 @@ print(book.due_date, book.title)
 try:
     next_overdue_book(queue, now)
 except NoOverdueBooks:
-    pass  # Expected
+    pass  # 이 문장이 실행되리라 예상함
 else:
-    assert False  # Doesn't happen
+    assert False  # 이 문장은 결코 실행되지 않음
 
 
 print("Example 19")
@@ -295,7 +295,7 @@ print("Example 20")
 for i in range(1, 6):
     count = i * 10_000
     delay = heap_overdue_benchmark(count)
-    print(f"Count {count:>5,} takes: {delay*1e3:>6.2f}ms")
+    print(f"개수 {count:>5,} 시간: {delay*1e3:>6.2f}밀리초")
 
 
 print("Example 21")
@@ -304,7 +304,7 @@ class Book:
     def __init__(self, title, due_date):
         self.title = title
         self.due_date = due_date
-        self.returned = False  # New field
+        self.returned = False  # 새로운 필드
 
     def __lt__(self, other):
         return self.due_date < other.due_date
@@ -329,24 +329,24 @@ def next_overdue_book(queue, now):
 
 queue = []
 
-book = Book("Pride and Prejudice", "2019-06-01")
+book = Book("오만과 편견", "2025-06-01")
 add_book(queue, book)
 
-book = Book("The Time Machine", "2019-05-30")
-add_book(queue, book)
-book.returned = True
-
-book = Book("Crime and Punishment", "2019-06-06")
+book = Book("타임 머신", "2025-05-30")
 add_book(queue, book)
 book.returned = True
 
-book = Book("Wuthering Heights", "2019-06-12")
+book = Book("죄와 벌", "2025-06-06")
+add_book(queue, book)
+book.returned = True
+
+book = Book("폭풍의 언덕", "2025-06-12")
 add_book(queue, book)
 
-now = "2019-06-11"
+now = "2025-06-11"
 
 book = next_overdue_book(queue, now)
-assert book.title == "Pride and Prejudice"
+assert book.title == "오만과 편견"
 
 try:
     next_overdue_book(queue, now)

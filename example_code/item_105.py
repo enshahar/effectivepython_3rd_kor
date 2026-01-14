@@ -50,7 +50,7 @@ print("아이템 105")
 print("Example 1")
 import time
 
-now = 1710047865.0
+now = 1768022265.0
 local_tuple = time.localtime(now)
 time_format = "%Y-%m-%d %H:%M:%S"
 time_str = time.strftime(time_format, local_tuple)
@@ -107,6 +107,7 @@ print(time_str)
 print("Example 7")
 from zoneinfo import ZoneInfo
 
+# 시스템에 따라서는 pip등으로 타임존 데이터베이스가 들어있는 tzdata 모듈을 설치해야 정상작동할 수도 있음
 arrival_sfo = "2025-02-24 04:40:00"
 sfo_dt_naive = datetime.strptime(arrival_sfo, time_format)   # 시간대가 설정되지 않은 시간
 pacific = ZoneInfo("US/Pacific")                             # 샌프란시스코의 시간대

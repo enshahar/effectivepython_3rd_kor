@@ -17,7 +17,7 @@
 
 print("아이템 124")
 print("Example 10")
-# Check types in this file with: python3 -m mypy <path>
+# 다음 명령으로 이 파일의 타입을 체크하세요: python3 -m mypy <path>
 
 def get_or_default(value: int | None, default: int) -> int:
     if value is not None:
